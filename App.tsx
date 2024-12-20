@@ -1,118 +1,125 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React, { useState } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import HomeScreen from './src/screens/HomeScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
+import FilterScreen from './src/screens/FilterScreen';
+import MenuListScreen from './src/screens/MenuListScreen';
+import FilterRestaurant from './src/screens/FilterRestaurant';
+import ChatListScreen from './src/screens/ChatListScreen';
+import ChatScreen from './src/screens/ChatScreen';
+import CallingScreen from './src/screens/CallingScreen';
+import CartScreen from './src/screens/CartScreen';
+import { Image, Text, View } from 'react-native';
+import { homeIcon, profileIcon, cartIcon, chatIcon } from './src/assets/icons';
+import RestaurantListScreen from './src/screens/RestaurantListScreen';
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+// Custom TabBar Icon Component
+const CustomTabBarIcon = ({ source, label, color, size }) => (
+  <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+    <Image
+      source={source}
+      style={{ width: size, height: size, tintColor: '#42D180' }}
+    />
+    <Text style={{ marginLeft: 8, color, fontSize: size * 0.35 }}>
+      {label}
+    </Text>
+  </View>
+);
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+function HomeTabNavigator() {
+  const [selected, setSelected] = useState('Home');
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
-
-function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
+    <Tab.Navigator>
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          headerShown: false,
+          title: '',
+          tabBarIcon: ({ color, size }) => (
+            <CustomTabBarIcon
+              source={homeIcon}
+              label="Home"
+              color={color}
+              size={size}
+            />
+          ),
+        }}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{
+          headerShown: false,
+          title: '',
+          tabBarIcon: ({ color, size }) => (
+            <CustomTabBarIcon
+              source={profileIcon}
+              label="Profile"
+              color={color}
+              size={size}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Cart"
+        component={CartScreen}
+        options={{
+          headerShown: false,
+          title: '',
+          tabBarIcon: ({ color, size }) => (
+            <CustomTabBarIcon
+              source={cartIcon}
+              label="Cart"
+              color={color}
+              size={size}
+            />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Chat"
+        component={ChatScreen}
+        options={{
+          headerShown: false,
+          title: '',
+          tabBarIcon: ({ color, size }) => (
+            <CustomTabBarIcon
+              source={chatIcon}
+              label="chat"
+              color={color}
+              size={size}
+            />
+          ),
+        }}
+      />
+    </Tab.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
-
-export default App;
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="HomeTab"
+          component={HomeTabNavigator}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name="RestaurantList" component={RestaurantListScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="FilterScreen" component={FilterScreen} />
+        <Stack.Screen name="MenuList" component={MenuListScreen} />
+        <Stack.Screen name="FilterRestaurant" component={FilterRestaurant} />
+        <Stack.Screen name="ChatList" component={ChatListScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="ChatScreen" component={ChatScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="CallingScreen" component={CallingScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
