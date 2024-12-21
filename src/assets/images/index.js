@@ -15,5 +15,9 @@ import profile3 from './profile3/profile3.png';
 import backgroundImage2 from './backgroundImage2/backgroundImage2.png';
 import personImage from './personImage/personImage.png';
 import rateDriver from './rateDriver/rateDriver.png';
+import rateFood from './rateFood/rateFood.png';
+import rateRestaurant from './rateRestaurant/rateRestaurant.png'
 
-export { promoImage, restaurantImage1, restaurantImage2, backgroundImage1, photoMenu1, photoMenu2, photoMenu3, restaurantImage3, restaurantImage4, restaurantImage5, restaurantImage6, profile1, profile2, profile3, backgroundImage2, personImage, rateDriver }
+export { promoImage, restaurantImage1, restaurantImage2, backgroundImage1, 
+    photoMenu1, photoMenu2, photoMenu3, restaurantImage3, restaurantImage4, restaurantImage5, 
+    restaurantImage6, profile1, profile2, profile3, backgroundImage2, personImage, rateDriver, rateFood, rateRestaurant }

@@ -3,12 +3,11 @@ import React from 'react';
 import { Dimensions, StyleSheet, View, Image, Text } from 'react-native';
 
 function MenuRenderItems({ item }: any) {
-    const navigation = useNavigation();
     return (
         <View style={styles.menuItems} >
             <Image source={item.imgURL} />
             <View style={styles.textContainer}>
-                <Text style={styles.menuTitle} onPress={() => { navigation.navigate('ChatList') }}>{item.title}</Text>
+                <Text style={styles.menuTitle} >{item.title}</Text>
                 <Text style={styles.menuName}>{item.restaurantName}</Text>
             </View>
             <Text style={styles.menuPrice}>${item.price}</Text>
@@ -32,9 +31,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         padding: 10,
         borderRadius: 20,
-        shadowColor: '#000',
+        shadowColor: '#F7F8FE',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.01,
+        shadowOpacity: 1,
         shadowRadius: 4,
     },
     textContainer: {

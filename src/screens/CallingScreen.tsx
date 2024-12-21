@@ -1,5 +1,6 @@
+import React, { useState, useEffect } from 'react';
 import { Dimensions, TouchableOpacity, View, Image, StyleSheet } from 'react-native';
-import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import CallingComponent from '../components/CallingComponent';
 import BackgroundImage2 from '../components/ChatBackgroundImage';
 import { closeIcon, volumeOffIcon, volumeUpIcon } from '../assets/icons';
@@ -11,6 +12,17 @@ const WIDTH = Dimensions.get('screen').width;
 const CallingScreen = () => {
     const [ended, setEnded] = useState(false);
     const [clicked, setClicked] = useState(false);
+    const navigation = useNavigation();
+
+    useEffect(() => {
+        if (ended) {
+            const timeout = setTimeout(() => {
+                navigation.navigate('RatingDriverScreen'); // Navigate after 5 seconds
+            }, 5000);
+
+            return () => clearTimeout(timeout); // Cleanup timeout on component unmount
+        }
+    }, [ended, navigation]);
 
     return (
         <View style={styles.container}>
@@ -24,7 +36,10 @@ const CallingScreen = () => {
                     <Image source={clicked ? volumeOffIcon : volumeUpIcon} />
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => setEnded(true)} style={[styles.buttonSize, styles.closeButton]}>
+                <TouchableOpacity
+                    onPress={() => setEnded(true)}
+                    style={[styles.buttonSize, styles.closeButton]}
+                >
                     <Image source={closeIcon} />
                 </TouchableOpacity>
             </View>
@@ -49,7 +64,6 @@ const styles = StyleSheet.create({
     },
     buttonSize: {
         justifyContent: 'center',
-        // padding: 20,
         width: 80,
         height: 80,
         borderRadius: 40,

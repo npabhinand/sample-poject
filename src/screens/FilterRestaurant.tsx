@@ -14,11 +14,8 @@ const FilterRestaurant: React.FC<FilterRestaurantProps> = ({ route }) => {
     const { selectedButtons, setSelectedButtons } = route.params;
     const [clicked, setClicked] = useState('');
 
-    // Handle button press by updating the selectedButtons state
     const handleButtonPress = (index: string) => {
-        // Filter out the button from the selected buttons array
         const updatedButtons = selectedButtons.filter(button => button !== index);
-        // Update the state with the filtered array
         setSelectedButtons(updatedButtons);
     };
 
@@ -30,7 +27,7 @@ const FilterRestaurant: React.FC<FilterRestaurantProps> = ({ route }) => {
                     <FilterButton
                         key={index}
                         buttonName={button}
-                        onPress={() => handleButtonPress(button)} // Pass function reference here
+                        onPress={() => handleButtonPress(button)} 
                         isSelected={selectedButtons.includes(button)}
                     />
                 ))}

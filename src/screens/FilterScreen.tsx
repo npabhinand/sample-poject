@@ -24,7 +24,7 @@ const FilterScreen = () => {
     };
 
     const handleSearch = () => {
-        navigation.navigate('FilterRestaurant', {
+        navigation.navigate('FilterRestaurant', navigation.setOptions={
             selectedButtons,
             setSelectedButtons,
         });
