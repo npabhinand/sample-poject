@@ -16,8 +16,8 @@ const FilterButton: React.FC<FilterButtonProps> = ({ buttonName, onPress, isSele
             style={[styles.buttonStyle, isSelected && styles.selectedButton]}
             onPress={() => onPress(buttonName)}
         >
-            <Text style={styles.buttonText}>
-                {buttonName} {isSelected && ' X'}
+            <Text style={[styles.buttonText, isSelected && styles.selectedTxt]}>
+                {buttonName}
             </Text>
         </TouchableOpacity>
     );
@@ -35,7 +35,12 @@ const styles = StyleSheet.create({
         marginTop: HEIGHT * 0.02,
     },
     selectedButton: {
-        backgroundColor: '#FEF7E7',
+        backgroundColor: '#DA6317',
+    },
+    selectedTxt: {
+        color: '#FEF7E7',
+        textAlign: 'center',
+        fontSize: 12,
     },
     buttonText: {
         color: '#DA6317',

@@ -2,12 +2,15 @@ import { View, StyleSheet, SafeAreaView, Dimensions, Text, TouchableOpacity } fr
 import React, { useState } from 'react';
 import BackgroundImage from '../components/BackgroundImage';
 import TitleComponent from '../components/TitleComponent';
-import NotificationButtonComponent from '../components/NotificationButtonComponent';
-import SearchInputComponent from '../components/SearchInputComponent';
 import FilterButtonComponent from '../components/FilterButtonComponent';
 import FilterButton from '../components/FilterButton';
 import { useNavigation } from '@react-navigation/native';
 import { foodButton, locationButton, typeButton } from '../data/commonArray';
+import HomeTitleContainer from '../components/HomeTitleContainer';
+
+
+const HEIGHT = Dimensions.get('screen').height;
+const WIDTH = Dimensions.get('screen').width;
 
 const FilterScreen = () => {
     const navigation = useNavigation();
@@ -24,7 +27,7 @@ const FilterScreen = () => {
     };
 
     const handleSearch = () => {
-        navigation.navigate('FilterRestaurant', navigation.setOptions={
+        navigation.navigate('FilterRestaurant', navigation.setOptions = {
             selectedButtons,
             setSelectedButtons,
         });
@@ -32,15 +35,8 @@ const FilterScreen = () => {
     console.log(selectedButtons);
     return (
         <SafeAreaView style={styles.container}>
-            <BackgroundImage />
-            <View style={[styles.titleRow, styles.marginLeft]}>
-                <TitleComponent title1="Find Your" title2="Favorite Food" />
-                <NotificationButtonComponent />
-            </View>
-
-            <View style={styles.searchRow}>
-                <SearchInputComponent />
-                <FilterButtonComponent />
+            <View >
+                <HomeTitleContainer isFilterButton={false} />
             </View>
 
             <View style={styles.marginLeft}>
@@ -97,8 +93,6 @@ const FilterScreen = () => {
 
 export default FilterScreen;
 
-const HEIGHT = Dimensions.get('screen').height;
-const WIDTH = Dimensions.get('screen').width;
 
 const styles = StyleSheet.create({
     container: {

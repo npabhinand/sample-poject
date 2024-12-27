@@ -16,8 +16,28 @@ import backgroundImage2 from './backgroundImage2/backgroundImage2.png';
 import personImage from './personImage/personImage.png';
 import rateDriver from './rateDriver/rateDriver.png';
 import rateFood from './rateFood/rateFood.png';
-import rateRestaurant from './rateRestaurant/rateRestaurant.png'
-
-export { promoImage, restaurantImage1, restaurantImage2, backgroundImage1, 
-    photoMenu1, photoMenu2, photoMenu3, restaurantImage3, restaurantImage4, restaurantImage5, 
-    restaurantImage6, profile1, profile2, profile3, backgroundImage2, personImage, rateDriver, rateFood, rateRestaurant }
+import rateRestaurant from './rateRestaurant/rateRestaurant.png';
+import orderImage1 from './orderImage1/orderImage1.png';
+import orderImage2 from './orderImage2/orderImage2.png';
+import orderImage3 from './orderImage3/orderImage3.png';
+import pattern from './pattern/pattern.png';
+import promo2 from './promo2/promo2.png';
+import promo3 from './promo3/promo3.png';
+import payoneerLogo from './payoneerLogo/payoneerLogo.png';
+import visaLogo from './visaLogo/visaLogo.png';
+import paypalLogo from './paypalLogo/paypalLogo.png';
+import mapImage from './mapImage/mapImage.png';
+import pattern2 from './pattern2/pattern2.png';
+import line from './line/line.png';
+import track from './track/track.png';
+import deliveryBoyImage from './deliveryBoyImage/deliveryBoyImage.png';
+import DetailImage from './Detail/DetailRestaurant.png';
+import testimonialImage from './testimonialImage/testimonials.png';
+import menu1 from './menu1/menu1.png';
+import menu2 from './menu1/menu2.png';
+import ProfileImage from './ProfileImage/ProfileImage.png';
+export {
+    promoImage, restaurantImage1, restaurantImage2, backgroundImage1, photoMenu1, photoMenu2, photoMenu3, restaurantImage3, restaurantImage4, restaurantImage5, restaurantImage6, profile1, profile2, profile3, backgroundImage2, personImage, rateDriver, rateFood, orderImage1, orderImage2, rateRestaurant, orderImage3, pattern, promo2, promo3, visaLogo, paypalLogo, payoneerLogo, mapImage, line, track, deliveryBoyImage,
+    pattern2, DetailImage, testimonialImage, menu1, menu2,
+    ProfileImage,
+};

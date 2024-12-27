@@ -2,14 +2,22 @@ import { View, StyleSheet } from 'react-native';
 import React from 'react';
 import BackgroundImage from '../components/BackgroundImage';
 import ChatTitleComponent from '../components/ChatTitleComponent';
-import OrderDetailCard from '../components/OrderDetailCard';
+import PriceCard from '../components/PriceCard';
+import PaymentCard from '../components/PaymentCard';
+import { locationIcon } from '../assets/icons';
+import { paypalLogo } from '../assets/images';
 
 const PaymentScreen = () => {
     return (
         <View style={styles.container}>
             <BackgroundImage />
             <ChatTitleComponent title="Confirm Order" />
-            <OrderDetailCard navigate="EditLocationScreen" isEdit={true} />
+            <PaymentCard navigate="EditLocationScreen" title="Delivery To" description={'4517 Washington Ave. Manchester, Kentucky 39495'} descriptionWeight="bold" logo={locationIcon} />
+            <PaymentCard navigate="EditPaymentScreen" title="Delivery To" description={'212163528465****'} descriptionWeight="200" logo={paypalLogo} />
+
+            <View style={styles.priceCardContainer}>
+                <PriceCard navigate='YourOrdersScreen' />
+            </View>
         </View>
     );
 };
@@ -20,9 +28,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#F9FBFF',
+        paddingBottom: 20, // optional, to give some spacing at the bottom
     },
-    cards: {
-        // justifyContent: 'space-evenly',
-        alignItems: 'center',
+    priceCardContainer: {
+        flex: 1,
+        justifyContent: 'flex-end', // Ensures PriceCard stays at the bottom
+        alignItems: 'center', // Centers the PriceCard horizontally
     },
 });

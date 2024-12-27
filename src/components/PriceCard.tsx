@@ -9,35 +9,34 @@ const WIDTH = Dimensions.get('screen').width;
 interface navigateProps {
     navigate?: string;
 }
-const PriceCard: React.FC<navigateProps> = ({
-    navigate
-}) => {
+
+const PriceCard: React.FC<navigateProps> = ({ navigate }) => {
     const navigation = useNavigation();
+
     return (
         <View style={styles.container}>
-            <ImageBackground source={pattern} style={{
-                position: 'absolute', right: 0,
-            }} />
-            <View style={styles.subContainer}>
-                <View style={styles.leftContainer}>
-                    <Text style={styles.subText}>Sub-Total</Text>
-                    <Text style={styles.subText}>Delivery Charge</Text>
-                    <Text style={styles.subText}>Discount</Text>
-                    <Text style={styles.TotalSubText}>Total</Text>
+            {/* Background image */}
+            <ImageBackground source={pattern} style={styles.backgroundImage} resizeMode="cover">
+                <View style={styles.subContainer}>
+                    <View style={styles.leftContainer}>
+                        <Text style={styles.subText}>Sub-Total</Text>
+                        <Text style={styles.subText}>Delivery Charge</Text>
+                        <Text style={styles.subText}>Discount</Text>
+                        <Text style={styles.TotalSubText}>Total</Text>
+                    </View>
+                    <View style={styles.rightContainer}>
+                        <Text style={styles.RightSubText}>120$</Text>
+                        <Text style={styles.RightSubText}>10$</Text>
+                        <Text style={styles.RightSubText}>20$</Text>
+                        <Text style={styles.TotalSubText}>150$</Text>
+                    </View>
                 </View>
-                <View style={styles.rightContainer}>
-                    <Text style={styles.subText}>120$</Text>
-                    <Text style={styles.subText}>10$</Text>
-                    <Text style={styles.subText}>20$</Text>
-                    <Text style={styles.TotalSubText}>150$</Text>
-                </View>
-
-            </View>
-            <View>
-                <TouchableOpacity style={styles.btn} onPress={() => { navigation.navigate(navigate) }}>
+                <TouchableOpacity
+                    style={styles.btn}
+                    onPress={() => { navigation.navigate(navigate) }}>
                     <Text style={styles.btnText}>Place My Order</Text>
                 </TouchableOpacity>
-            </View>
+            </ImageBackground>
         </View>
     );
 };
@@ -46,49 +45,57 @@ export default PriceCard;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        // flex: 1,
         alignSelf: 'center',
         width: WIDTH * 0.9,
-        height: HEIGHT * 0.25,
-        backgroundColor: '#47DD86',
+        height: HEIGHT * 0.22,
+        borderRadius: WIDTH * 0.04,
+        // padding: HEIGHT * 0.03,
+        // marginBottom: HEIGHT * 0.02,
+        backgroundColor: '#43D380',
+    },
+    backgroundImage: {
+        flex: 1,
+        justifyContent: 'center',
         borderRadius: 20,
-        bottom: HEIGHT * 0.12,
+        padding: 10,
     },
     subContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: 10,
     },
     leftContainer: {
-        // Styling for the left side
-        // flexDirection: 'row',
-        // justifyContent: 'space-between',
+
+        // marginLeft: WIDTH * 0.0,
     },
     rightContainer: {
-        right: WIDTH * 0.01,
         justifyContent: 'flex-end',
+    },
+    RightSubText: {
+        color: '#fff',
+        fontSize: 14,
+        textAlign: 'right',
     },
     subText: {
         color: '#fff',
+        fontSize: 14,
     },
     TotalSubText: {
         marginTop: HEIGHT * 0.02,
         color: '#fff',
         fontSize: 16,
-
+        fontWeight: 'bold',
     },
     btn: {
         backgroundColor: '#fff',
         alignSelf: 'center',
-        // padding: 10,
         width: WIDTH * 0.8,
         height: HEIGHT * 0.06,
-        marginTop: HEIGHT * 0.01,
+        marginTop: HEIGHT * 0.02,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 10,
-
+        borderRadius: HEIGHT * 0.015,
     },
     btnText: {
         color: '#47DD86',

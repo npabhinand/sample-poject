@@ -7,17 +7,19 @@ import {
     ScrollView,
     SafeAreaView,
     FlatList,
+    Dimensions,
 } from 'react-native';
 import {
+    promoImage,
     restaurantImage1,
     restaurantImage2,
 } from '../assets/images';
 import RestaurantRenderItems from '../components/RestaurantRenderItems';
 import MenuRenderItems from '../components/MenuRenderItems';
-import { PromoComponent } from '../components/PromoComponent';
 import { useNavigation } from '@react-navigation/native';
 import HomeTitleContainer from '../components/HomeTitleContainer';
 import { menuArray } from '../data/commonArray';
+import PromoComponent from '../components/PromoComponent';
 
 interface card {
     id: number,
@@ -42,23 +44,27 @@ export const restaurantCards: card[] = [
 ];
 
 
+const HEIGHT = Dimensions.get('screen').height;
+const WIDTH = Dimensions.get('screen').width;
 function HomeScreen() {
     const navigation = useNavigation();
     return (
         <SafeAreaView style={styles.container}>
-            <HomeTitleContainer />
+            <HomeTitleContainer isFilterButton={true} />
 
-            <ScrollView style={{ flex: 1 }}>
-                <ScrollView horizontal={true}>
-                    <PromoComponent />
-                    <PromoComponent />
-                    <PromoComponent />
+            <ScrollView >
+                <ScrollView horizontal={true} contentContainerStyle={styles.scrollStyle}>
+                    {[1, 2, 3].map((promo) => (
+                        <View key={promo}>
+                            <PromoComponent image={promoImage} btnText="Buy Now" />
+                        </View>
+                    ))}
                 </ScrollView>
 
                 <View style={styles.ViewMoreContainer}>
                     <Text style={[styles.heading2, styles.marginLeft]} >Nearest Restaurant</Text>
                     <TouchableOpacity>
-                        <Text style={[styles.heading2, styles.viewMoreColor, styles.viewMoreMargin]} onPress={() => navigation.navigate('RestaurantList')}>View More</Text>
+                        <Text style={[styles.viewMoreColor, styles.viewMoreMargin]} onPress={() => navigation.navigate('RestaurantList')}>View More</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -74,7 +80,7 @@ function HomeScreen() {
                 />
 
                 <View style={styles.ViewMoreContainer}>
-                    <Text style={[styles.heading2, styles.marginLeft, { fontWeight: 'bold' }]}>Popular Menu</Text>
+                    <Text style={[styles.heading2, styles.marginLeft]}>Popular Menu</Text>
                     <TouchableOpacity onPress={() => navigation.navigate('MenuList')}>
                         <Text style={[styles.viewMoreColor, styles.viewMoreMargin]}>
                             View More
@@ -110,7 +116,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#F9FBFF',
     },
     cards: {
-        justifyContent: 'space-around',
+        justifyContent: 'space-evenly',
+        marginLeft: 15,
     },
     menuContainer: {
         // justifyContent: 'center',
@@ -122,6 +129,7 @@ const styles = StyleSheet.create({
     },
     heading2: {
         fontSize: 15,
+        fontWeight: 'bold',
     },
     viewMoreMargin: {
         padding: 20,
@@ -129,5 +137,10 @@ const styles = StyleSheet.create({
     },
     viewMoreColor: {
         color: '#FF7C32',
+    },
+    scrollStyle: {
+        marginLeft: WIDTH * 0.05,
+        gap: 10,
+        marginTop: 10,
     },
 });

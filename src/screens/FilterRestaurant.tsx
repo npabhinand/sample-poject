@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, FlatList, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, FlatList, View, Dimensions } from 'react-native';
 import RestaurantRenderItems from '../components/RestaurantRenderItems';
 import HomeTitleContainer from '../components/HomeTitleContainer';
 import FilterButton from '../components/FilterButton';
 import { restaurantArray } from '../data/commonArray';
 import { RouteProp } from '@react-navigation/native';
+import { HomeTabNavigator } from '../../App';
 
 interface FilterRestaurantProps {
     route: RouteProp<any, any>;
 }
+const HEIGHT = Dimensions.get('screen').height;
+const WIDTH = Dimensions.get('screen').width;
 
 const FilterRestaurant: React.FC<FilterRestaurantProps> = ({ route }) => {
     const { selectedButtons, setSelectedButtons } = route.params;
@@ -21,26 +24,27 @@ const FilterRestaurant: React.FC<FilterRestaurantProps> = ({ route }) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <HomeTitleContainer />
-            <View style={[styles.rowButtons, styles.marginLeft]}>
-                {selectedButtons.map((button, index) => (
-                    <FilterButton
-                        key={index}
-                        buttonName={button}
-                        onPress={() => handleButtonPress(button)} 
-                        isSelected={selectedButtons.includes(button)}
-                    />
-                ))}
-            </View>
-            <View>
-                <Text style={[styles.heading2, styles.marginLeft]}>Popular Restaurants</Text>
-                <FlatList
-                    numColumns={2}
-                    contentContainerStyle={styles.cards}
-                    data={restaurantArray}
-                    renderItem={({ item }) => <RestaurantRenderItems item={item} />}
-                />
-            </View>
+            <FlatList
+                numColumns={2}
+                ListHeaderComponent={<>
+                    <HomeTitleContainer isFilterButton={true} />
+                    <View style={[styles.rowButtons, styles.marginLeft]}>
+                        {selectedButtons.map((button, index) => (
+                            <FilterButton
+                                key={index}
+                                buttonName={button}
+                                onPress={() => handleButtonPress(button)}
+                                isSelected={selectedButtons.includes(button)}
+                            />
+                        ))}
+                    </View>
+                    <Text style={[styles.heading2, styles.marginLeft]}>Popular Restaurants</Text>
+                </>}
+                contentContainerStyle={styles.cards}
+                data={restaurantArray}
+                renderItem={({ item }) => <RestaurantRenderItems item={item} />}
+            />
+
         </SafeAreaView>
     );
 };
@@ -53,11 +57,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#F9FBFF',
     },
     cards: {
-        justifyContent: 'space-around',
+        alignSelf: 'center',
+        justifyContent: 'space-evenly',
     },
     marginLeft: {
         padding: 10,
-        marginLeft: 25,
+        marginLeft: WIDTH * 0.02,
     },
     heading2: {
         fontSize: 15,
@@ -65,6 +70,6 @@ const styles = StyleSheet.create({
     },
     rowButtons: {
         flexDirection: 'row',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
     },
 });

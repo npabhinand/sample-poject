@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { locationIcon } from '../assets/icons';
 import { useNavigation } from '@react-navigation/native';
 
-const HEIGHT = Dimensions.get('screen').height;
+// const HEIGHT = Dimensions.get('screen').height;
 const WIDTH = Dimensions.get('screen').width;
 
 interface navigateProps {
@@ -14,15 +14,6 @@ interface navigateProps {
 const OrderDetailCard: React.FC<navigateProps> = ({ navigate, isEdit }) => {
     const [location, setLocation] = useState('4517 Washington Ave. Manchester, Kentucky 39495');
     const navigation = useNavigation();
-    const address = [
-        {
-            name: '4517 Washington Ave. Manchester, Kentucky 39495',
-        },
-        {
-            name: '8502 Preston Rd. Inglewood, Maine 98380',
-        },
-
-    ]
     return (
         <View style={styles.container}>
             <View style={styles.row}>
@@ -45,10 +36,10 @@ export default OrderDetailCard;
 const styles = StyleSheet.create({
     container: {
         width: WIDTH * 0.9,
-        height: HEIGHT * 0.15,
+        height: 100,
         marginBottom: 10,
         backgroundColor: '#FFFFFF',
-        borderRadius: 20,
+        borderRadius: WIDTH * 0.04,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.1,
@@ -69,7 +60,7 @@ const styles = StyleSheet.create({
     },
     textContainer: {
         // marginLeft: 20,
-        flex: 1,
+        // flex: 1,
     },
     orderTitle: {
         fontWeight: '600',

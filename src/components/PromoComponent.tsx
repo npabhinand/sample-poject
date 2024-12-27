@@ -1,41 +1,53 @@
 import React from 'react';
 import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { promoImage } from '../assets/images';
 
-export function PromoComponent() {
+
+interface promoProps {
+    image?: any,
+    btnText?: string,
+    btnTextColor?: string,
+    cardColor?: string,
+    textColor?: string,
+}
+const HEIGHT = Dimensions.get('screen').height;
+const WIDTH = Dimensions.get('screen').width;
+
+const PromoComponent: React.FC<promoProps> = ({ image, btnText }) => {
+    // btnTextColor, cardColor, textColor
     return (
         <View style={styles.imageContainer}>
-            <Image source={promoImage} />
+            <Image source={image} />
             <View style={styles.textContainer}>
                 <Text style={styles.promoText}>Special Deal For</Text>
                 <Text style={styles.promoText}>October</Text>
                 <TouchableOpacity style={styles.promoButton}>
-                    <Text style={styles.buttonText}>Buy Now</Text>
+                    <Text style={styles.buttonText}>{btnText}</Text>
                 </TouchableOpacity>
             </View>
         </View>
     );
-}
+};
 
 
-// const HEIGHT = Dimensions.get('screen').height;
-const WIDTH = Dimensions.get('screen').width;
+export default PromoComponent;
+
 const styles = StyleSheet.create({
     imageContainer: {
-        width: WIDTH * 0.9,
-        justifyContent: 'center',
-        marginBottom: 10,
+        width: WIDTH * 0.90,
+        alignSelf: 'center',
+        marginBottom: HEIGHT * 0.02,
         backgroundColor: '#3DC279',
-        borderRadius: 20,
+        borderRadius: WIDTH * 0.05,
         flexDirection: 'row',
-        margin: 20,
+
 
     },
     textContainer: {
         position: 'absolute',
-        top: 25,
-        // left: 10,
+        top: 15,
+        marginTop: HEIGHT * 0.01,
         right: 15,
+        marginBottom: 20,
         // alignItems: 'center',
     },
     promoText: {
@@ -48,8 +60,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         paddingVertical: 10,
         borderRadius: 5,
-        marginTop: 15,
+        marginTop: HEIGHT * 0.02,
         width: WIDTH * 0.2,
+        marginBottom: HEIGHT * 0.03,
     },
     buttonText: {
         color: '#3DC279',

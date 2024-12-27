@@ -1,21 +1,28 @@
 import React from 'react';
-import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
+
+const HEIGHT = Dimensions.get('screen').height;
+const WIDTH = Dimensions.get('screen').width;
 
 function RestaurantRenderItems({ item }: any) {
+    const navigation = useNavigation();
 
     return (
-        <View style={styles.card}>
+        <TouchableOpacity style={styles.card} onPress={() => { navigation.navigate('MenuDetailScreen') }}>
             <Image style={styles.image} source={item.imgURL} />
             <Text style={styles.name}>{item.name}</Text>
-            <Text style={styles.time}>{item.time} mins</Text>
-        </View>
+            <Text style={styles.time}>
+                {item.time ? `${item.time} Mins` : `${item.price}$`}
+            </Text>
+
+        </TouchableOpacity>
     );
 }
 
 export default RestaurantRenderItems;
 
-const HEIGHT = Dimensions.get('screen').height;
-const WIDTH = Dimensions.get('screen').width;
 const styles = StyleSheet.create({
     card: {
         width: WIDTH * 0.4,
@@ -29,8 +36,8 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.02,
         shadowRadius: 4,
-        elevation: 3,
-        marginLeft: WIDTH * 0.05,
+        elevation: 5,
+        marginRight: WIDTH * 0.05,
     },
     image: {
         // width: '100%',

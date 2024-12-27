@@ -1,20 +1,23 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Dimensions, StyleSheet, View, Image, Text } from 'react-native';
+import { Dimensions, StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
 
 const HEIGHT = Dimensions.get('screen').height;
 const WIDTH = Dimensions.get('screen').width;
 
 function MenuRenderItems({ item }: any) {
+    const navigation = useNavigation();
     return (
-        <View style={styles.menuItems} >
+        <TouchableOpacity style={styles.menuItems}
+            onPress={() => { navigation.navigate('ProductDetailScreen') }}
+        >
             <Image source={item.imgURL} />
             <View style={styles.textContainer}>
                 <Text style={styles.menuTitle} >{item.title}</Text>
                 <Text style={styles.menuName}>{item.restaurantName}</Text>
             </View>
             <Text style={styles.menuPrice}>${item.price}</Text>
-        </View>
+        </TouchableOpacity>
     );
 }
 

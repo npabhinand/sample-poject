@@ -1,23 +1,37 @@
 import { View, Text, StyleSheet, Dimensions, Image } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { visaLogo } from '../assets/images';
 
-const HEIGHT = Dimensions.get('screen').height;
 const WIDTH = Dimensions.get('screen').width;
 
-const PaymentCard = () => {
+interface ItemsProps {
+    title?: string;
+    description?: string;
+    logo?: any;
+    navigate?: string;
+    descriptionTextWeight?: string;
+}
+
+const PaymentCard: React.FC<ItemsProps> = ({ title, description, logo, navigate, descriptionTextWeight }) => {
     const navigation = useNavigation();
+
+    const handleNavigate = () => {
+        if (navigate) {
+            navigation.navigate(navigate);
+        }
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.row}>
-                <Text style={styles.orderName}>Deliver To</Text>
-                <Text onPress={() => { navigation.navigate('EditLocationScreen') }} style={styles.editTxt}>Edit</Text>
+                <Text style={styles.orderName}>{title}</Text>
+                <Text onPress={handleNavigate} style={styles.editTxt}>Edit</Text>
             </View>
             <View style={[styles.row, styles.textContainer]}>
-                <Image source={visaLogo} />
-                {/* <Text style={styles.menuTitle} onPress={() => { navigation.navigate('ChatList') }}>{item.title}</Text> */}
-                <Text style={styles.orderTitle}>4517 Washington Ave. Manchester, Kentucky 39495</Text>
+                <Image source={logo} />
+                <Text style={[styles.orderTitle, { fontWeight: descriptionTextWeight || 'normal' }]}>
+                    {description}
+                </Text>
             </View>
         </View>
     );
@@ -28,7 +42,7 @@ export default PaymentCard;
 const styles = StyleSheet.create({
     container: {
         width: WIDTH * 0.9,
-        height: HEIGHT * 0.15,
+        height: 100,
         marginBottom: 10,
         backgroundColor: '#FFFFFF',
         borderRadius: 20,
@@ -43,26 +57,28 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
-        gap: 10,
-        // width: WIDTH * 0.9,
-        // height: HEIGHT * 0.1,
-    }, editTxt: {
+        gap: 0,
+        // padding: 10,
+    },
+    editTxt: {
         color: '#47DD86',
         fontSize: 15,
     },
     textContainer: {
-        // marginLeft: 20,
-        flex: 1,
+        paddingTop: 20,
+        overflow: 'visible',
     },
     orderTitle: {
-        fontWeight: '600',
-        fontSize: 15,
-        margin: 10,
+        // fontSize: 15,
+        // paddingRight: 10,
+        // marginTop: 20,
+        marginLeft: 5,
+        marginRight: 20,
     },
     orderName: {
         color: '#888',
         fontWeight: '200',
-        fontSize: 16,
+        // fontSize: 14,
     },
     orderText: {
         fontSize: 22,
@@ -71,5 +87,3 @@ const styles = StyleSheet.create({
         right: 15,
     },
 });
-
-

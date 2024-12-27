@@ -17,10 +17,10 @@ const CallingScreen = () => {
     useEffect(() => {
         if (ended) {
             const timeout = setTimeout(() => {
-                navigation.navigate('RatingDriverScreen'); // Navigate after 5 seconds
+                navigation.navigate('RateDriverScreen');
             }, 5000);
 
-            return () => clearTimeout(timeout); // Cleanup timeout on component unmount
+            return () => clearTimeout(timeout);
         }
     }, [ended, navigation]);
 

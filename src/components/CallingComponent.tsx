@@ -11,7 +11,6 @@ const HEIGHT = Dimensions.get('screen').height;
 // const WIDTH = Dimensions.get('screen').width;
 
 const CallingComponent: React.FC<CallingProps> = ({ name, isEnded, image }) => {
-    
     return (
         <View style={styles.container}>
             <Image source={image} style={styles.personImage} />

@@ -1,5 +1,5 @@
 import { checkedIcon, failedIcon, moneyIcon } from '../assets/icons';
-import { orderImage1, orderImage2, orderImage3, photoMenu1, photoMenu2, photoMenu3, profile1, profile2, profile3, restaurantImage1, restaurantImage2, restaurantImage3, restaurantImage4, restaurantImage5, restaurantImage6 } from '../assets/images';
+import { DetailImage, menu1, menu2, orderImage1, orderImage2, orderImage3, payoneerLogo, paypalLogo, photoMenu1, photoMenu2, photoMenu3, profile1, profile2, profile3, promo2, promo3, restaurantImage1, restaurantImage2, restaurantImage3, restaurantImage4, restaurantImage5, restaurantImage6, testimonialImage, visaLogo } from '../assets/images';
 
 const restaurantArray = [
   {
@@ -173,24 +173,141 @@ const orderContents = [
   {
     id: 1,
     imgURL: orderImage1,
-    DishName: 'spacy fresh crab',
+    DishName: 'Spacy fresh crab',
     restaurantName: 'Waroenk kita',
     price: 35,
   },
   {
     id: 2,
     imgURL: orderImage2,
-    DishName: 'spacy fresh crab',
+    DishName: 'Spacy fresh crab',
     restaurantName: 'Waroenk kita',
     price: 35,
   },
   {
     id: 3,
     imgURL: orderImage3,
-    DishName: 'spacy fresh crab',
+    DishName: 'Spacy fresh crab',
     restaurantName: 'Waroenk kita',
     price: 35,
   },
-]
+];
 
-export { restaurantArray, menuArray, locationButton, typeButton, foodButton, chatList, ChatContent, NotificationContent, orderContents };
+const voucherPromo = [
+  {
+    id: 1,
+    imageURL: promo2,
+    btnText: 'Order Now',
+    cardColor: '#3DC279',
+    textColor: '#fff',
+    btnTextColor: '#fff',
+
+  },
+  {
+    id: 1,
+    imageURL: promo3,
+    btnText: 'Order Now',
+    cardColor: '#E9F7BA',
+    textColor: '#6B3A5B',
+    btnTextColor: '#6B3A5B',
+  },
+];
+
+const address = [
+  {
+    id: 1,
+    name: '4517 Washington Ave. Manchester, Kentucky 39495',
+  },
+  {
+    id: 2,
+    name: '8502 Preston Rd. Inglewood, Maine 98380',
+  },
+
+];
+
+const paymentContent = [
+  {
+    id: 1,
+    imgURL: paypalLogo,
+    cardNumber: '212163528465****',
+  },
+  {
+    id: 2,
+    imgURL: visaLogo,
+    cardNumber: '212163523665****',
+  },
+  {
+    id: 3,
+    imgURL: payoneerLogo,
+    cardNumber: '212163521265****',
+  },
+];
+
+const popularMenu = [{
+  id: 1,
+  imgURL: menu1,
+  name: 'Spacy fresh crab',
+  price: 16,
+}, {
+  id: 2,
+  imgURL: menu2,
+  name: 'Spacy fresh crab',
+  price: 16,
+}, {
+  id: 3,
+  imgURL: menu1,
+  name: 'Spacy fresh crab',
+  price: 16,
+}];
+
+const testimonials = [
+  {
+    id: 1,
+    name: 'Dianne Russel',
+    date: '12 April 2021',
+    rating: 5,
+    imgURL: testimonialImage,
+    review: 'This Is great, So delicious! You Must Here, With Your family . . '
+  },
+  {
+    id: 2,
+    name: 'Dianne Russel',
+    date: '12 April 2021',
+    rating: 5,
+    imgURL: testimonialImage,
+    review: 'This Is great, So delicious! You Must Here, With Your family . . '
+  },
+  {
+    id: 3,
+    name: 'Dianne Russel',
+    date: '12 April 2021',
+    rating: 5,
+    imgURL: testimonialImage,
+    review: 'This Is great, So delicious! You Must Here, With Your family . . '
+  },
+];
+
+const sections = [
+  {
+    key: 'image',
+    type: 'image',
+    content: DetailImage,
+  },
+  {
+    key: 'details',
+    type: 'details',
+    title: 'Wijie Bar and Resto',
+    location: '19 Km',
+    rating: '4.9 Rating',
+    description: 'Most whole Alaskan Red King Crabs get broken down into legs, claws, and lump meat. We offer all of these options as well in our online shop, but there is nothing like getting the whole ...',
+  },
+  {
+    key: 'popularMenu',
+    type: 'popularMenu',
+  },
+  {
+    key: 'testimonials',
+    type: 'testimonials',
+  },
+];
+export { restaurantArray, menuArray, locationButton, typeButton, foodButton, chatList, ChatContent, NotificationContent, orderContents, voucherPromo, address, paymentContent, popularMenu, testimonials, sections };
