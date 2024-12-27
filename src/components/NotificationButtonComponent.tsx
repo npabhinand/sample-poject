@@ -1,11 +1,13 @@
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import { notificationIcon } from '../assets/icons';
+import { useNavigation } from '@react-navigation/native';
 
 const NotificationButtonComponent = () => {
+    const navigation = useNavigation();
     return (
         <View>
-            <TouchableOpacity style={styles.notificationButton}>
+            <TouchableOpacity style={styles.notificationButton} onPress={() => { navigation.navigate('NotificationScreen') }}>
                 <Image source={notificationIcon} />
             </TouchableOpacity>
         </View>

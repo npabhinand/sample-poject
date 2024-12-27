@@ -1,4 +1,5 @@
-import { photoMenu1, photoMenu2, photoMenu3, profile1, profile2, profile3, restaurantImage1, restaurantImage2, restaurantImage3, restaurantImage4, restaurantImage5, restaurantImage6 } from '../assets/images';
+import { checkedIcon, failedIcon, moneyIcon } from '../assets/icons';
+import { orderImage1, orderImage2, orderImage3, photoMenu1, photoMenu2, photoMenu3, profile1, profile2, profile3, restaurantImage1, restaurantImage2, restaurantImage3, restaurantImage4, restaurantImage5, restaurantImage6 } from '../assets/images';
 
 const restaurantArray = [
   {
@@ -147,5 +148,49 @@ const ChatContent = [
     content: "Okay I'm waiting 👍",
   },
 ];
+const NotificationContent = [
+  {
+    status: 'orderSuccess',
+    content: 'Your order has been taken by the driver',
+    time: 'Recently',
+    imgURl: checkedIcon,
+  },
+  {
+    status: 'PaymentSuccess',
+    content: 'Topup for $100 was successful',
+    time: '10.00 Am',
+    imgURl: moneyIcon,
+  },
+  {
+    status: 'orderFailed',
+    content: 'Your order has been canceled',
+    time: '22 July 2021',
+    imgURl: failedIcon,
+  },
+];
 
-export { restaurantArray, menuArray, locationButton, typeButton, foodButton, chatList, ChatContent };
+const orderContents = [
+  {
+    id: 1,
+    imgURL: orderImage1,
+    DishName: 'spacy fresh crab',
+    restaurantName: 'Waroenk kita',
+    price: 35,
+  },
+  {
+    id: 2,
+    imgURL: orderImage2,
+    DishName: 'spacy fresh crab',
+    restaurantName: 'Waroenk kita',
+    price: 35,
+  },
+  {
+    id: 3,
+    imgURL: orderImage3,
+    DishName: 'spacy fresh crab',
+    restaurantName: 'Waroenk kita',
+    price: 35,
+  },
+]
+
+export { restaurantArray, menuArray, locationButton, typeButton, foodButton, chatList, ChatContent, NotificationContent, orderContents };

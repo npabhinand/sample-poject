@@ -1,27 +1,26 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
-// Define types for props
 interface TitleComponentProps {
-    title1?: string;  // Optional prop
-    title2?: string;  // Optional prop
+    title1?: string;
+    title2?: string;
+    size?: number;
 }
 
-const TitleComponent: React.FC<TitleComponentProps> = ({ title1, title2 }) => {
+const TitleComponent: React.FC<TitleComponentProps> = ({ title1, title2, size }) => {
     return (
         <View>
-            <Text style={styles.titleStyle}>{title1}</Text>
-            <Text style={styles.titleStyle}>{title2}</Text>
+            <Text style={[styles.titleStyle, { fontSize: size }]}>{title1}</Text>
+            <Text style={[styles.titleStyle, { fontSize: size }]}>{title2}</Text>
         </View>
     );
 };
 
 export default TitleComponent;
+
 const styles = StyleSheet.create({
     titleStyle: {
         fontFamily: 'BentonSans Bold',
-        fontSize: 31,
         fontWeight: 'bold',
     },
-}
-);
+});

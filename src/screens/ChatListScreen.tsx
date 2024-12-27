@@ -13,7 +13,7 @@ const ChatListScreen = () => {
     return (
         <View style={styles.container}>
             <BackgroundImage />
-            <ChatTitleComponent />
+            <ChatTitleComponent title='Chat' />
             <FlatList
                 contentContainerStyle={styles.cards}
                 data={chatList}

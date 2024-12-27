@@ -6,14 +6,18 @@ import { useNavigation } from '@react-navigation/native';
 
 const HEIGHT = Dimensions.get('screen').height;
 const WIDTH = Dimensions.get('screen').width;
-const ChatTitleComponent = () => {
+
+interface TitleProps {
+    title?: string;
+}
+const ChatTitleComponent: React.FC<TitleProps> = ({ title }) => {
     const navigation = useNavigation();
     return (
         <View style={[styles.marginLeft, styles.titleContainer]}>
             <TouchableOpacity style={styles.buttonStyle} onPress={() => { navigation.goBack(); }}>
                 <Image source={backIcon} />
             </TouchableOpacity>
-            <TitleComponent title1="Chat" />
+            <TitleComponent title1={title} size={25} />
         </View>
     );
 };

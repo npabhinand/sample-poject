@@ -10,9 +10,8 @@ const HomeTitleContainer = () => {
     return (
         <View>
             <BackgroundImage />
-            {/* Fixed Title Row */}
             <View style={[styles.titleRow, styles.marginLeft]}>
-                <TitleComponent title1="Find Your" title2="Favorite Food" />
+                <TitleComponent title1="Find Your" title2="Favorite Food" size={31} />
                 <NotificationButtonComponent />
             </View>
 

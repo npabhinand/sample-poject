@@ -2,6 +2,9 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Dimensions, StyleSheet, View, Image, Text } from 'react-native';
 
+const HEIGHT = Dimensions.get('screen').height;
+const WIDTH = Dimensions.get('screen').width;
+
 function MenuRenderItems({ item }: any) {
     return (
         <View style={styles.menuItems} >
@@ -17,8 +20,7 @@ function MenuRenderItems({ item }: any) {
 
 export default MenuRenderItems;
 
-const HEIGHT = Dimensions.get('screen').height;
-const WIDTH = Dimensions.get('screen').width;
+
 
 const styles = StyleSheet.create({
     menuItems: {

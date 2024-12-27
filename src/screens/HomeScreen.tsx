@@ -48,7 +48,6 @@ function HomeScreen() {
         <SafeAreaView style={styles.container}>
             <HomeTitleContainer />
 
-            {/* Scrollable Content */}
             <ScrollView style={{ flex: 1 }}>
                 <ScrollView horizontal={true}>
                     <PromoComponent />

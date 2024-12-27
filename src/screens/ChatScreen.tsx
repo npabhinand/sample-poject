@@ -26,7 +26,7 @@ const ChatScreen = () => {
     return (
         <View style={styles.container}>
             <BackgroundImage2 />
-            <ChatTitleComponent />
+            <ChatTitleComponent title="Chat" />
 
             <View style={styles.profileContainer}>
                 <View style={styles.profileRow}>
