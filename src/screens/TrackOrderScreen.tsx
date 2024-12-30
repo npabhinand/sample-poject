@@ -2,14 +2,15 @@ import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from 'rea
 import React from 'react';
 import { deliveryBoyImage, line, mapImage, pattern2, track } from '../assets/images';
 import ChatTitleComponent from '../components/ChatTitleComponent';
-import { callIcon, clockIcon, locationIcon, mapIcon, pathIcon } from '../assets/icons';
+import { callIcon, clockIcon, mapIcon, pathIcon } from '../assets/icons';
 
 const HEIGHT = Dimensions.get('screen').height;
 const WIDTH = Dimensions.get('screen').width;
-import { useNavigation } from '@react-navigation/native';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../navigation/AppNavigator';
 
 const TrackOrderScreen = () => {
-    const navigation = useNavigation();
+    const navigation = useNavigation<NavigationProp<RootStackParamList, 'HomeTab'>>();
     return (
         <View style={styles.container}>
             <Image style={styles.backgroundImage} source={mapImage} />
@@ -40,13 +41,13 @@ const TrackOrderScreen = () => {
 
                 </View>
                 <View style={styles.btnContainer}>
-                    <TouchableOpacity style={styles.callButton} onPress={() => { navigation.navigate('HomeTab') }}>
+                    <TouchableOpacity style={styles.callButton} onPress={() => { navigation.navigate('HomeTab'); }}>
                         <Image source={callIcon} />
                         <Text style={styles.buttonText}>Call</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.MessageButton}>
                         <View style={styles.btnView}>
-                            <Image source={pathIcon} style={{ position: 'absolute' }} />
+                            <Image source={pathIcon} style={styles.imagePosition} />
                         </View>
                     </TouchableOpacity>
                 </View>
@@ -67,11 +68,12 @@ const styles = StyleSheet.create({
     backgroundImage: {
         resizeMode: 'repeat',
         position: 'absolute',
+        marginTop: HEIGHT * 0.03,
     }, track: {
         marginLeft: WIDTH * 0.47,
         flexDirection: 'row',
 
-    },
+    }, imagePosition: { position: 'absolute' },
     line: {
         marginLeft: WIDTH * 0.47,
         marginTop: HEIGHT * -0.034,
@@ -93,7 +95,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 20,
         alignSelf: 'center',
-        height: HEIGHT * 0.26,
+        height: HEIGHT * 0.28,
         borderRadius: WIDTH * 0.03,
         // left: 20,
     },
@@ -154,7 +156,7 @@ const styles = StyleSheet.create({
     text: {
         marginLeft: WIDTH * 0.03,
         color: '#D3D3D3',
-        fontSize: 15
+        fontSize: 15,
     },
     buttonText: {
         textAlign: 'center',
@@ -181,6 +183,8 @@ const styles = StyleSheet.create({
         height: 20,
         width: 20,
         backgroundColor: '#fff',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 });
 

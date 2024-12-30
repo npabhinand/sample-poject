@@ -1,20 +1,14 @@
-import { FlatList, SafeAreaView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import HomeTitleContainer from '../components/HomeTitleContainer';
 import { restaurantArray } from '../data/commonArray';
 import RestaurantRenderItems from '../components/RestaurantRenderItems';
+import { HEIGHT, WIDTH } from '../global/dimensions';
 
 const RestaurantListScreen = () => {
     return (
-        <SafeAreaView style={styles.container}>
-            <HomeTitleContainer />
+        <View style={[styles.container, styles.marginLeft]}>
 
-            <View style={styles.ViewMoreContainer}>
-                <Text style={[styles.heading2, styles.marginLeft]} >Nearest Restaurant</Text>
-                {/* <TouchableOpacity>
-                    <Text style={[styles.heading2, styles.viewMoreColor, styles.viewMoreMargin]} onPress={() => navigation.navigate('RestaurantList')}>View More</Text>
-                </TouchableOpacity> */}
-            </View>
             <FlatList
                 numColumns={2}
                 contentContainerStyle={styles.cards}
@@ -23,8 +17,14 @@ const RestaurantListScreen = () => {
                 renderItem={({ item }) => (
                     <RestaurantRenderItems item={item} />
                 )}
+                ListHeaderComponent={<><HomeTitleContainer isFilterButton={true} />
+
+                    <View style={styles.ViewMoreContainer}>
+                        <Text style={[styles.heading2, styles.marginLeft]} >Nearest Restaurant</Text>
+                    </View> </>}
+                ListHeaderComponentStyle={{ marginTop: HEIGHT * 0.05 }}
             />
-        </SafeAreaView>
+        </View>
     );
 };
 
@@ -32,8 +32,8 @@ export default RestaurantListScreen;
 
 const styles = StyleSheet.create({
     marginLeft: {
-        padding: 20,
-        marginLeft: 15,
+        paddingLeft: WIDTH * 0.05,
+        marginVertical: HEIGHT * 0.02,
     },
     container: {
         flex: 1,

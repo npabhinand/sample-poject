@@ -1,16 +1,16 @@
-import { View, StyleSheet, FlatList, TouchableOpacity, Text, Dimensions } from 'react-native';
+import { View, StyleSheet, FlatList, TouchableOpacity, Text } from 'react-native';
 import React, { useState } from 'react';
 import HomeTitleContainer from '../components/HomeTitleContainer';
 import OrderRenderItems from '../components/OrderRenderItems';
 import { orderContents } from '../data/commonArray';
-import { useNavigation } from '@react-navigation/native';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { HEIGHT, WIDTH } from '../global/dimensions';
+import { RootStackParamList } from '../navigation/AppNavigator';
 
-const HEIGHT = Dimensions.get('screen').height;
-const WIDTH = Dimensions.get('screen').width;
 
 const YourOrdersScreen = () => {
-  const [selectedItemId, setSelectedItemId] = useState(null);
-  const navigation = useNavigation();
+  const [selectedItemId, setSelectedItemId] = useState<null | number>(null);
+  const navigation = useNavigation<NavigationProp<RootStackParamList, 'SetLocationScreen'>>();
 
   const handleCardPress = (id: number) => {
     setSelectedItemId(selectedItemId === id ? null : id);
@@ -29,10 +29,11 @@ const YourOrdersScreen = () => {
             isSelected={selectedItemId === item.id}
             onCardPress={handleCardPress}
             isButtonView={true}
+            isSwipeable={false}
           />
         )}
       />
-      <TouchableOpacity style={styles.checkoutButton} onPress={() => { navigation.navigate('SetLocationScreen') }}>
+      <TouchableOpacity style={styles.checkoutButton} onPress={() => { navigation.navigate('SetLocationScreen'); }}>
         <Text style={styles.buttonText}>Check out</Text>
       </TouchableOpacity>
     </View>
@@ -64,28 +65,5 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 14,
     fontWeight: '500',
-  }, image: {
-    width: 50,
-    height: 50,
-    borderRadius: 10,
-  },
-  textContainer: {
-    marginLeft: 20,
-    gap: 5,
-    flex: 1,
-  },
-  orderTitle: {
-    fontWeight: 'bold',
-    fontSize: 15,
-  },
-  orderName: {
-    color: '#888',
-    fontWeight: '200',
-    fontSize: 14,
-  },
-  orderPrice: {
-    fontSize: 19,
-    color: '#41CE7E',
-    fontWeight: 'bold',
   },
 });

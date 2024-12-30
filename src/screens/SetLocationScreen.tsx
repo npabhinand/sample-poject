@@ -1,14 +1,16 @@
-import { View, Text, StyleSheet, Image, Dimensions, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { mapImage } from '../assets/images';
 import { locationIcon, placeholder, searchIcon } from '../assets/icons';
-import { useNavigation } from '@react-navigation/native';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { HEIGHT, WIDTH } from '../global/dimensions';
+import { RootStackParamList } from '../navigation/AppNavigator';
 
-const HEIGHT = Dimensions.get('screen').height;
-const WIDTH = Dimensions.get('screen').width;
+
 
 const SetLocationScreen = () => {
-    const navigation = useNavigation();
+    const navigation = useNavigation<NavigationProp<RootStackParamList, 'TrackOrderScreen'>>();
+
     return (
         <View style={styles.container}>
             <Image style={styles.backgroundImage} source={mapImage} />
@@ -34,7 +36,7 @@ const SetLocationScreen = () => {
                     <Text style={styles.locationText}>4517 Washington Ave. Manchester, Kentucky 39495</Text>
                 </View>
 
-                <TouchableOpacity style={styles.checkoutButton} onPress={() => { navigation.navigate('TrackOrderScreen') }}>
+                <TouchableOpacity style={styles.checkoutButton} onPress={() => { navigation.navigate('TrackOrderScreen'); }}>
                     <Text style={styles.buttonText}>Set Location</Text>
                 </TouchableOpacity>
             </View>
@@ -138,7 +140,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         top: HEIGHT * 0.1,
-        alignSelf: 'center'
+        alignSelf: 'center',
     },
 
 });

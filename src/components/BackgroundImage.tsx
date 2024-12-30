@@ -1,6 +1,7 @@
-import { ImageBackground, StyleSheet, Dimensions } from 'react-native';
+import { ImageBackground, StyleSheet } from 'react-native';
 import React from 'react';
 import { backgroundImage1 } from '../assets/images';
+import { HEIGHT, WIDTH } from '../global/dimensions';
 
 const BackgroundImage = () => {
     return (
@@ -13,8 +14,7 @@ const BackgroundImage = () => {
 };
 
 export default BackgroundImage;
-const HEIGHT = Dimensions.get('screen').height;
-const WIDTH = Dimensions.get('screen').width;
+
 
 const styles = StyleSheet.create({
     backgroundImage: {
@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
         width: WIDTH * 1,
         opacity: 0.1,
         position: 'absolute',
-        right: 0,
+        right: HEIGHT * 0,
         resizeMode: 'cover',
-        top: HEIGHT * -0.04,
+        top: HEIGHT * -0.08,
     },
 });

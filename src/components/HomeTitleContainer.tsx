@@ -1,22 +1,27 @@
-import { View, StyleSheet, Dimensions, TouchableOpacity, Image, TextInput } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Image, TextInput } from 'react-native';
 import React from 'react';
 import BackgroundImage from './BackgroundImage';
 import TitleComponent from './TitleComponent';
 import FilterButtonComponent from './FilterButtonComponent';
-import { useNavigation } from '@react-navigation/native';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { notificationIcon, searchIcon } from '../assets/icons';
+import { HEIGHT, WIDTH } from '../global/dimensions';
+import { RootStackParamList } from '../navigation/AppNavigator';
 
 
-const WIDTH = Dimensions.get('screen').width;
-const HEIGHT = Dimensions.get('screen').height;
-const HomeTitleContainer = ({ isFilterButton }: any) => {
-    const navigation = useNavigation();
+
+interface filterProps {
+    isFilterButton?: boolean
+}
+const HomeTitleContainer: React.FC<filterProps> = ({ isFilterButton }) => {
+    const navigation = useNavigation<NavigationProp<RootStackParamList, 'NotificationScreen'>>();
+
     return (
         <View>
             <BackgroundImage />
-            <View style={[styles.titleRow, styles.marginLeft]}>
+            <View style={styles.titleRow}>
                 <TitleComponent title1="Find Your" title2="Favorite Food" size={31} />
-                <TouchableOpacity style={styles.notificationButton} onPress={() => { navigation.navigate('NotificationScreen') }}>
+                <TouchableOpacity style={styles.notificationButton} onPress={() => { navigation.navigate('NotificationScreen'); }}>
                     <Image source={notificationIcon} />
                 </TouchableOpacity>
             </View>
@@ -52,16 +57,18 @@ export default HomeTitleContainer;
 
 const styles = StyleSheet.create({
     notificationButton: {
-        borderRadius: WIDTH * 0.03,
+        borderRadius: WIDTH * 0.04,
         backgroundColor: '#fff',
-        padding: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: WIDTH * 0.12,
+        height: WIDTH * 0.12,
         shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.05,
+        shadowOpacity: 0.02,
         shadowRadius: 4,
-        right: 20,
     },
     marginLeft: {
-        marginTop: HEIGHT * 0.05,
+        marginTop: HEIGHT * 0.01,
         padding: 20,
         marginLeft: WIDTH * 0.03,
     },
@@ -75,9 +82,10 @@ const styles = StyleSheet.create({
     searchRow: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-evenly',
-        marginLeft: HEIGHT * 0.01,
+        marginLeft: WIDTH * 0.03,
+        marginBottom: HEIGHT * 0.01,
         zIndex: 1,
+        gap: WIDTH * 0.05,
         // backgroundColor: 'white',
     }, searchContainer: {
         flexDirection: 'row',
@@ -85,6 +93,7 @@ const styles = StyleSheet.create({
         position: 'relative',
         backgroundColor: '#FEF6ED',
         borderRadius: 15,
+
         // marginLeft: 10,
     },
     updatedContainer: {
@@ -94,15 +103,17 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         // marginLeft: 10,
         justifyContent: 'center',
+
         // width: WIDTH * 1,
     },
     inputUpdated: {
         width: WIDTH * 0.72,
         height: HEIGHT * 0.07,
         marginLeft: WIDTH * 0.15,
+        marginRight: WIDTH * 0.01,
     },
     input: {
-        width: WIDTH * 0.55,
+        width: WIDTH * 0.52,
         height: HEIGHT * 0.07,
         // paddingLeft: 35,
         marginLeft: WIDTH * 0.15,

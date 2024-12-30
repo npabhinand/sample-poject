@@ -1,16 +1,16 @@
 import React from 'react';
-import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { HEIGHT, WIDTH } from '../global/dimensions';
 
 
 interface promoProps {
-    image?: any,
+    image?: {},
     btnText?: string,
     btnTextColor?: string,
     cardColor?: string,
     textColor?: string,
 }
-const HEIGHT = Dimensions.get('screen').height;
-const WIDTH = Dimensions.get('screen').width;
+
 
 const PromoComponent: React.FC<promoProps> = ({ image, btnText }) => {
     // btnTextColor, cardColor, textColor
@@ -33,13 +33,13 @@ export default PromoComponent;
 
 const styles = StyleSheet.create({
     imageContainer: {
-        width: WIDTH * 0.90,
+        width: WIDTH * 0.87,
         alignSelf: 'center',
         marginBottom: HEIGHT * 0.02,
         backgroundColor: '#3DC279',
         borderRadius: WIDTH * 0.05,
         flexDirection: 'row',
-
+        marginRight: WIDTH * 0.05,
 
     },
     textContainer: {

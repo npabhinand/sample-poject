@@ -1,16 +1,12 @@
-import { View, StyleSheet, SafeAreaView, Dimensions, Text, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, SafeAreaView, Text, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
-import BackgroundImage from '../components/BackgroundImage';
-import TitleComponent from '../components/TitleComponent';
-import FilterButtonComponent from '../components/FilterButtonComponent';
 import FilterButton from '../components/FilterButton';
 import { useNavigation } from '@react-navigation/native';
 import { foodButton, locationButton, typeButton } from '../data/commonArray';
 import HomeTitleContainer from '../components/HomeTitleContainer';
+import { HEIGHT, WIDTH } from '../global/dimensions';
 
 
-const HEIGHT = Dimensions.get('screen').height;
-const WIDTH = Dimensions.get('screen').width;
 
 const FilterScreen = () => {
     const navigation = useNavigation();

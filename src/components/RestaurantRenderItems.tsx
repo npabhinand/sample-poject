@@ -1,16 +1,18 @@
 import React from 'react';
-import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { HEIGHT, WIDTH } from '../global/dimensions';
+import { RootStackParamList } from '../navigation/AppNavigator';
 
 
-const HEIGHT = Dimensions.get('screen').height;
-const WIDTH = Dimensions.get('screen').width;
+
+
 
 function RestaurantRenderItems({ item }: any) {
-    const navigation = useNavigation();
+    const navigation = useNavigation<NavigationProp<RootStackParamList, 'MenuDetailScreen'>>();
 
     return (
-        <TouchableOpacity style={styles.card} onPress={() => { navigation.navigate('MenuDetailScreen') }}>
+        <TouchableOpacity style={styles.card} onPress={() => { navigation.navigate('MenuDetailScreen'); }}>
             <Image style={styles.image} source={item.imgURL} />
             <Text style={styles.name}>{item.name}</Text>
             <Text style={styles.time}>

@@ -1,8 +1,8 @@
-import { View, Text, StyleSheet, Dimensions, Image } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { WIDTH } from '../global/dimensions';
 
-const WIDTH = Dimensions.get('screen').width;
 
 interface ItemsProps {
     title?: string;
@@ -29,11 +29,11 @@ const PaymentCard: React.FC<ItemsProps> = ({ title, description, logo, navigate,
             </View>
             <View style={[styles.row, styles.textContainer]}>
                 <Image source={logo} />
-                <Text style={[styles.orderTitle, { fontWeight: descriptionTextWeight || 'normal' }]}>
+                <Text style={[styles.orderTitle, descriptionTextWeight === 'bold' ? styles.boldTitle : styles.normalTitle]}>
                     {description}
                 </Text>
             </View>
-        </View>
+        </View >
     );
 };
 
@@ -52,6 +52,10 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         alignSelf: 'center',
         padding: 15,
+    }, boldTitle: {
+        fontWeight: 'bold',
+    }, normalTitle: {
+        fontWeight: '200',
     },
     row: {
         flexDirection: 'row',

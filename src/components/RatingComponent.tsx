@@ -1,5 +1,4 @@
 import {
-    Dimensions,
     Image,
     StyleSheet,
     Text,
@@ -9,7 +8,9 @@ import {
 } from 'react-native';
 import React, { useState } from 'react';
 import { editIcon, starIcon, starFocusedIcon } from '../assets/icons';
-import { useNavigation } from '@react-navigation/native';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { HEIGHT, WIDTH } from '../global/dimensions';
+import { RootStackParamList } from '../navigation/AppNavigator';
 
 interface CallingProps {
     description1?: string;
@@ -18,26 +19,18 @@ interface CallingProps {
     image?: any;
 }
 
-const HEIGHT = Dimensions.get('screen').height;
-const WIDTH = Dimensions.get('screen').width;
-
 const RatingComponent: React.FC<CallingProps> = ({
     description1,
     description2,
     navigate,
     image,
 }) => {
-
     const [rating, setRating] = useState(0);
-    const navigation = useNavigation();
-    console.log(navigate);
+    const navigation = useNavigation<NavigationProp<RootStackParamList, navigate>>();
+
     const onPressHandle = () => {
-        // if (!navigate) {
         navigation.navigate(navigate);
-        // }
-
     };
-
 
     return (
         <View style={styles.container}>
@@ -46,27 +39,24 @@ const RatingComponent: React.FC<CallingProps> = ({
             <Text style={styles.nameText}>{description1}</Text>
             <Text style={styles.subText}>{description2}</Text>
 
-
             <View style={styles.starRow}>
                 {[1, 2, 3, 4, 5].map((star) => (
                     <TouchableOpacity key={star} onPress={() => setRating(star)}>
                         <Image
-                            source={starIcon}
+                            source={star === rating ? starFocusedIcon : starIcon}
                             style={[
                                 styles.starIcon,
-                                { tintColor: star <= rating ? '#FFB51F' : '#FEEDBC' },
-
+                                {
+                                    tintColor: star <= rating ? '#FFB51F' : '#FEEDBC',
+                                    transform: star === rating ? [{ scale: 0.9 }] : [{ scale: 0.7 }],
+                                }
                             ]}
                         />
                     </TouchableOpacity>
                 ))}
             </View>
 
-
-
-            <View style={{ top: 60 }}>
-                {/* <View style={{ top: WIDTH * 0.28 }}> */}
-
+            <View style={styles.bottomContainer}>
                 <View style={styles.inputContainer}>
                     <Image source={editIcon} style={styles.editIcon} />
                     <TextInput
@@ -76,20 +66,16 @@ const RatingComponent: React.FC<CallingProps> = ({
                     />
                 </View>
 
-
                 <View style={styles.buttonRow}>
                     <TouchableOpacity style={styles.submitBtn}>
                         <Text style={styles.submitTxt}>Submit</Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.skipBtn} onPress={onPressHandle}>
-
                         <Text style={styles.skipText}>Skip</Text>
                     </TouchableOpacity>
                 </View>
-            </View >
-        </View >
-
-        // </View >
+            </View>
+        </View>
     );
 };
 
@@ -100,97 +86,99 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        paddingHorizontal: 20,
+        paddingHorizontal: WIDTH * 0.05,
+        backgroundColor: '#FEFEFF',
     },
     personImage: {
+        // marginTop: HEIGHT * 0.1,
         marginBottom: HEIGHT * 0.05,
+        width: WIDTH * 0.45,
+        height: WIDTH * 0.45,
+        // borderRadius: WIDTH * 0.15,
     },
     nameText: {
-        fontSize: 25,
+        fontSize: WIDTH * 0.07,
         fontWeight: 'bold',
         textAlign: 'center',
     },
-
-
     subText: {
-        fontSize: 14,
+        fontSize: WIDTH * 0.04,
         color: '#C8C8C8',
-        marginTop: HEIGHT * 0.015,
-        // marginTop: HEIGHT * 0.025,
-        marginBottom: HEIGHT * 0.05,
+        marginTop: HEIGHT * 0.02,
+        marginBottom: HEIGHT * 0.01,
         textAlign: 'center',
     },
     starRow: {
         flexDirection: 'row',
-        marginVertical: 20,
+        marginVertical: HEIGHT * 0.04,
     },
     starIcon: {
-        width: 40,
-        height: 40,
-        marginHorizontal: 5,
-        // gap: 20,
-        // justifyContent: 'space-between',
+        width: WIDTH * 0.08,
+        height: WIDTH * 0.08,
+        marginHorizontal: WIDTH * 0.02,
+    },
+    bottomContainer: {
+        width: '100%',
+        paddingHorizontal: WIDTH * 0.05,
+        position: 'absolute',
+        bottom: HEIGHT * 0.05,
     },
     inputContainer: {
-        position: 'relative',
         flexDirection: 'row',
         alignItems: 'center',
         borderColor: '#E8E8E8',
         borderWidth: 1,
-        borderRadius: 10,
-        paddingHorizontal: 10,
-        marginBottom: 20,
-        // bottom:HEIGHT* 0.05,
+        borderRadius: HEIGHT * 0.02,
+        paddingHorizontal: WIDTH * 0.03,
+        marginBottom: HEIGHT * 0.03,
         width: '100%',
-        padding: 10
+        paddingVertical: HEIGHT * 0.01,
     },
     textInput: {
         flex: 1,
-        fontSize: 14,
-
+        fontSize: WIDTH * 0.04,
         height: HEIGHT * 0.05,
     },
     editIcon: {
-        // width: 20,
-        // height: 20,
+        width: WIDTH * 0.06,
+        height: WIDTH * 0.06,
         marginLeft: 10,
     },
     buttonRow: {
-        position: 'relative',
         flexDirection: 'row',
-        width: '100%',
         justifyContent: 'space-between',
-        paddingHorizontal: 20,
+        paddingHorizontal: WIDTH * 0.01,
     },
     submitBtn: {
-        backgroundColor: '#00E281',
-        // padding: 15,
+        backgroundColor: '#41CB7D',
         borderRadius: 10,
-        width: '75%',
+        width: '73%',
         alignItems: 'center',
         justifyContent: 'center',
         fontWeight: '500',
         height: HEIGHT * 0.06,
+        marginRight: WIDTH * 0.01,
     },
     skipBtn: {
-        justifyContent: 'center',
         backgroundColor: '#fff',
-        // borderWidth: 1,
         borderColor: '#00E281',
         borderRadius: 10,
-        // width: '27%',
         width: '20%',
         alignItems: 'center',
+        justifyContent: 'center',
     },
     skipText: {
         color: '#00E281',
-        fontSize: 14,
+        fontSize: WIDTH * 0.035,
         fontWeight: '600',
+        // opacity: 0.9,
+        shadowColor: '#fff',
+        // shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.9,
+        shadowRadius: 4,
     },
     submitTxt: {
         color: '#fff',
-        fontSize: 14,
-
+        fontSize: WIDTH * 0.04,
     },
 });
-

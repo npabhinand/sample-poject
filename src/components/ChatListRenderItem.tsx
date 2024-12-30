@@ -1,14 +1,15 @@
 import { View, Text, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { RootStackParamList } from '../navigation/AppNavigator';
 
 const HEIGHT = Dimensions.get('screen').height;
 const WIDTH = Dimensions.get('screen').width;
 
 const ChatListRenderItem = ({ item }: any) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<RootStackParamList, 'ChatScreen'>>();
   return (
-    <TouchableOpacity style={styles.chatList} onPress={() => { navigation.navigate('ChatScreen') }}>
+    <TouchableOpacity style={styles.chatList} onPress={() => { navigation.navigate('ChatScreen'); }}>
       <Image source={item.imageURL} />
       <View style={styles.textContainer}>
         <Text style={[styles.nameTitle, styles.marginTop]}

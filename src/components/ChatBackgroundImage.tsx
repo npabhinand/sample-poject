@@ -1,6 +1,7 @@
-import { StyleSheet, Dimensions, Image } from 'react-native';
+import { StyleSheet, Image } from 'react-native';
 import React from 'react';
 import { backgroundImage2 } from '../assets/images';
+import { HEIGHT, WIDTH } from '../global/dimensions';
 
 const ChatBackgroundImage = () => {
     return (
@@ -14,8 +15,6 @@ const ChatBackgroundImage = () => {
 
 export default ChatBackgroundImage;
 
-const HEIGHT = Dimensions.get('screen').height;
-const WIDTH = Dimensions.get('screen').width;
 
 const styles = StyleSheet.create({
     backgroundImage: {
