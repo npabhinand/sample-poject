@@ -1,16 +1,15 @@
-import { View, StyleSheet, TouchableOpacity, Image, Text, Dimensions } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Image, Text } from 'react-native';
 import React, { useState } from 'react';
 import ChatTitleComponent from '../components/ChatTitleComponent';
 import BackgroundImage from '../components/BackgroundImage';
 import { paymentContent } from '../data/commonArray';
+import { HEIGHT, WIDTH } from '../global/dimensions';
 
-const HEIGHT = Dimensions.get('screen').height;
-const WIDTH = Dimensions.get('screen').width;
 
 const EditPaymentScreen = () => {
     const [selectedIndex, setSelectedIndex] = useState(null);
 
-    const handlePress = (index) => {
+    const handlePress = (index: any) => {
         setSelectedIndex(index);
     };
 
@@ -23,11 +22,10 @@ const EditPaymentScreen = () => {
                     key={index}
                     style={[
                         styles.cardContainer,
-                        { backgroundColor: selectedIndex === index ? 'white' : '#F3F3F6' },
-                    ]}
+                        selectedIndex === index ? styles.selected : styles.notSelected]}
                     onPress={() => handlePress(index)}
                 >
-                    <Image source={payment.imgURL} style={styles.cardImage} />
+                    <Image source={payment.imgURL} />
                     <Text>{payment.cardNumber}</Text>
                 </TouchableOpacity>
             ))}
@@ -57,6 +55,12 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.04,
         shadowRadius: 4,
+    },
+    notSelected: {
+        backgroundColor: '#F3F3F6',
+    },
+    selected: {
+        backgroundColor: 'white',
     },
     // cardImage: {
     //     width: 30, // Adjust based on your image size

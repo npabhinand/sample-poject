@@ -1,19 +1,20 @@
-import { View, Image, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { filterIcon } from '../assets/icons';
-import { useNavigation } from '@react-navigation/native';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { HEIGHT } from '../global/dimensions';
+import { RootStackParamList } from '../navigation/AppNavigator';
 
 
-// const WIDTH = Dimensions.get('screen').width;
-const HEIGHT = Dimensions.get('screen').height;
+
 const FilterButtonComponent = () => {
-    const navigation = useNavigation();
+    const navigation = useNavigation<NavigationProp<RootStackParamList, 'FilterScreen'>>();
     return (
-        <View>
+        <>
             <TouchableOpacity style={styles.filterButton} onPress={() => navigation.navigate('FilterScreen')}>
                 <Image source={filterIcon} />
             </TouchableOpacity>
-        </View>
+        </>
     );
 };
 
@@ -24,8 +25,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#FDF5EB',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 10,
+        borderRadius: HEIGHT * 0.02,
         height: HEIGHT * 0.07,
-        width: HEIGHT * 0.07,
+        width: HEIGHT * 0.065,
     },
 });

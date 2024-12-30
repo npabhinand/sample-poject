@@ -12,11 +12,11 @@ const PaymentScreen = () => {
         <View style={styles.container}>
             <BackgroundImage />
             <ChatTitleComponent title="Confirm Order" />
-            <PaymentCard navigate="EditLocationScreen" title="Delivery To" description={'4517 Washington Ave. Manchester, Kentucky 39495'} descriptionWeight="bold" logo={locationIcon} />
-            <PaymentCard navigate="EditPaymentScreen" title="Delivery To" description={'212163528465****'} descriptionWeight="200" logo={paypalLogo} />
+            <PaymentCard navigate="EditLocationScreen" title="Delivery To" description={'4517 Washington Ave. Manchester, Kentucky 39495'} descriptionTextWeight="bold" logo={locationIcon} />
+            <PaymentCard navigate="EditPaymentScreen" title="Delivery To" description={'212163528465****'} descriptionTextWeight="200" logo={paypalLogo} />
 
             <View style={styles.priceCardContainer}>
-                <PriceCard navigate='YourOrdersScreen' />
+                <PriceCard navigate="YourOrdersScreen" />
             </View>
         </View>
     );

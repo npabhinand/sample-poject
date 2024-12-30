@@ -1,24 +1,25 @@
-import { View, Text, StyleSheet, Dimensions, Image } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import React, { useState } from 'react';
 import { locationIcon } from '../assets/icons';
-import { useNavigation } from '@react-navigation/native';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { WIDTH } from '../global/dimensions';
+import { RootStackParamList } from '../navigation/AppNavigator';
 
-// const HEIGHT = Dimensions.get('screen').height;
-const WIDTH = Dimensions.get('screen').width;
+
 
 interface navigateProps {
     navigate?: string;
     isEdit?: boolean;
 }
 
-const OrderDetailCard: React.FC<navigateProps> = ({ navigate, isEdit }) => {
+const OrderDetailCard: React.FC<navigateProps> = ({ navigate }) => {
     const [location, setLocation] = useState('4517 Washington Ave. Manchester, Kentucky 39495');
-    const navigation = useNavigation();
+    const navigation = useNavigation<NavigationProp<RootStackParamList, { navigate }>>();
     return (
         <View style={styles.container}>
             <View style={styles.row}>
                 <Text style={styles.orderName}>Deliver To</Text>
-                <Text onPress={() => { navigation.navigate('EditLocationScreen') }} style={styles.editTxt}>Edit</Text>
+                <Text onPress={() => { navigation.navigate(navigate); }} style={styles.editTxt}>Edit</Text>
             </View>
             <View style={[styles.row, styles.textContainer]}>
                 <Image source={locationIcon} />

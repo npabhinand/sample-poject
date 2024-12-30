@@ -1,13 +1,13 @@
 import React from 'react';
-import { Dimensions, Image, StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import { Image, StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import { ProfileImage } from '../assets/images';
 import { EditIcon1, VoucherIcon } from '../assets/icons';
 import { orderContents } from '../data/commonArray';
+import { HEIGHT, WIDTH } from '../global/dimensions';
 // import OrderRenderItems from '../components/OrderRenderItems';
 
 
-const WIDTH = Dimensions.get('screen').width;
-const HEIGHT = Dimensions.get('screen').height;
+
 function ProfileScreen() {
 
     return (
@@ -26,7 +26,7 @@ function ProfileScreen() {
                 </View>
             </View>
             {/*  */}
-            <View style={{ alignSelf: 'center' }}>
+            <View style={styles.alignContainer}>
                 <Text style={styles.voucherTxt}>Favorite</Text>
                 {orderContents.map((order, index) => (
                     <View key={index} style={styles.orderItems}>
@@ -51,7 +51,11 @@ export default ProfileScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F8F9FE'
+        backgroundColor: '#F8F9FE',
+        marginBottom: HEIGHT * 0.1,
+    },
+    alignContainer: {
+        alignSelf: 'center',
     },
     imageContainer: {
         width: WIDTH * 1.0,

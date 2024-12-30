@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, FlatList, View, Dimensions } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, FlatList, View } from 'react-native';
 import RestaurantRenderItems from '../components/RestaurantRenderItems';
 import HomeTitleContainer from '../components/HomeTitleContainer';
 import FilterButton from '../components/FilterButton';
 import { restaurantArray } from '../data/commonArray';
 import { RouteProp } from '@react-navigation/native';
-import { HomeTabNavigator } from '../../App';
+import { WIDTH } from '../global/dimensions';
+// import { HomeTabNavigator } from '../../App';
 
 interface FilterRestaurantProps {
     route: RouteProp<any, any>;
 }
-const HEIGHT = Dimensions.get('screen').height;
-const WIDTH = Dimensions.get('screen').width;
+
+
 
 const FilterRestaurant: React.FC<FilterRestaurantProps> = ({ route }) => {
     const { selectedButtons, setSelectedButtons } = route.params;
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
     },
     marginLeft: {
-        padding: 10,
+        marginBottom: 10,
         marginLeft: WIDTH * 0.02,
     },
     heading2: {

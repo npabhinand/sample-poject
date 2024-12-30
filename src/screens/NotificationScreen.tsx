@@ -1,12 +1,10 @@
-import { View, StyleSheet, FlatList, Dimensions } from 'react-native';
+import { View, StyleSheet, FlatList } from 'react-native';
 import React from 'react';
 import BackgroundImage from '../components/BackgroundImage';
 import ChatTitleComponent from '../components/ChatTitleComponent';
 import { NotificationContent } from '../data/commonArray';
 import NotificationRenderItems from '../components/NotificationRenderItems';
 
-// const HEIGHT = Dimensions.get('screen').height;
-// const WIDTH = Dimensions.get('screen').width;
 
 const NotificationScreen = () => {
     return (
@@ -35,7 +33,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     backgroundColor: {
-        backgroundColor: '#FEFEFF'
+        backgroundColor: '#FEFEFF',
     },
     notificationContainer: {
         // justifyContent: 'center',

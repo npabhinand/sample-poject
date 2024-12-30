@@ -1,15 +1,23 @@
-import { useNavigation } from '@react-navigation/native';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Dimensions, StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
+import { HEIGHT, WIDTH } from '../global/dimensions';
+import { RootStackParamList } from '../navigation/AppNavigator';
 
-const HEIGHT = Dimensions.get('screen').height;
-const WIDTH = Dimensions.get('screen').width;
+interface itemProps {
+    item: {
+        imgURL: any,
+        title: string,
+        restaurantName: string,
+        price: number,
+    }
+}
 
-function MenuRenderItems({ item }: any) {
-    const navigation = useNavigation();
+const MenuRenderItems: React.FC<itemProps> = ({ item }) => {
+    const navigation = useNavigation<NavigationProp<RootStackParamList, 'MenuDetailScreen'>>();
     return (
         <TouchableOpacity style={styles.menuItems}
-            onPress={() => { navigation.navigate('ProductDetailScreen') }}
+            onPress={() => { navigation.navigate('ProductDetailScreen'); }}
         >
             <Image source={item.imgURL} />
             <View style={styles.textContainer}>
@@ -19,7 +27,7 @@ function MenuRenderItems({ item }: any) {
             <Text style={styles.menuPrice}>${item.price}</Text>
         </TouchableOpacity>
     );
-}
+};
 
 export default MenuRenderItems;
 
@@ -36,7 +44,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         padding: 10,
         borderRadius: 20,
-        shadowColor: '#F7F8FE',
+        shadowColor: '#F8F8FE',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 1,
         shadowRadius: 4,

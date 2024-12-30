@@ -5,9 +5,9 @@ import ChatTitleComponent from '../components/ChatTitleComponent';
 import { orderContents } from '../data/commonArray';
 import OrderRenderItems from '../components/OrderRenderItems';
 import PriceCard from '../components/PriceCard';
+import { HEIGHT } from '../global/dimensions';
 
-// const HEIGHT = Dimensions.get('screen').height;
-// const WIDTH = Dimensions.get('screen').width;
+
 
 const OrderScreen = () => {
     return (
@@ -19,10 +19,14 @@ const OrderScreen = () => {
                 data={orderContents}
                 keyExtractor={item => item.id.toString()}
                 renderItem={({ item }) => (
-                    <OrderRenderItems item={item} onCardPress={() => { '' }} />
+                    <OrderRenderItems item={item} onCardPress={() => { }} />
+
                 )}
+                pagingEnabled
+                horizontal={false}
+                ListFooterComponentStyle={styles.footerStyle}
+                ListFooterComponent={<PriceCard navigate="PaymentScreen" />}
             />
-            <PriceCard navigate="PaymentScreen" />
         </View>
     );
 };
@@ -35,8 +39,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#F9FBFF',
     },
     cards: {
-        // justifyContent: 'space-evenly',
         alignItems: 'center',
     },
+    footerStyle: {
+        marginTop: HEIGHT * 0.03,
+        marginBottom: HEIGHT * 0.11,
+    },
 });
-

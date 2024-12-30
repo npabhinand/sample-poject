@@ -4,12 +4,8 @@ import { StyleSheet, Text, View } from 'react-native';
 
 const ChatBubble = ({ content, isSent }) => {
     return (
-        <View
-            style={[styles.chatBubbleContainer, isSent ? styles.leftAlign : styles.rightAlign]}
-        >
-            <View
-                style={[styles.chatBubble, isSent ? styles.receivedBubble : styles.sentBubble]}
-            >
+        <View style={[styles.chatBubbleContainer, isSent ? styles.leftAlign : styles.rightAlign]} >
+            <View style={[styles.chatBubble, isSent ? styles.receivedBubble : styles.sentBubble]} >
                 <Text style={isSent ? styles.receivedText : styles.sendText}>{content}</Text>
             </View>
         </View>

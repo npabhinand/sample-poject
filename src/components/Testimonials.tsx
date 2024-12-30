@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { testimonials } from '../data/commonArray';
 import { IconStar } from '../assets/icons';
+import { HEIGHT, WIDTH } from '../global/dimensions';
 
-const WIDTH = Dimensions.get('screen').width;
-const HEIGHT = Dimensions.get('screen').height;
+
 const Testimonials = () => {
     return (
         <View style={styles.container}>

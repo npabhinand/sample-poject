@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, StyleSheet, View } from 'react-native';
 
 interface TitleComponentProps {
     title1?: string;

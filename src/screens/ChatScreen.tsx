@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
-import { Dimensions, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { profile1 } from '../assets/images';
 import { callIcon, dotIcon, sendIcon } from '../assets/icons';
 import { ChatContent } from '../data/commonArray';
 import ChatTitleComponent from '../components/ChatTitleComponent';
 import ChatBubble from '../components/ChatBubble';
-import { useNavigation } from '@react-navigation/native';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 import BackgroundImage2 from '../components/ChatBackgroundImage';
+import { HEIGHT, WIDTH } from '../global/dimensions';
+import { RootStackParamList } from '../navigation/AppNavigator';
 
-const HEIGHT = Dimensions.get('screen').height;
-const WIDTH = Dimensions.get('screen').width;
+
 
 const ChatScreen = () => {
-    const navigation = useNavigation();
+    const navigation = useNavigation<NavigationProp<RootStackParamList, 'CallingScreen'>>();
     const [message, setMessage] = useState('');
 
 

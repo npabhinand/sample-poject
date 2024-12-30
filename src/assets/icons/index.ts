@@ -23,7 +23,7 @@ import locationIcon from './locationIcon/locationIcon.png';
 import placeholder from './placeholder/placeholder.png';
 import clockIcon from './clockIcon/clockIcon.png';
 import mapIcon from './mapIcon/mapIcon.png';
-import loveIcon from './loveIcon/loveIcon.png'
+import loveIcon from './loveIcon/loveIcon.png';
 import locationIcon2 from './locationIcon2/locationIcon2.png';
 import mapPin from './map-pin/map-pin.png';
 import starPin from './starPin/starPin.png';
@@ -31,8 +31,9 @@ import IconStar from './IconStar/IconStar.png';
 import bagIcon from './bagIcon/bagIcon.png';
 import EditIcon1 from './editIcon1/Edit.png';
 import VoucherIcon from './voucher/VoucherIcon.png';
+import pathIcon from './pathIcon/pathIcon.png'
 export {
     filterIcon, notificationIcon, searchIcon, backIcon, callIcon, sendIcon, dotIcon, volumeUpIcon, volumeOffIcon, closeIcon, homeIcon, profileIcon, cartIcon, chatIcon, editIcon, starIcon, starFocusedIcon, checkedIcon, moneyIcon, failedIcon, trashIcon, locationIcon, placeholder, clockIcon,
     mapIcon, loveIcon, locationIcon2, mapPin, starPin, IconStar, bagIcon, EditIcon1, VoucherIcon,
-    // pathIcon,
+    pathIcon,
 };

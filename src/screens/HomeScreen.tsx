@@ -1,146 +1,76 @@
 import React from 'react';
-import {
-    StyleSheet,
-    View,
-    Text,
-    TouchableOpacity,
-    ScrollView,
-    SafeAreaView,
-    FlatList,
-    Dimensions,
-} from 'react-native';
-import {
-    promoImage,
-    restaurantImage1,
-    restaurantImage2,
-} from '../assets/images';
+import { StyleSheet, View, ScrollView } from 'react-native';
+import { promoImage } from '../assets/images';
 import RestaurantRenderItems from '../components/RestaurantRenderItems';
 import MenuRenderItems from '../components/MenuRenderItems';
-import { useNavigation } from '@react-navigation/native';
 import HomeTitleContainer from '../components/HomeTitleContainer';
-import { menuArray } from '../data/commonArray';
+import { menuArray, restaurantArray } from '../data/commonArray';
 import PromoComponent from '../components/PromoComponent';
-
-interface card {
-    id: number,
-    name: string;
-    time: number;
-    imgURL: any;
-}
-
-export const restaurantCards: card[] = [
-    {
-        id: 1,
-        name: 'Vegan Resto',
-        time: 12,
-        imgURL: restaurantImage1,
-    },
-    {
-        id: 2,
-        name: 'Healthy Food',
-        time: 8,
-        imgURL: restaurantImage2,
-    },
-];
+import ViewMoreComponent from '../components/ViewMoreComponent';
+import { HEIGHT, WIDTH } from '../global/dimensions';
 
 
-const HEIGHT = Dimensions.get('screen').height;
-const WIDTH = Dimensions.get('screen').width;
 function HomeScreen() {
-    const navigation = useNavigation();
     return (
-        <SafeAreaView style={styles.container}>
-            <HomeTitleContainer isFilterButton={true} />
+        <View style={styles.container}>
+            <ScrollView contentContainerStyle={styles.scrollViewContainer}>
 
-            <ScrollView >
-                <ScrollView horizontal={true} contentContainerStyle={styles.scrollStyle}>
-                    {[1, 2, 3].map((promo) => (
-                        <View key={promo}>
-                            <PromoComponent image={promoImage} btnText="Buy Now" />
-                        </View>
+                <HomeTitleContainer isFilterButton={true} />
+
+                <ScrollView horizontal style={styles.horizontalScroll}>
+                    {[1, 2, 3].map((item, index) => (
+                        <PromoComponent key={index} image={promoImage} btnText="Buy Now" />
                     ))}
                 </ScrollView>
 
-                <View style={styles.ViewMoreContainer}>
-                    <Text style={[styles.heading2, styles.marginLeft]} >Nearest Restaurant</Text>
-                    <TouchableOpacity>
-                        <Text style={[styles.viewMoreColor, styles.viewMoreMargin]} onPress={() => navigation.navigate('RestaurantList')}>View More</Text>
-                    </TouchableOpacity>
-                </View>
+                <ViewMoreComponent title="Nearest Restaurant" navigate="RestaurantListScreen" />
+                <ScrollView horizontal style={styles.horizontalScroll}>
+                    {restaurantArray.slice(0, 3).map((item, index) => (
+                        <RestaurantRenderItems key={index} item={item} style={{ marginLeft: WIDTH * 0.02 }} />
+                    ))}
+                </ScrollView>
 
-                {/* Restaurant List */}
-                <FlatList
-                    numColumns={2}
-                    contentContainerStyle={styles.cards}
-                    data={restaurantCards}
-                    keyExtractor={item => item.id.toString()}
-                    renderItem={({ item }) => (
-                        <RestaurantRenderItems item={item} />
-                    )}
-                />
+                <ViewMoreComponent title="Popular Menu" navigate="MenuList" />
+                <ScrollView style={styles.verticalScroll}>
+                    {menuArray.slice(0, 3).map((item, index) => (
+                        <MenuRenderItems key={index} item={item} />
+                    ))}
+                </ScrollView>
 
-                <View style={styles.ViewMoreContainer}>
-                    <Text style={[styles.heading2, styles.marginLeft]}>Popular Menu</Text>
-                    <TouchableOpacity onPress={() => navigation.navigate('MenuList')}>
-                        <Text style={[styles.viewMoreColor, styles.viewMoreMargin]}>
-                            View More
-                        </Text>
-                    </TouchableOpacity>
-                </View>
 
-                {/* Menu List */}
-                <FlatList
-                    numColumns={1}
-                    data={menuArray}
-                    contentContainerStyle={styles.menuContainer}
-                    keyExtractor={item => item.id.toString()}
-                    renderItem={({ item }) => (
-                        <MenuRenderItems item={item} />
-                    )}
-                />
+                <View style={styles.footerStyle} />
             </ScrollView>
-        </SafeAreaView>
+        </View>
     );
+
 }
 
 export default HomeScreen;
 
-
 const styles = StyleSheet.create({
-    marginLeft: {
-        padding: 20,
-        marginLeft: 15,
-    },
     container: {
         flex: 1,
         backgroundColor: '#F9FBFF',
+
+    }, horizontalScroll: {
+        marginLeft: WIDTH * 0.03,
+        marginRight: WIDTH * 0.02,
+        marginTop: HEIGHT * 0.01,
     },
-    cards: {
-        justifyContent: 'space-evenly',
-        marginLeft: 15,
-    },
-    menuContainer: {
-        // justifyContent: 'center',
-        alignItems: 'center',
-    },
-    ViewMoreContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
-    heading2: {
-        fontSize: 15,
-        fontWeight: 'bold',
-    },
-    viewMoreMargin: {
-        padding: 20,
-        marginRight: 15,
-    },
-    viewMoreColor: {
-        color: '#FF7C32',
+    scrollViewContainer: {
+        paddingBottom: HEIGHT * 0.05,
+        marginLeft: WIDTH * 0.03,
+        marginTop: HEIGHT * 0.05,
     },
     scrollStyle: {
-        marginLeft: WIDTH * 0.05,
+        marginLeft: WIDTH * 0.02,
         gap: 10,
         marginTop: 10,
+    },
+    footerStyle: {
+        marginBottom: HEIGHT * 0.05,
+    },
+    verticalScroll: {
+        alignSelf: 'center',
     },
 });

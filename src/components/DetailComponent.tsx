@@ -1,21 +1,33 @@
-import { View, Image, StyleSheet, Text, Dimensions, TouchableOpacity, FlatList } from 'react-native';
+import { View, Image, StyleSheet, Text, TouchableOpacity, FlatList, } from 'react-native';
 import React from 'react';
-import { bagIcon, locationIcon2, loveIcon, mapPin, starPin } from '../assets/icons';
+import { backIcon, bagIcon, locationIcon2, loveIcon, mapPin, starPin } from '../assets/icons';
 import { popularMenu } from '../data/commonArray';
 import RestaurantRenderItems from './RestaurantRenderItems';
 import Testimonials from './Testimonials';
-
-const WIDTH = Dimensions.get('screen').width;
-const HEIGHT = Dimensions.get('screen').height;
+import { HEIGHT, WIDTH } from '../global/dimensions';
+import { useNavigation } from '@react-navigation/native';
 
 const DetailComponent = ({ sectionData }: any) => {
-
+    const navigation = useNavigation();
     const renderItem = ({ item }: any) => {
-        if (item.type === 'image') {
-            return <Image source={item.content} style={styles.imageContainer} />;
+        const type: { Image: string, Details: string } = {
+            Image: 'image',
+            Details: 'details',
+        };
+
+        if (item.type === type.Image) {
+            return (
+                <View style={styles.imageWrapper}>
+                    <Image source={item.content} style={styles.imageContainer} />
+
+                    <TouchableOpacity style={styles.backButton} onPress={() => { navigation.goBack(); }}>
+                        <Image source={backIcon} />
+                    </TouchableOpacity>
+                </View>
+            );
         }
 
-        if (item.type === 'details') {
+        if (item.type === type.Details) {
             return (
                 <View style={styles.cardContainer}>
                     <View style={styles.row}>
@@ -63,13 +75,11 @@ const DetailComponent = ({ sectionData }: any) => {
                                 </View>
                             ))}
 
-
                             <Text style={styles.description}>{item.description2}</Text>
                         </View>
                     </>
                     }
                 </View>
-
             );
         }
 
@@ -109,21 +119,41 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+    imageWrapper: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 0,
+    },
     imageContainer: {
         width: WIDTH,
         height: HEIGHT * 0.5,
         resizeMode: 'cover',
     },
+    backButton: {
+        position: 'absolute',
+        top: 30,
+        left: 20,
+        height: 50,
+        width: 50,
+        borderRadius: 15,
+        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 2,
+    },
     cardContainer: {
+        position: 'relative',
         backgroundColor: '#fff',
-        marginTop: HEIGHT * -0.15,
+        marginTop: HEIGHT * 0.45,
         borderTopRightRadius: WIDTH * 0.1,
         borderTopLeftRadius: WIDTH * 0.1,
         padding: 25,
         zIndex: 1,
     },
     right: {
-        marginRight: WIDTH * 0.02
+        marginRight: WIDTH * 0.02,
     },
     row: {
         flexDirection: 'row',
@@ -169,7 +199,7 @@ const styles = StyleSheet.create({
     },
     heading2: {
         fontSize: 15,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
     },
     viewMoreColor: {
         color: '#FF7C32',

@@ -114,6 +114,20 @@ const foodButton = [
   },
 
 ];
+const restaurantCards = [
+  {
+    id: 1,
+    name: 'Vegan Resto',
+    time: 12,
+    imgURL: restaurantImage1,
+  },
+  {
+    id: 2,
+    name: 'Healthy Food',
+    time: 8,
+    imgURL: restaurantImage2,
+  },
+];
 
 
 const chatList = [{
@@ -191,6 +205,13 @@ const orderContents = [
     restaurantName: 'Waroenk kita',
     price: 35,
   },
+  {
+    id: 4,
+    imgURL: orderImage3,
+    DishName: 'Spacy fresh crab',
+    restaurantName: 'Waroenk kita',
+    price: 35,
+  },
 ];
 
 const voucherPromo = [
@@ -217,10 +238,12 @@ const address = [
   {
     id: 1,
     name: '4517 Washington Ave. Manchester, Kentucky 39495',
+    set: 'Deliver to',
   },
   {
     id: 2,
     name: '8502 Preston Rd. Inglewood, Maine 98380',
+    set: 'Payment Method',
   },
 
 ];
@@ -267,7 +290,7 @@ const testimonials = [
     date: '12 April 2021',
     rating: 5,
     imgURL: testimonialImage,
-    review: 'This Is great, So delicious! You Must Here, With Your family . . '
+    review: 'This Is great, So delicious! You Must Here, With Your family . . ',
   },
   {
     id: 2,
@@ -275,7 +298,7 @@ const testimonials = [
     date: '12 April 2021',
     rating: 5,
     imgURL: testimonialImage,
-    review: 'This Is great, So delicious! You Must Here, With Your family . . '
+    review: 'This Is great, So delicious! You Must Here, With Your family . . ',
   },
   {
     id: 3,
@@ -283,7 +306,7 @@ const testimonials = [
     date: '12 April 2021',
     rating: 5,
     imgURL: testimonialImage,
-    review: 'This Is great, So delicious! You Must Here, With Your family . . '
+    review: 'This Is great, So delicious! You Must Here, With Your family . . ',
   },
 ];
 
@@ -310,4 +333,26 @@ const sections = [
     type: 'testimonials',
   },
 ];
-export { restaurantArray, menuArray, locationButton, typeButton, foodButton, chatList, ChatContent, NotificationContent, orderContents, voucherPromo, address, paymentContent, popularMenu, testimonials, sections };
+
+const menuSections = [
+  {
+    key: 'image',
+    type: 'image',
+    content: DetailImage,
+  },
+  {
+    key: 'details',
+    type: 'details',
+    title: 'Rainbow Sandwich Sugarless',
+    orders: '2000 + orders',
+    rating: '4.9 Rating',
+    description1: 'Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt.',
+    recipe: ['Strawberry', 'Cream', 'Wheat'],
+    description2: 'Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt.',
+  },
+  {
+    key: 'testimonials',
+    type: 'testimonials',
+  },
+];
+export { restaurantArray, menuArray, locationButton, typeButton, foodButton, chatList, ChatContent, NotificationContent, orderContents, voucherPromo, address, paymentContent, popularMenu, testimonials, sections, menuSections, restaurantCards };

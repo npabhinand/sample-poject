@@ -1,5 +1,6 @@
-import { Dimensions, Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
+import { HEIGHT } from '../global/dimensions';
 // import { personImage } from '../assets/images';
 
 interface CallingProps {
@@ -7,8 +8,7 @@ interface CallingProps {
     isEnded: boolean;
     image?: any;
 }
-const HEIGHT = Dimensions.get('screen').height;
-// const WIDTH = Dimensions.get('screen').width;
+
 
 const CallingComponent: React.FC<CallingProps> = ({ name, isEnded, image }) => {
     return (

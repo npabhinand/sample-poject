@@ -1,31 +1,19 @@
 import React, { useState } from 'react';
-import { Dimensions, StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
-import { GestureHandlerRootView, Swipeable } from 'react-native-gesture-handler';
-import Reanimated, { SharedValue, useAnimatedStyle, withSpring } from 'react-native-reanimated';
-import { bagIcon, mapIcon } from '../assets/icons';
-// import { MaterialIcons } from '@expo/vector-icons';
+import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
+import { Swipeable } from 'react-native-gesture-handler';
+import { trashIcon } from '../assets/icons';
+import { HEIGHT, WIDTH } from '../global/dimensions';
 
-const HEIGHT = Dimensions.get('screen').height;
-const WIDTH = Dimensions.get('screen').width;
 
-function RightAction(prog: SharedValue<number>, drag: SharedValue<number>) {
-    const styleAnimation = useAnimatedStyle(() => {
-        console.log('showRightProgress:', prog.value);
-        console.log('appliedTranslation:', drag.value);
 
-        return {
-            transform: [{ translateX: drag.value + 50 }],
-        };
-    });
-
-    return (
-        <Reanimated.View style={[styles.rightAction, styleAnimation]}>
-            <Image source={bagIcon} size={30} color="#FFF" />
-        </Reanimated.View>
-    );
+interface OrderProps {
+    item?: any;
+    onCardPress?: () => void;
+    isSelected?: boolean;
+    isButtonView?: boolean;
 }
 
-function OrderRenderItems({ item, onCardPress, isSelected, isButtonView }: any) {
+const OrderRenderItems: React.FC<OrderProps> = ({ item, onCardPress, isSelected, isButtonView }) => {
     const [counter, setCounter] = useState(1);
 
     const handleIncrease = () => {
@@ -40,44 +28,42 @@ function OrderRenderItems({ item, onCardPress, isSelected, isButtonView }: any) 
 
     const renderRightActions = () => (
         <View style={[styles.rightActionWrapper, { backgroundColor: '#F8AD1E' }]}>
-            <Image source={mapIcon} />
+            <Image source={trashIcon} />
         </View>
     );
 
     return (
-        <GestureHandlerRootView style={styles.orderItems}>
-            <Swipeable renderRightActions={renderRightActions} friction={2} rightThreshold={WIDTH * 0.3}>
-                <TouchableOpacity
-                    style={[styles.orderItems, isSelected && styles.selectedCard]}
-                    onPress={() => onCardPress(item.id)}
-                >
-                    <Image source={item.imgURL} style={styles.image} />
-                    <View style={styles.textContainer}>
-                        <Text style={styles.orderTitle}>{item.DishName}</Text>
-                        <Text style={styles.orderName}>{item.restaurantName}</Text>
-                        <Text style={styles.orderPrice}>$ {item.price}</Text>
-                    </View>
+        <Swipeable renderRightActions={renderRightActions} friction={2} rightThreshold={WIDTH * 0.3}>
+            <TouchableOpacity
+                style={[styles.orderItems, isSelected && styles.selectedCard]}
+                onPress={() => onCardPress && onCardPress()}
+            >
+                <Image source={item.imgURL} style={styles.image} />
+                <View style={styles.textContainer}>
+                    <Text style={styles.orderTitle}>{item.DishName}</Text>
+                    <Text style={styles.orderName}>{item.restaurantName}</Text>
+                    <Text style={styles.orderPrice}>$ {item.price}</Text>
+                </View>
 
-                    {isButtonView ? (
-                        <TouchableOpacity style={[styles.processButton, isSelected && styles.selectedButton]}>
-                            <Text style={styles.processButtonText}>Process</Text>
+                {isButtonView ? (
+                    <TouchableOpacity style={[styles.processButton, isSelected && styles.selectedButton]}>
+                        <Text style={styles.processButtonText}>Process</Text>
+                    </TouchableOpacity>
+                ) : (
+                    <View style={styles.counterContainer}>
+                        <TouchableOpacity onPress={handleDecrease} style={styles.reduceButton}>
+                            <Text style={styles.reduceText}>-</Text>
                         </TouchableOpacity>
-                    ) : (
-                        <View style={styles.counterContainer}>
-                            <TouchableOpacity onPress={handleDecrease} style={styles.reduceButton}>
-                                <Text style={styles.reduceText}>-</Text>
-                            </TouchableOpacity>
-                            <Text>{counter}</Text>
-                            <TouchableOpacity onPress={handleIncrease} style={styles.addButton}>
-                                <Text style={styles.addText}>+</Text>
-                            </TouchableOpacity>
-                        </View>
-                    )}
-                </TouchableOpacity>
-            </Swipeable>
-        </GestureHandlerRootView>
+                        <Text>{counter}</Text>
+                        <TouchableOpacity onPress={handleIncrease} style={styles.addButton}>
+                            <Text style={styles.addText}>+</Text>
+                        </TouchableOpacity>
+                    </View>
+                )}
+            </TouchableOpacity>
+        </Swipeable>
     );
-}
+};
 
 export default OrderRenderItems;
 
@@ -169,20 +155,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#D9D9D9',
     },
     rightActionWrapper: {
-        width: WIDTH * 0.5,
+        width: WIDTH * 0.3,
         height: HEIGHT * 0.12,
         justifyContent: 'center',
         alignItems: 'center',
         borderTopRightRadius: 20,
         borderBottomRightRadius: 20,
-    },
-    separator: {
-        width: '100%',
-        borderTopWidth: 1,
-    },
-    swipeable: {
-        height: 50,
-        backgroundColor: 'papayawhip',
-        alignItems: 'center',
+        marginTop: HEIGHT * 0.03,
     },
 });

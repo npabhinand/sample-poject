@@ -1,10 +1,10 @@
-import { View, Text, StyleSheet, Dimensions, ImageBackground, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { pattern } from '../assets/images';
 import { useNavigation } from '@react-navigation/native';
+import { HEIGHT, WIDTH } from '../global/dimensions';
 
-const HEIGHT = Dimensions.get('screen').height;
-const WIDTH = Dimensions.get('screen').width;
+
 
 interface navigateProps {
     navigate?: string;
@@ -33,7 +33,7 @@ const PriceCard: React.FC<navigateProps> = ({ navigate }) => {
                 </View>
                 <TouchableOpacity
                     style={styles.btn}
-                    onPress={() => { navigation.navigate(navigate) }}>
+                    onPress={() => { navigation.navigate(navigate); }}>
                     <Text style={styles.btnText}>Place My Order</Text>
                 </TouchableOpacity>
             </ImageBackground>
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         // flex: 1,
         alignSelf: 'center',
         width: WIDTH * 0.9,
-        height: HEIGHT * 0.22,
+        height: HEIGHT * 0.24,
         borderRadius: WIDTH * 0.04,
         // padding: HEIGHT * 0.03,
         // marginBottom: HEIGHT * 0.02,
@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: HEIGHT * 0.015,
+        // bottom: HEIGHT * -0.01,
     },
     btnText: {
         color: '#47DD86',

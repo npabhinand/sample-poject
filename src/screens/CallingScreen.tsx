@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Dimensions, TouchableOpacity, View, Image, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { TouchableOpacity, View, Image, StyleSheet } from 'react-native';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 import CallingComponent from '../components/CallingComponent';
 import BackgroundImage2 from '../components/ChatBackgroundImage';
 import { closeIcon, volumeOffIcon, volumeUpIcon } from '../assets/icons';
 import { personImage } from '../assets/images';
+import { HEIGHT, WIDTH } from '../global/dimensions';
+import { RootStackParamList } from '../navigation/AppNavigator';
 
-const HEIGHT = Dimensions.get('screen').height;
-const WIDTH = Dimensions.get('screen').width;
 
 const CallingScreen = () => {
     const [ended, setEnded] = useState(false);
     const [clicked, setClicked] = useState(false);
-    const navigation = useNavigation();
+    const navigation = useNavigation<NavigationProp<RootStackParamList, 'MenuDetailScreen'>>();
 
     useEffect(() => {
         if (ended) {
@@ -27,7 +27,7 @@ const CallingScreen = () => {
     return (
         <View style={styles.container}>
             <BackgroundImage2 />
-            <CallingComponent name={"Courtney Henry"} isEnded={ended} image={personImage} />
+            <CallingComponent name={'Courtney Henry'} isEnded={ended} image={personImage} />
             <View style={styles.buttonContainer}>
                 <TouchableOpacity
                     style={[styles.buttonSize, styles.volumeButton]}

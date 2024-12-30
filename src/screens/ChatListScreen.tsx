@@ -1,19 +1,19 @@
-import { Dimensions, FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, StyleSheet, View } from 'react-native';
 import React from 'react';
 import BackgroundImage from '../components/BackgroundImage';
 import { chatList } from '../data/commonArray';
 import ChatListRenderItem from '../components/ChatListRenderItem';
 import ChatTitleComponent from '../components/ChatTitleComponent';
+import { HEIGHT, WIDTH } from '../global/dimensions';
 
 
-const HEIGHT = Dimensions.get('screen').height;
-const WIDTH = Dimensions.get('screen').width;
+
 
 const ChatListScreen = () => {
     return (
         <View style={styles.container}>
             <BackgroundImage />
-            <ChatTitleComponent title='Chat' />
+            <ChatTitleComponent title={'Chat'} />
             <FlatList
                 contentContainerStyle={styles.cards}
                 data={chatList}

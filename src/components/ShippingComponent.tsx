@@ -1,15 +1,15 @@
-import { View, Text, StyleSheet, Dimensions, Image } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import React from 'react';
 import { address } from '../data/commonArray';
 import { locationIcon } from '../assets/icons';
+import { HEIGHT, WIDTH } from '../global/dimensions';
 
-const HEIGHT = Dimensions.get('screen').height;
-const WIDTH = Dimensions.get('screen').width;
+
 const ShippingComponent = () => {
     return (
         <>
-            {address.map((location) => (
-                <View style={styles.container}>
+            {address.map((location, index) => (
+                <View style={styles.container} key={index}>
                     <Text style={styles.orderName}>
                         {location.set}
                     </Text>
