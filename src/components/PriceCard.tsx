@@ -92,11 +92,11 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         width: WIDTH * 0.8,
         height: HEIGHT * 0.06,
-        marginTop: HEIGHT * 0.02,
+        // marginTop: HEIGHT * 0.02,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: HEIGHT * 0.015,
-        // bottom: HEIGHT * -0.01,
+        bottom: HEIGHT * -0.02,
     },
     btnText: {
         color: '#47DD86',

@@ -2,9 +2,8 @@ import { View, StyleSheet, TouchableOpacity, Image, TextInput } from 'react-nati
 import React from 'react';
 import BackgroundImage from './BackgroundImage';
 import TitleComponent from './TitleComponent';
-import FilterButtonComponent from './FilterButtonComponent';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { notificationIcon, searchIcon } from '../assets/icons';
+import { filterIcon, notificationIcon, searchIcon } from '../assets/icons';
 import { HEIGHT, WIDTH } from '../global/dimensions';
 import { RootStackParamList } from '../navigation/AppNavigator';
 
@@ -14,7 +13,7 @@ interface filterProps {
     isFilterButton?: boolean
 }
 const HomeTitleContainer: React.FC<filterProps> = ({ isFilterButton }) => {
-    const navigation = useNavigation<NavigationProp<RootStackParamList, 'NotificationScreen'>>();
+    const navigation = useNavigation<NavigationProp<RootStackParamList, 'NotificationScreen', 'FilterScreen'>>();
 
     return (
         <View>
@@ -45,7 +44,9 @@ const HomeTitleContainer: React.FC<filterProps> = ({ isFilterButton }) => {
                             placeholderTextColor={'#F2C3A1'}
                         />
                     </View>
-                    <FilterButtonComponent />
+                    <TouchableOpacity style={styles.filterButton} onPress={() => navigation.navigate('FilterScreen')}>
+                        <Image source={filterIcon} />
+                    </TouchableOpacity>
                 </>}
 
             </View>
@@ -66,6 +67,7 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 1 },
         shadowOpacity: 0.02,
         shadowRadius: 4,
+        // marginRight: WIDTH * 0.1,
     },
     marginLeft: {
         marginTop: HEIGHT * 0.01,
@@ -85,7 +87,7 @@ const styles = StyleSheet.create({
         marginLeft: WIDTH * 0.03,
         marginBottom: HEIGHT * 0.01,
         zIndex: 1,
-        gap: WIDTH * 0.05,
+        gap: WIDTH * 0.03,
         // backgroundColor: 'white',
     }, searchContainer: {
         flexDirection: 'row',
@@ -113,7 +115,7 @@ const styles = StyleSheet.create({
         marginRight: WIDTH * 0.01,
     },
     input: {
-        width: WIDTH * 0.52,
+        width: WIDTH * 0.55,
         height: HEIGHT * 0.07,
         // paddingLeft: 35,
         marginLeft: WIDTH * 0.15,
@@ -125,5 +127,12 @@ const styles = StyleSheet.create({
         transform: [{ translateY: -12 }],
         width: 24,
         height: 24,
+    }, filterButton: {
+        backgroundColor: '#FDF5EB',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: HEIGHT * 0.02,
+        height: HEIGHT * 0.07,
+        width: HEIGHT * 0.065,
     },
 });

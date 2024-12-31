@@ -34,24 +34,25 @@ const Testimonials = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        marginBottom: 20,
+        backgroundColor: '#F6F8FE',
     }, cardContainer: {
+        backgroundColor: '#fff',
         padding: HEIGHT * 0.02,
-        marginTop: HEIGHT * 0.04,
+        marginBottom: HEIGHT * 0.04,
         width: 0.9 * WIDTH,
         height: 0.17 * HEIGHT,
         alignSelf: 'center',
-        backgroundColor: '#fff',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.05,
+        shadowOpacity: 0.01,
         shadowRadius: 4,
         borderRadius: HEIGHT * 0.01,
     }, title: {
         fontWeight: 'bold',
+        backgroundColor: '#fff',
         marginLeft: WIDTH * 0.06,
         fontSize: 15,
+        paddingTop: HEIGHT * 0.01,
     }, marginLeft: {
         paddingLeft: WIDTH * 0.05,
         paddingRight: WIDTH * 0.08,

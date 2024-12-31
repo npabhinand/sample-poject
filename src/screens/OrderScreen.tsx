@@ -43,6 +43,6 @@ const styles = StyleSheet.create({
     },
     footerStyle: {
         marginTop: HEIGHT * 0.03,
-        marginBottom: HEIGHT * 0.11,
+        marginBottom: HEIGHT * 0.03,
     },
 });

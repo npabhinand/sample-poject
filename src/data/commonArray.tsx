@@ -1,5 +1,5 @@
 import { checkedIcon, failedIcon, moneyIcon } from '../assets/icons';
-import { DetailImage, menu1, menu2, orderImage1, orderImage2, orderImage3, payoneerLogo, paypalLogo, photoMenu1, photoMenu2, photoMenu3, profile1, profile2, profile3, promo2, promo3, restaurantImage1, restaurantImage2, restaurantImage3, restaurantImage4, restaurantImage5, restaurantImage6, testimonialImage, visaLogo } from '../assets/images';
+import { DetailImage, menu1, menu2, menuPhoto, orderImage1, orderImage2, orderImage3, payoneerLogo, paypalLogo, photoMenu1, photoMenu2, photoMenu3, profile1, profile2, profile3, promo2, promo3, restaurantImage1, restaurantImage2, restaurantImage3, restaurantImage4, restaurantImage5, restaurantImage6, testimonialImage, visaLogo } from '../assets/images';
 
 const restaurantArray = [
   {
@@ -313,12 +313,10 @@ const testimonials = [
 const sections = [
   {
     key: 'image',
-    type: 'image',
     content: DetailImage,
   },
   {
     key: 'details',
-    type: 'details',
     title: 'Wijie Bar and Resto',
     location: '19 Km',
     rating: '4.9 Rating',
@@ -326,25 +324,21 @@ const sections = [
   },
   {
     key: 'popularMenu',
-    type: 'popularMenu',
   },
   {
     key: 'testimonials',
-    type: 'testimonials',
   },
 ];
 
 const menuSections = [
   {
     key: 'image',
-    type: 'image',
-    content: DetailImage,
+    content: menuPhoto,
   },
   {
     key: 'details',
-    type: 'details',
     title: 'Rainbow Sandwich Sugarless',
-    orders: '2000 + orders',
+    orders: '2000+ orders',
     rating: '4.9 Rating',
     description1: 'Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt.',
     recipe: ['Strawberry', 'Cream', 'Wheat'],
@@ -355,4 +349,5 @@ const menuSections = [
     type: 'testimonials',
   },
 ];
+
 export { restaurantArray, menuArray, locationButton, typeButton, foodButton, chatList, ChatContent, NotificationContent, orderContents, voucherPromo, address, paymentContent, popularMenu, testimonials, sections, menuSections, restaurantCards };

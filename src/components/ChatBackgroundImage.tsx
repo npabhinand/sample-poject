@@ -25,6 +25,6 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
         top: 0,
         // Debugging zIndex
-        zIndex: -1,
+        // zIndex: 1,
     },
 });

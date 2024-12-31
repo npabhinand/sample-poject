@@ -36,8 +36,10 @@ import testimonialImage from './testimonialImage/testimonials.png';
 import menu1 from './menu1/menu1.png';
 import menu2 from './menu1/menu2.png';
 import ProfileImage from './ProfileImage/ProfileImage.png';
+import menuPhoto from './menuPhoto/menuPhoto.png';
+
 export {
     promoImage, restaurantImage1, restaurantImage2, backgroundImage1, photoMenu1, photoMenu2, photoMenu3, restaurantImage3, restaurantImage4, restaurantImage5, restaurantImage6, profile1, profile2, profile3, backgroundImage2, personImage, rateDriver, rateFood, orderImage1, orderImage2, rateRestaurant, orderImage3, pattern, promo2, promo3, visaLogo, paypalLogo, payoneerLogo, mapImage, line, track, deliveryBoyImage,
     pattern2, DetailImage, testimonialImage, menu1, menu2,
-    ProfileImage,
+    ProfileImage, menuPhoto,
 };

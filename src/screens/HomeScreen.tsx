@@ -37,8 +37,6 @@ function HomeScreen() {
                     ))}
                 </ScrollView>
 
-
-                <View style={styles.footerStyle} />
             </ScrollView>
         </View>
     );
@@ -66,9 +64,6 @@ const styles = StyleSheet.create({
         marginLeft: WIDTH * 0.02,
         gap: 10,
         marginTop: 10,
-    },
-    footerStyle: {
-        marginBottom: HEIGHT * 0.05,
     },
     verticalScroll: {
         alignSelf: 'center',

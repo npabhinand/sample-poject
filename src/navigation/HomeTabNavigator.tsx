@@ -23,12 +23,14 @@ interface tabBarProps {
     focused?: boolean;
 }
 
-const CustomTabBarIcon: React.FC<tabBarProps> = ({ src, label, focused }) => (
-    <View style={[styles.tabContainer, focused ? styles.tabFocused : styles.tabUnfocused]}>
-        <Image source={src} style={[styles.imageColor, focused ? styles.iconFocused : styles.iconUnfocused]} />
-        {focused && <Text style={styles.tabLabel}>{label}</Text>}
-    </View>
-);
+const CustomTabBarIcon: React.FC<tabBarProps> = ({ src, label, focused }) => {
+    return (
+        <View style={focused ? styles.tabFocused : styles.tabUnfocused}>
+            <Image source={src} style={styles.imageColor} />
+            {focused && <Text style={styles.tabLabel}>{label}</Text>}
+        </View>
+    );
+};
 
 export const HomeTabNavigator = () => (
     <Tab.Navigator
@@ -55,55 +57,38 @@ export const HomeTabNavigator = () => (
 
 const styles = StyleSheet.create({
     tabBar: {
-        position: 'absolute',
-        bottom: HEIGHT * 0.015,
+        bottom: HEIGHT * 0.03,
         width: WIDTH * 0.95,
-        height: HEIGHT * 0.08,
-        borderRadius: WIDTH * 0.05,
-        justifyContent: 'center',
-        alignItems: 'center',
-        margin: HEIGHT * 0.015,
+        height: HEIGHT * 0.09,
+        borderRadius: HEIGHT * 0.02,
+        alignSelf: 'center',
         shadowOpacity: 0.5,
-        flexDirection: 'row',
+        paddingTop: HEIGHT * 0.02,
+        paddingLeft: WIDTH * 0.06,
+        paddingRight: WIDTH * 0.06,
 
-    },
-    tabContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: WIDTH * 0.25,
-        // marginBottom: HEIGHT * 0.01,
     },
     tabFocused: {
         backgroundColor: '#E4FDF2',
         borderRadius: 10,
         width: WIDTH * 0.25,
-        height: HEIGHT * 0.06,
+        height: HEIGHT * 0.05,
         justifyContent: 'space-evenly',
-        marginLeft: WIDTH * 0.05,
-        marginBottom: HEIGHT * 0.01,
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginHorizontal: WIDTH * 0.2,
     },
     tabUnfocused: {
-        width: WIDTH * 0.15,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginLeft: 0,
+        flex: 1,
     },
     tabLabel: {
         color: '#000',
         fontSize: 12,
-        // marginLeft: 5,
         fontWeight: '500',
     },
     imageColor: {
         tintColor: '#42D180',
-        width: 20,
-        height: 20,
-    },
-    iconUnfocused: {
-        tintColor: '#42D180',
-    },
-    iconFocused: {
-        tintColor: '#42D180',
+        // width: HEIGHT * 0.03,
+        // height: HEIGHT * 0.035,
     },
 });

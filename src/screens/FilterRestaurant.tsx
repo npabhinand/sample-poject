@@ -1,26 +1,27 @@
-import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, Text, FlatList, View } from 'react-native';
+import React from 'react';
+import { SafeAreaView, StyleSheet, Text, FlatList, View, Pressable } from 'react-native';
 import RestaurantRenderItems from '../components/RestaurantRenderItems';
 import HomeTitleContainer from '../components/HomeTitleContainer';
-import FilterButton from '../components/FilterButton';
 import { restaurantArray } from '../data/commonArray';
-import { RouteProp } from '@react-navigation/native';
-import { WIDTH } from '../global/dimensions';
-// import { HomeTabNavigator } from '../../App';
 
-interface FilterRestaurantProps {
-    route: RouteProp<any, any>;
-}
+import { HEIGHT, WIDTH } from '../global/dimensions';
+import { addButton, deleteButton } from '../reducers/filterSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 
-const FilterRestaurant: React.FC<FilterRestaurantProps> = ({ route }) => {
-    const { selectedButtons, setSelectedButtons } = route.params;
-    const [clicked, setClicked] = useState('');
 
-    const handleButtonPress = (index: string) => {
-        const updatedButtons = selectedButtons.filter(button => button !== index);
-        setSelectedButtons(updatedButtons);
+
+const FilterRestaurant = () => {
+    const dispatch = useDispatch();
+    const selectedButtons = useSelector((state: any) => state.button.selectedButtons);
+
+    const handleButtonPress = (buttonName: string) => {
+        if (selectedButtons.includes(buttonName)) {
+            dispatch(deleteButton(buttonName));
+        } else {
+            dispatch(addButton(buttonName));
+        }
     };
 
     return (
@@ -30,13 +31,16 @@ const FilterRestaurant: React.FC<FilterRestaurantProps> = ({ route }) => {
                 ListHeaderComponent={<>
                     <HomeTitleContainer isFilterButton={true} />
                     <View style={[styles.rowButtons, styles.marginLeft]}>
-                        {selectedButtons.map((button, index) => (
-                            <FilterButton
+                        {selectedButtons.map((button: string, index: number) => (
+                            <Pressable
                                 key={index}
-                                buttonName={button}
+                                style={styles.buttonStyle}
                                 onPress={() => handleButtonPress(button)}
-                                isSelected={selectedButtons.includes(button)}
-                            />
+                            >
+                                <Text style={styles.buttonText}>
+                                    {button} X
+                                </Text>
+                            </Pressable>
                         ))}
                     </View>
                     <Text style={[styles.heading2, styles.marginLeft]}>Popular Restaurants</Text>
@@ -45,7 +49,6 @@ const FilterRestaurant: React.FC<FilterRestaurantProps> = ({ route }) => {
                 data={restaurantArray}
                 renderItem={({ item }) => <RestaurantRenderItems item={item} />}
             />
-
         </SafeAreaView>
     );
 };
@@ -54,7 +57,7 @@ export default FilterRestaurant;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        // flex: 1,
         backgroundColor: '#F9FBFF',
     },
     cards: {
@@ -62,15 +65,27 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
     },
     marginLeft: {
-        marginBottom: 10,
-        marginLeft: WIDTH * 0.02,
+        marginLeft: WIDTH * 0.05,
     },
     heading2: {
         fontSize: 15,
         fontWeight: 'bold',
+        marginTop: HEIGHT * 0.03,
+        marginBottom: HEIGHT * 0.03,
     },
     rowButtons: {
         flexDirection: 'row',
         flexWrap: 'wrap',
+    }, buttonStyle: {
+        backgroundColor: '#FEF7E7',
+        paddingVertical: 10,
+        borderRadius: 10,
+        padding: 20,
+        marginRight: WIDTH * 0.02,
+        marginTop: HEIGHT * 0.02,
+    }, buttonText: {
+        color: '#DA6317',
+        textAlign: 'center',
+        fontSize: 12,
     },
 });

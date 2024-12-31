@@ -25,5 +25,6 @@ const styles = StyleSheet.create({
         right: HEIGHT * 0,
         resizeMode: 'cover',
         top: HEIGHT * -0.08,
+        tintColor: '#48E087',
     },
 });

@@ -3,38 +3,38 @@ import React from 'react';
 import HomeTitleContainer from '../components/HomeTitleContainer';
 import MenuRenderItems from '../components/MenuRenderItems';
 import { menuArray } from '../data/commonArray';
+import { HEIGHT } from '../global/dimensions';
 
 const MenuListScreen = () => {
     return (
         <View style={styles.container}>
-            <HomeTitleContainer />
-            <View>
-                <Text style={[styles.heading2, styles.marginLeft]}>Popular Restaurant</Text>
-                <FlatList
-                    numColumns={1}
-                    data={menuArray}
-                    contentContainerStyle={styles.menuContainer}
-                    keyExtractor={item => item.id.toString()}
-                    renderItem={({ item }) => (
-                        <MenuRenderItems item={item} />
-                    )}
-                />
-            </View>
+            <FlatList
+                numColumns={1}
+                data={menuArray}
+                contentContainerStyle={styles.menuContainer}
+                keyExtractor={item => item.id.toString()}
+                renderItem={({ item }) => (
+                    <MenuRenderItems item={item} />
+                )}
+                ListHeaderComponent={
+                    <>
+                        <HomeTitleContainer isFilterButton={true} />
+                        <Text style={styles.heading2}>Popular Menu</Text>
+                    </>
+                }
+                ListHeaderComponentStyle={styles.headerStyle}
+            />
         </View>
     );
 };
 
 export default MenuListScreen;
-// const HEIGHT = Dimensions.get('screen').height;
+
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#F9FBFF',
-    },
-    marginLeft: {
-        padding: 20,
-        marginLeft: 15,
     },
     menuContainer: {
         // justifyContent: 'center',
@@ -43,5 +43,9 @@ const styles = StyleSheet.create({
     heading2: {
         fontSize: 15,
         fontWeight: 'bold',
+        margin: HEIGHT * 0.02,
+    },
+    headerStyle: {
+        marginTop: HEIGHT * 0.05,
     },
 });

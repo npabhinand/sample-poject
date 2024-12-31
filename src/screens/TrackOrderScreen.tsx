@@ -163,6 +163,7 @@ const styles = StyleSheet.create({
         color: '#45D984',
         fontSize: 14,
         fontWeight: '500',
+        marginLeft: WIDTH * 0.03,
     },
     btnContainer: {
         flexDirection: 'row',

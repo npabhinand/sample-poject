@@ -8,9 +8,9 @@ import {
 } from 'react-native';
 import React, { useState } from 'react';
 import { editIcon, starIcon, starFocusedIcon } from '../assets/icons';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import { HEIGHT, WIDTH } from '../global/dimensions';
-import { RootStackParamList } from '../navigation/AppNavigator';
+// import { RootStackParamList } from '../navigation/AppNavigator';
 
 interface CallingProps {
     description1?: string;
@@ -26,7 +26,7 @@ const RatingComponent: React.FC<CallingProps> = ({
     image,
 }) => {
     const [rating, setRating] = useState(0);
-    const navigation = useNavigation<NavigationProp<RootStackParamList, navigate>>();
+    const navigation = useNavigation();
 
     const onPressHandle = () => {
         navigation.navigate(navigate);
@@ -94,6 +94,8 @@ const styles = StyleSheet.create({
         marginBottom: HEIGHT * 0.05,
         width: WIDTH * 0.45,
         height: WIDTH * 0.45,
+        zIndex: 1,
+
         // borderRadius: WIDTH * 0.15,
     },
     nameText: {

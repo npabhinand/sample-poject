@@ -1,37 +1,37 @@
-import { View, StyleSheet, SafeAreaView, Text, TouchableOpacity } from 'react-native';
-import React, { useState } from 'react';
+import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import React from 'react';
 import FilterButton from '../components/FilterButton';
-import { useNavigation } from '@react-navigation/native';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { foodButton, locationButton, typeButton } from '../data/commonArray';
 import HomeTitleContainer from '../components/HomeTitleContainer';
 import { HEIGHT, WIDTH } from '../global/dimensions';
+import { useDispatch, useSelector } from 'react-redux';
+import { addButton, deleteButton } from '../reducers/filterSlice';
+import { RootStackParamList } from '../navigation/AppNavigator';
 
 
 
 const FilterScreen = () => {
-    const navigation = useNavigation();
-    const [selectedButtons, setSelectedButtons] = useState<string[]>([]);
+    const navigation = useNavigation<NavigationProp<RootStackParamList, 'FilterRestaurant'>>();
+    const dispatch = useDispatch();
+    const selectedButtons = useSelector((state: any) => state.button.selectedButtons);
+
 
     const handlePress = (buttonName: string) => {
-        setSelectedButtons(prevState => {
-            if (prevState.includes(buttonName)) {
-                return prevState.filter(item => item !== buttonName);
-            } else {
-                return [...prevState, buttonName];
-            }
-        });
+        if (selectedButtons.includes(buttonName)) {
+            dispatch(deleteButton(buttonName));
+        } else {
+            dispatch(addButton(buttonName));
+        }
     };
 
     const handleSearch = () => {
-        navigation.navigate('FilterRestaurant', navigation.setOptions = {
-            selectedButtons,
-            setSelectedButtons,
-        });
+        navigation.navigate('FilterRestaurant');
     };
-    console.log(selectedButtons);
+
     return (
-        <SafeAreaView style={styles.container}>
-            <View >
+        <View style={styles.container}>
+            <View style={styles.titleView}>
                 <HomeTitleContainer isFilterButton={false} />
             </View>
 
@@ -83,7 +83,7 @@ const FilterScreen = () => {
             >
                 <Text style={styles.buttonText}>Search</Text>
             </TouchableOpacity>
-        </SafeAreaView>
+        </View>
     );
 };
 
@@ -95,6 +95,9 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#F9FBFF',
         paddingBottom: 30,
+        paddingTop: HEIGHT * 0.05,
+    }, titleView: {
+        marginLeft: WIDTH * 0.02,
     },
     marginLeft: {
         padding: 10,
@@ -131,7 +134,7 @@ const styles = StyleSheet.create({
         padding: 15,
         alignSelf: 'center',
         position: 'absolute',
-        bottom: 20,
+        bottom: HEIGHT * 0.04,
     },
     buttonText: {
         textAlign: 'center',

@@ -18,7 +18,6 @@ const YourOrdersScreen = () => {
 
   return (
     <View style={styles.container}>
-      <HomeTitleContainer />
       <FlatList
         contentContainerStyle={styles.cards}
         data={orderContents}
@@ -32,6 +31,9 @@ const YourOrdersScreen = () => {
             isSwipeable={false}
           />
         )}
+        ListHeaderComponent={
+          <><HomeTitleContainer isFilterButton={true} /></>}
+        ListHeaderComponentStyle={styles.headerStyle}
       />
       <TouchableOpacity style={styles.checkoutButton} onPress={() => { navigation.navigate('SetLocationScreen'); }}>
         <Text style={styles.buttonText}>Check out</Text>
@@ -48,6 +50,9 @@ const styles = StyleSheet.create({
   },
   cards: {
     alignItems: 'center',
+    backgroundColor: '#F5F6FE',
+  }, headerStyle: {
+    marginTop: HEIGHT * 0.05,
   },
   checkoutButton: {
     backgroundColor: '#45D984',
@@ -58,7 +63,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignSelf: 'center',
     position: 'absolute',
-    bottom: 20,
+    bottom: HEIGHT * 0.05,
   },
   buttonText: {
     textAlign: 'center',

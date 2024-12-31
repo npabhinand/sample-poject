@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../global/dimensions';
 
 interface navigateProps {
     navigate?: string,
@@ -27,20 +27,23 @@ export default ViewMoreComponent;
 
 const styles = StyleSheet.create({
     marginLeft: {
-        padding: WIDTH * 0.05,
-        // marginLeft: WIDTH * 0.01,
+        // padding: WIDTH * 0.05,
+        marginLeft: WIDTH * 0.04,
     },
     ViewMoreContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop: HEIGHT * 0.01,
+        marginBottom: HEIGHT * 0.02,
     },
     heading2: {
         fontSize: 15,
         fontWeight: 'bold',
     },
     viewMoreMargin: {
-        padding: 20,
-        marginRight: 15,
+        // padding: 20,
+        marginRight: WIDTH * 0.09,
     },
     viewMoreColor: {
         color: '#FF7C32',

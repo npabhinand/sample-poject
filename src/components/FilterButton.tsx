@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet, Pressable } from 'react-native';
 import { HEIGHT, WIDTH } from '../global/dimensions';
 
 
@@ -12,14 +12,14 @@ interface FilterButtonProps {
 
 const FilterButton: React.FC<FilterButtonProps> = ({ buttonName, onPress, isSelected }) => {
     return (
-        <TouchableOpacity
+        <Pressable
             style={[styles.buttonStyle, isSelected && styles.selectedButton]}
             onPress={() => onPress(buttonName)}
         >
             <Text style={[styles.buttonText, isSelected && styles.selectedTxt]}>
                 {buttonName}
             </Text>
-        </TouchableOpacity>
+        </Pressable>
     );
 };
 
