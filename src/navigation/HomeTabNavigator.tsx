@@ -23,7 +23,8 @@ interface tabBarProps {
     focused?: boolean;
 }
 
-const CustomTabBarIcon: React.FC<tabBarProps> = ({ src, label, focused }) => {
+const CustomTabBarIcon: React.FC<tabBarProps> = (props) => {
+    const { src, label, focused } = props;
     return (
         <View style={focused ? styles.tabFocused : styles.tabUnfocused}>
             <Image source={src} style={styles.imageColor} />
@@ -62,8 +63,11 @@ const styles = StyleSheet.create({
         height: HEIGHT * 0.09,
         borderRadius: HEIGHT * 0.02,
         alignSelf: 'center',
-        shadowOpacity: 0.5,
+        // shadowOpacity: 0.5,
         paddingTop: HEIGHT * 0.02,
+        alignItems: 'center',
+        shadowColor: '#F6F7FD',
+        // justifyContent: 'center',
         paddingLeft: WIDTH * 0.06,
         paddingRight: WIDTH * 0.06,
 

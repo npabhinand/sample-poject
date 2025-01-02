@@ -1,16 +1,39 @@
-import { FlatList, StyleSheet, View, Text } from 'react-native';
-import React from 'react';
+import { FlatList, StyleSheet, View, Text, Pressable, Image } from 'react-native';
+import React, { useState } from 'react';
 import HomeTitleContainer from '../components/HomeTitleContainer';
 import MenuRenderItems from '../components/MenuRenderItems';
-import { menuArray } from '../data/commonArray';
-import { HEIGHT } from '../global/dimensions';
+import { menuSections } from '../data/commonArray';
+import { HEIGHT, WIDTH } from '../global/dimensions';
+import { backIcon } from '../assets/icons';
+import { useNavigation } from '@react-navigation/native';
 
+interface menuItem {
+    id: number;
+    title: string;
+    imgURL: any;
+    content: any;
+    orders: string;
+    rating: string;
+    description1: string;
+    recipe: string[];
+    description2: string;
+    type: string;
+    price: number;
+    restaurantName: string;
+}
 const MenuListScreen = () => {
+    const navigation = useNavigation();
+    const [searchData, setSearchData] = useState(menuSections);
+
+    function handleSearchData(data: menuItem[]) {
+        setSearchData(data);
+    }
+
     return (
         <View style={styles.container}>
             <FlatList
                 numColumns={1}
-                data={menuArray}
+                data={searchData}
                 contentContainerStyle={styles.menuContainer}
                 keyExtractor={item => item.id.toString()}
                 renderItem={({ item }) => (
@@ -18,7 +41,11 @@ const MenuListScreen = () => {
                 )}
                 ListHeaderComponent={
                     <>
-                        <HomeTitleContainer isFilterButton={true} />
+                        <Pressable style={styles.buttonStyle} onPress={() => { navigation.goBack(); }}>
+                            <Image source={backIcon} />
+                        </Pressable>
+
+                        <HomeTitleContainer isFilterButton={true} data={menuSections} sendSearchData={handleSearchData} />
                         <Text style={styles.heading2}>Popular Menu</Text>
                     </>
                 }
@@ -47,5 +74,19 @@ const styles = StyleSheet.create({
     },
     headerStyle: {
         marginTop: HEIGHT * 0.05,
+    },
+    buttonStyle: {
+        backgroundColor: '#FDF5EB',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 15,
+        padding: 10,
+        marginRight: 10,
+        width: 45,
+        height: 45,
+        zIndex: 1,
+        marginTop: HEIGHT * 0.01,
+        marginBottom: HEIGHT * -0.02,
+        marginLeft: WIDTH * 0.04,
     },
 });

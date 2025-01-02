@@ -28,11 +28,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#F9FBFF',
-        paddingBottom: 20, // optional, to give some spacing at the bottom
+        paddingBottom: 20,
     },
     priceCardContainer: {
         flex: 1,
-        justifyContent: 'flex-end', // Ensures PriceCard stays at the bottom
-        alignItems: 'center', // Centers the PriceCard horizontally
+        justifyContent: 'flex-end',
+        alignItems: 'center',
     },
 });

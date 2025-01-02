@@ -1,11 +1,11 @@
-import { Dimensions, Image, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import TitleComponent from '../components/TitleComponent';
 import { backIcon } from '../assets/icons';
 import { useNavigation } from '@react-navigation/native';
+import { HEIGHT, WIDTH } from '../global/dimensions';
 
-const HEIGHT = Dimensions.get('screen').height;
-const WIDTH = Dimensions.get('screen').width;
+
 
 interface TitleProps {
     title?: string;

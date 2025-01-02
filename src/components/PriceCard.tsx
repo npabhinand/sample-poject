@@ -48,17 +48,17 @@ const styles = StyleSheet.create({
         // flex: 1,
         alignSelf: 'center',
         width: WIDTH * 0.9,
-        height: HEIGHT * 0.24,
-        borderRadius: WIDTH * 0.04,
-        // padding: HEIGHT * 0.03,
+        height: WIDTH * 0.5,
+        borderRadius: WIDTH * 0.05,
+        // paddingLeft: HEIGHT * 0.03,
         // marginBottom: HEIGHT * 0.02,
         backgroundColor: '#43D380',
     },
     backgroundImage: {
         flex: 1,
-        justifyContent: 'center',
+        // justifyContent: 'center',
         borderRadius: 20,
-        padding: 10,
+        // padding: 10,
     },
     subContainer: {
         flexDirection: 'row',
@@ -66,11 +66,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     leftContainer: {
-
-        // marginLeft: WIDTH * 0.0,
+        marginTop: HEIGHT * 0.02,
+        marginLeft: HEIGHT * 0.03,
     },
     rightContainer: {
-        justifyContent: 'flex-end',
+        marginTop: HEIGHT * 0.02,
+        marginRight: HEIGHT * 0.03,
     },
     RightSubText: {
         color: '#fff',
@@ -80,6 +81,7 @@ const styles = StyleSheet.create({
     subText: {
         color: '#fff',
         fontSize: 14,
+        fontWeight: 'bold',
     },
     TotalSubText: {
         marginTop: HEIGHT * 0.02,
@@ -91,12 +93,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignSelf: 'center',
         width: WIDTH * 0.8,
-        height: HEIGHT * 0.06,
-        // marginTop: HEIGHT * 0.02,
+        height: WIDTH * 0.13,
+        marginTop: HEIGHT * 0.02,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: HEIGHT * 0.015,
-        bottom: HEIGHT * -0.02,
+        top: HEIGHT * 0.015,
     },
     btnText: {
         color: '#47DD86',

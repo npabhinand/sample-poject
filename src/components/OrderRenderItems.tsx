@@ -1,46 +1,55 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
-import { Swipeable } from 'react-native-gesture-handler';
+import React, { useState, useCallback } from 'react';
+import { StyleSheet, View, Image, Text, TouchableOpacity, Pressable, Alert } from 'react-native';
+import Swipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
 import { trashIcon } from '../assets/icons';
 import { HEIGHT, WIDTH } from '../global/dimensions';
-
-
 
 interface OrderProps {
     item?: any;
     onCardPress?: () => void;
     isSelected?: boolean;
     isButtonView?: boolean;
+    handleDelete?: () => void;
 }
 
-const OrderRenderItems: React.FC<OrderProps> = ({ item, onCardPress, isSelected, isButtonView }) => {
+const OrderRenderItems: React.FC<OrderProps> = ({ handleDelete, item, isSelected, isButtonView }) => {
     const [counter, setCounter] = useState(1);
 
-    const handleIncrease = () => {
-        setCounter(counter + 1);
+    const handleIncrease = useCallback(() => {
+        setCounter((prevCounter) => prevCounter + 1);
+    }, []);
+
+    const handleDecrease = useCallback(() => {
+        setCounter((prevCounter) => (prevCounter > 1 ? prevCounter - 1 : prevCounter));
+    }, []);
+
+    const renderRightActions = () => {
+
+        return (
+            <View style={styles.rightActionWrapper} >
+                <Pressable>
+                    <Image source={trashIcon} />
+                </Pressable>
+
+            </View>
+        );
     };
 
-    const handleDecrease = () => {
-        if (counter > 1) {
-            setCounter(counter - 1);
+    const onSwipeableWillClose = () => {
+        if (handleDelete) {
+            handleDelete();
+            Alert.alert('Item successfully removed');
         }
     };
-
-    const renderRightActions = () => (
-        <View style={[styles.rightActionWrapper, { backgroundColor: '#F8AD1E' }]}>
-            <Image source={trashIcon} />
-        </View>
-    );
-
     return (
-        <Swipeable renderRightActions={renderRightActions} friction={2} rightThreshold={WIDTH * 0.3}>
+        <Swipeable renderRightActions={renderRightActions} friction={1} rightThreshold={WIDTH * 0.8} onSwipeableWillClose={onSwipeableWillClose} >
             <TouchableOpacity
                 style={[styles.orderItems, isSelected && styles.selectedCard]}
-                onPress={() => onCardPress && onCardPress()}
+            // onPress={() => onCardPress && onCardPress()}
             >
                 <Image source={item.imgURL} style={styles.image} />
                 <View style={styles.textContainer}>
-                    <Text style={styles.orderTitle}>{item.DishName}</Text>
+                    <Text style={styles.orderTitle}>{item.title}</Text>
                     <Text style={styles.orderName}>{item.restaurantName}</Text>
                     <Text style={styles.orderPrice}>$ {item.price}</Text>
                 </View>
@@ -161,6 +170,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderTopRightRadius: 20,
         borderBottomRightRadius: 20,
-        marginTop: HEIGHT * 0.03,
+        marginTop: HEIGHT * 0.02,
+        backgroundColor: '#F8AD1E',
+        flexDirection: 'row',
     },
 });

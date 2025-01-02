@@ -25,8 +25,10 @@ const filterSlice = createSlice({
   },
 });
 
-
+export const FilterButtons = (state: any) => state.button.selectedButtons;
 export const { addButton, deleteButton } = filterSlice.actions;
 
 // Export the reducer
 export default filterSlice.reducer;
+
+

@@ -26,7 +26,7 @@ import EditPaymentScreen from '../screens/EditPaymentScreen';
 import { HomeTabNavigator } from './HomeTabNavigator';
 import RestaurantListScreen from '../screens/RestaurantListScreen';
 
-// Type definition for all routes
+// Type
 export type RootStackParamList = {
     HomeTab: undefined;
     FilterScreen: undefined;
@@ -55,106 +55,94 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const AppNavigator = () => {
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
-            <Stack.Navigator>
+            <Stack.Navigator screenOptions={{ headerShown: false }}>
                 <Stack.Screen
                     name="HomeTab"
                     component={HomeTabNavigator}
-                    options={{ headerShown: false }}
                 />
                 <Stack.Screen
                     name="FilterScreen"
                     component={FilterScreen}
-                    options={{ headerShown: false }}
                 />
                 <Stack.Screen
                     name="MenuList"
                     component={MenuListScreen}
-                    options={{ headerShown: false }}
                 />
                 <Stack.Screen
                     name="FilterRestaurant"
                     component={FilterRestaurant}
-                    options={{ headerShown: false }}
                 />
                 <Stack.Screen
                     name="ChatScreen"
                     component={ChatScreen}
-                    options={{ headerShown: false }}
                 />
                 <Stack.Screen
                     name="RestaurantListScreen"
                     component={RestaurantListScreen}
-                    options={{ headerShown: false }}
                 />
                 <Stack.Screen
                     name="CallingScreen"
                     component={CallingScreen}
-                    options={{ headerShown: false }}
                 />
                 <Stack.Screen
                     name="RateDriverScreen"
                     component={RateDriverScreen}
-                    options={{ headerShown: false }}
                 />
                 <Stack.Screen
                     name="RateFoodScreen"
                     component={RateFoodScreen}
-                    options={{ headerShown: false }}
                 />
                 <Stack.Screen
                     name="RateRestaurantScreen"
                     component={RateRestaurantScreen}
-                    options={{ headerShown: false }}
+
                 />
                 <Stack.Screen
                     name="NotificationScreen"
                     component={NotificationScreen}
-                    options={{ headerShown: false }}
+
                 />
                 <Stack.Screen
                     name="PaymentScreen"
                     component={PaymentScreen}
-                    options={{ headerShown: false }}
+
                 />
                 <Stack.Screen
                     name="EditLocationScreen"
                     component={EditLocationScreen}
-                    options={{ headerShown: false }}
+
                 />
                 <Stack.Screen
                     name="YourOrdersScreen"
                     component={YourOrdersScreen}
-                    options={{ headerShown: false }}
+
                 />
                 <Stack.Screen
                     name="TrackOrderScreen"
                     component={TrackOrderScreen}
-                    options={{ headerShown: false }}
                 />
                 <Stack.Screen
                     name="VoucherPromoScreen"
                     component={VoucherPromoScreen}
-                    options={{ headerShown: false }}
                 />
                 <Stack.Screen
                     name="SetLocationScreen"
                     component={SetLocationScreen}
-                    options={{ headerShown: false }}
+
                 />
                 <Stack.Screen
                     name="MenuDetailScreen"
                     component={MenuDetailScreen}
-                    options={{ headerShown: false }}
+
                 />
                 <Stack.Screen
                     name="ProductDetailScreen"
                     component={ProductDetailScreen}
-                    options={{ headerShown: false }}
+
                 />
                 <Stack.Screen
                     name="EditPaymentScreen"
                     component={EditPaymentScreen}
-                    options={{ headerShown: false }}
                 />
             </Stack.Navigator>
         </GestureHandlerRootView>

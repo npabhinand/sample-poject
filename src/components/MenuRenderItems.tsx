@@ -6,22 +6,28 @@ import { RootStackParamList } from '../navigation/AppNavigator';
 
 interface itemProps {
     item: {
-        imgURL: any,
-        title: string,
-        restaurantName: string,
-        price: number,
-    }
+        imgURL: any;
+        title: string;
+        restaurantName: string;
+        price: number;
+    };
 }
 
 const MenuRenderItems: React.FC<itemProps> = ({ item }) => {
     const navigation = useNavigation<NavigationProp<RootStackParamList, 'MenuDetailScreen'>>();
+
     return (
-        <TouchableOpacity style={styles.menuItems}
-            onPress={() => { navigation.navigate('ProductDetailScreen'); }}
+        <TouchableOpacity
+            style={styles.menuItems}
+            onPress={() => {
+                navigation.navigate('MenuDetailScreen', {
+                    section: { item },
+                });
+            }}
         >
             <Image source={item.imgURL} />
             <View style={styles.textContainer}>
-                <Text style={styles.menuTitle} >{item.title}</Text>
+                <Text style={styles.menuTitle}>{item.title}</Text>
                 <Text style={styles.menuName}>{item.restaurantName}</Text>
             </View>
             <Text style={styles.menuPrice}>${item.price}</Text>
@@ -30,8 +36,6 @@ const MenuRenderItems: React.FC<itemProps> = ({ item }) => {
 };
 
 export default MenuRenderItems;
-
-
 
 const styles = StyleSheet.create({
     menuItems: {

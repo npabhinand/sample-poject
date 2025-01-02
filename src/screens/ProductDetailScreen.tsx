@@ -1,66 +1,84 @@
 import { StyleSheet, TouchableOpacity, View, Text, Image, ScrollView } from 'react-native';
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { popularMenu, sections } from '../data/commonArray';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { menuSections } from '../data/commonArray';
 import { backIcon, locationIcon2, loveIcon, mapPin, starPin } from '../assets/icons';
 import Testimonials from '../components/Testimonials';
 import { HEIGHT, WIDTH } from '../global/dimensions';
-import ViewMoreComponent from '../components/ViewMoreComponent';
 import RestaurantRenderItems from '../components/RestaurantRenderItems';
+import { RootStackParamList } from '../navigation/AppNavigator';
 
-const ProductDetailScreen = () => {
-    const navigation = useNavigation();
+
+interface productItem {
+    item: {
+        id: number;
+        title: string;
+        imgURL: any;
+        content: any;
+        // orders: string;
+        location: string;
+        description: string;
+        rating: string;
+        price: number;
+        restaurantName: string;
+    },
+
+}
+interface ProductDetailScreenProps {
+    route: { params: { section: productItem } };
+}
+const ProductDetailScreen: React.FC<ProductDetailScreenProps> = ({ route }) => {
+    const { section } = route.params;
+    const navigation = useNavigation<NavigationProp<RootStackParamList, 'MenuDetailScreen'>>();
+
+    console.log(section.item);
 
     return (
         <View style={styles.container}>
+            <Image source={section.item.content} style={styles.imageContainer} />
             <ScrollView>
-
-
-                {sections.map((section, index) => (
-                    section.key === 'image' ? (
-                        <>
-                            <Image key={index} source={section.content} style={styles.imageContainer} />
-                            <TouchableOpacity style={styles.backButton} onPress={() => { navigation.goBack(); }}>
-                                <Image source={backIcon} />
+                <TouchableOpacity style={styles.backButton} onPress={() => { navigation.goBack(); }}>
+                    <Image source={backIcon} />
+                </TouchableOpacity>
+                <View style={styles.cardContainer}>
+                    <View style={styles.row}>
+                        <Text style={styles.txt}>Popular</Text>
+                        <View style={styles.icons}>
+                            <TouchableOpacity style={styles.right}>
+                                <Image source={locationIcon2} />
                             </TouchableOpacity>
-                        </>
-
-                    ) : section.key === 'details' ? (
-                        <View key={index} style={styles.cardContainer}>
-                            <View style={styles.row}>
-                                <Text style={styles.txt}>Popular</Text>
-                                <View style={styles.icons}>
-                                    <TouchableOpacity style={styles.right}>
-                                        <Image source={locationIcon2} />
-                                    </TouchableOpacity>
-                                    <TouchableOpacity>
-                                        <Image source={loveIcon} />
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-                            <Text style={styles.title}>{section.title}</Text>
-                            <View style={styles.ratings}>
-                                <Image source={starPin} />
-                                <Text style={styles.rating}>{section.rating}</Text>
-                                <Image source={mapPin} />
-                                <Text style={styles.rating}>{section.location}</Text>
-                            </View>
-                            <Text style={styles.description}>{section.description}</Text>
-                            <ViewMoreComponent navigate="MenuList" title="Popular Menu" />
-                            <ScrollView horizontal style={styles.horizontalScroll}>
-                                {popularMenu.slice(0, 3).map((item, index) => (
-                                    <RestaurantRenderItems key={index} item={item} style={{ marginLeft: WIDTH * 0.02 }} />
-                                ))}
-                            </ScrollView>
+                            <TouchableOpacity>
+                                <Image source={loveIcon} />
+                            </TouchableOpacity>
                         </View>
-                    ) : section.key === 'testimonials' ? (
-                        <View key={index} style={styles.testimonialContainer}>
-                            <Testimonials />
-                        </View>
-                    ) : null
-                ))}
+                    </View>
+                    <Text style={styles.title}>{section.item.title}</Text>
+                    <View style={styles.ratings}>
+                        <Image source={starPin} />
+                        <Text style={styles.rating}>{section.item.rating}</Text>
+                        <Image source={mapPin} />
+                        <Text style={styles.rating}>{section.item.location}</Text>
+                    </View>
+                    <Text style={styles.description}>{section.item.description}</Text>
+                    <View style={styles.ViewMoreContainer}>
+                        <Text style={[styles.heading2]}>Popular Menu</Text>
+                        <TouchableOpacity onPress={() => navigation.navigate('MenuList')}>
+                            <Text style={styles.textColor}>
+                                View All
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                    <ScrollView horizontal style={styles.horizontalScroll}>
+                        {menuSections.slice(3, 6).map((item, index) => (
+                            <RestaurantRenderItems key={index} item={item} navigate="MenuDetailScreen" />
+                        ))}
+                    </ScrollView>
+                </View>
+                <View style={styles.testimonialContainer}>
+                    <Testimonials />
+                </View>
             </ScrollView>
-        </View>
+        </View >
     );
 };
 
@@ -109,6 +127,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#3FC87C',
         backgroundColor: '#EBFAF2',
+        padding: 10,
+        borderRadius: 20,
     },
     icons: {
         flexDirection: 'row',
@@ -142,15 +162,24 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginVertical: 5,
-    },
-    testimonialContainer: {
-        paddingLeft: 10,
-        backgroundColor: '#fff',
-        // marginTop: 20,
-        borderRadius: 10,
     }, horizontalScroll: {
         marginLeft: WIDTH * 0.03,
         marginRight: WIDTH * 0.02,
         marginTop: HEIGHT * 0.01,
+    }, ViewMoreContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    }, heading2: {
+        fontWeight: 'bold',
+    },
+    testimonialContainer: {
+        paddingLeft: 10,
+        backgroundColor: '#fff',
+        borderRadius: 10,
+    },
+    textColor: {
+        marginRight: WIDTH * 0.03,
+        color: '#F78C4C',
     },
 });

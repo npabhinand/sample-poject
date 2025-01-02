@@ -1,44 +1,7 @@
 import { checkedIcon, failedIcon, moneyIcon } from '../assets/icons';
 import { DetailImage, menu1, menu2, menuPhoto, orderImage1, orderImage2, orderImage3, payoneerLogo, paypalLogo, photoMenu1, photoMenu2, photoMenu3, profile1, profile2, profile3, promo2, promo3, restaurantImage1, restaurantImage2, restaurantImage3, restaurantImage4, restaurantImage5, restaurantImage6, testimonialImage, visaLogo } from '../assets/images';
 
-const restaurantArray = [
-  {
-    id: 1,
-    name: 'Vegan Resto',
-    time: 12,
-    imgURL: restaurantImage1,
-  },
-  {
-    id: 2,
-    name: 'Healthy Food',
-    time: 8,
-    imgURL: restaurantImage2,
-  },
-  {
-    id: 3,
-    name: 'Good Food',
-    time: 12,
-    imgURL: restaurantImage3,
-  },
-  {
-    id: 4,
-    name: 'Smart Resto',
-    time: 8,
-    imgURL: restaurantImage4,
-  },
-  {
-    id: 5,
-    name: 'Vegan Resto',
-    time: 8,
-    imgURL: restaurantImage5,
-  },
-  {
-    id: 6,
-    name: 'Healthy Food',
-    time: 8,
-    imgURL: restaurantImage6,
-  },
-];
+
 
 const menuArray = [
   {
@@ -266,22 +229,6 @@ const paymentContent = [
   },
 ];
 
-const popularMenu = [{
-  id: 1,
-  imgURL: menu1,
-  name: 'Spacy fresh crab',
-  price: 16,
-}, {
-  id: 2,
-  imgURL: menu2,
-  name: 'Spacy fresh crab',
-  price: 16,
-}, {
-  id: 3,
-  imgURL: menu1,
-  name: 'Spacy fresh crab',
-  price: 16,
-}];
 
 const testimonials = [
   {
@@ -312,42 +259,223 @@ const testimonials = [
 
 const sections = [
   {
-    key: 'image',
+    id: 1,
     content: DetailImage,
+    name: 'Healthy Food',
+    time: 10,
+    imgURL: restaurantImage1,
+    title: 'Healthy Food',
+    location: '19 Km',
+    rating: '4.9 Rating',
+    description: 'Most whole Alaskan Red King Crabs get broken down into legs, claws, and lump meat. We offer all of these options as well in our online shop, but there is nothing like getting the whole ...',
   },
   {
-    key: 'details',
+    id: 2,
+    content: DetailImage,
+    name: 'Smart Resto',
+    time: 12,
+    imgURL: restaurantImage2,
+    title: 'Smart Resto',
+    location: '19 Km',
+    rating: '4.9 Rating',
+    description: 'Most whole Alaskan Red King Crabs get broken down into legs, claws, and lump meat. We offer all of these options as well in our online shop, but there is nothing like getting the whole ...',
+  },
+  {
+    id: 3,
+    content: DetailImage,
+    name: 'Vegan Resto',
+    time: 25,
+    imgURL: restaurantImage3,
+    title: 'Vegan Resto',
+    location: '19 Km',
+    rating: '4.9 Rating',
+    description: 'Most whole Alaskan Red King Crabs get broken down into legs, claws, and lump meat. We offer all of these options as well in our online shop, but there is nothing like getting the whole ...',
+  },
+  {
+    id: 4,
+    content: DetailImage,
+    name: 'Wijie Bar and Resto',
+    time: 20,
+    imgURL: restaurantImage4,
     title: 'Wijie Bar and Resto',
     location: '19 Km',
     rating: '4.9 Rating',
     description: 'Most whole Alaskan Red King Crabs get broken down into legs, claws, and lump meat. We offer all of these options as well in our online shop, but there is nothing like getting the whole ...',
   },
   {
-    key: 'popularMenu',
+    id: 5,
+    content: DetailImage,
+    name: 'Waroenk kita',
+    time: 6,
+    imgURL: restaurantImage5,
+    title: 'Waroenk kita',
+    location: '19 Km',
+    rating: '4.9 Rating',
+    description: 'Most whole Alaskan Red King Crabs get broken down into legs, claws, and lump meat. We offer all of these options as well in our online shop, but there is nothing like getting the whole ...',
   },
   {
-    key: 'testimonials',
+    id: 6,
+    content: DetailImage,
+    name: 'Vegan Resto',
+    time: 5,
+    imgURL: restaurantImage6,
+    title: 'Vegan Resto',
+    location: '19 Km',
+    rating: '4.9 Rating',
+    description: 'Most whole Alaskan Red King Crabs get broken down into legs, claws, and lump meat. We offer all of these options as well in our online shop, but there is nothing like getting the whole ...',
+  },
+  {
+    id: 7,
+    content: DetailImage,
+    name: 'Healthy Food',
+    time: 10,
+    imgURL: restaurantImage2,
+    title: 'Healthy Food',
+    location: '19 Km',
+    rating: '4.9 Rating',
+    description: 'Most whole Alaskan Red King Crabs get broken down into legs, claws, and lump meat. We offer all of these options as well in our online shop, but there is nothing like getting the whole ...',
+  },
+
+];
+const restaurantArray = [
+  {
+    id: 1,
+    name: 'Vegan Resto',
+    time: 12,
+    imgURL: restaurantImage1,
+  },
+  {
+    id: 2,
+    name: 'Healthy Food',
+    time: 8,
+    imgURL: restaurantImage2,
+  },
+  {
+    id: 3,
+    name: 'Good Food',
+    time: 12,
+    imgURL: restaurantImage3,
+  },
+  {
+    id: 4,
+    name: 'Smart Resto',
+    time: 8,
+    imgURL: restaurantImage4,
+  },
+  {
+    id: 5,
+    name: 'Vegan Resto',
+    time: 8,
+    imgURL: restaurantImage5,
+  },
+  {
+    id: 6,
+    name: 'Healthy Food',
+    time: 8,
+    imgURL: restaurantImage6,
   },
 ];
-
 const menuSections = [
   {
-    key: 'image',
+    id: 1,
+    title: 'Green Noodle',
+    imgURL: photoMenu3,
     content: menuPhoto,
+    orders: '2500+ orders',
+    rating: '4.0 Rating',
+    description1: 'Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt.',
+    recipe: ['Strawberry', 'Cream', 'Wheat'],
+    description2: 'Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt.',
+    type: 'testimonials',
+    price: 15,
+    restaurantName: 'Noodle Home',
   },
   {
-    key: 'details',
-    title: 'Rainbow Sandwich Sugarless',
+    id: 2,
+    title: 'Herbal Pancake',
+    imgURL: photoMenu2,
+    content: menuPhoto,
+    orders: '200+ orders',
+    rating: '3.5 Rating',
+    description1: 'Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt.',
+    recipe: ['Strawberry', 'Cream', 'Wheat'],
+    description2: 'Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt.',
+    type: 'testimonials',
+    price: 5,
+    restaurantName: 'warung Herbal',
+  },
+  {
+    id: 3,
+    title: 'Fruit Salad',
+    imgURL: photoMenu1,
+    content: menuPhoto,
+    orders: '1500+ orders',
+    rating: '4.7 Rating',
+    description1: 'Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt.',
+    recipe: ['Strawberry', 'Cream', 'Wheat'],
+    description2: 'Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt.',
+    type: 'testimonials',
+    price: 7,
+    restaurantName: 'Wijie Resto',
+  },
+  {
+    id: 4,
+    title: 'Green Noodle',
+    imgURL: menu1,
+    content: menuPhoto,
+    orders: '2000+ orders',
+    rating: '4.0 Rating',
+    description1: 'Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt.',
+    recipe: ['Strawberry', 'Cream', 'Wheat'],
+    description2: 'Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt.',
+    type: 'testimonials',
+    price: 7,
+    restaurantName: 'Wijie Resto',
+  },
+  {
+    id: 5,
+    title: 'Chicken 65',
+    imgURL: menu2,
+    content: menuPhoto,
+    orders: '2000+ orders',
+    rating: '3.6 Rating',
+    description1: 'Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt.',
+    recipe: ['Strawberry', 'Cream', 'Wheat'],
+    description2: 'Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt.',
+    type: 'testimonials',
+    price: 7,
+    restaurantName: 'Wijie Resto',
+  },
+  {
+    id: 6,
+    title: 'Spacy fresh crab',
+    imgURL: menu1,
+    content: menuPhoto,
     orders: '2000+ orders',
     rating: '4.9 Rating',
     description1: 'Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt.',
     recipe: ['Strawberry', 'Cream', 'Wheat'],
     description2: 'Nulla occaecat velit laborum exercitation ullamco. Elit labore eu aute elit nostrud culpa velit excepteur deserunt sunt.',
-  },
-  {
-    key: 'testimonials',
     type: 'testimonials',
+    price: 16,
+    restaurantName: 'Wijie Resto',
   },
 ];
+const popularMenu = [{
+  id: 1,
+  imgURL: menu1,
+  name: 'Spacy fresh crab',
+  price: 16,
+}, {
+  id: 2,
+  imgURL: menu2,
+  name: 'Spacy fresh crab',
+  price: 16,
+}, {
+  id: 3,
+  imgURL: menu1,
+  name: 'Spacy fresh crab',
+  price: 16,
+}];
 
 export { restaurantArray, menuArray, locationButton, typeButton, foodButton, chatList, ChatContent, NotificationContent, orderContents, voucherPromo, address, paymentContent, popularMenu, testimonials, sections, menuSections, restaurantCards };

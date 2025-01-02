@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { TouchableOpacity, View, Image, StyleSheet } from 'react-native';
+import { TouchableOpacity, View, Image, StyleSheet, ImageBackground } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import CallingComponent from '../components/CallingComponent';
-import BackgroundImage2 from '../components/ChatBackgroundImage';
 import { closeIcon, volumeOffIcon, volumeUpIcon } from '../assets/icons';
-import { personImage } from '../assets/images';
+import { backgroundImage2, personImage } from '../assets/images';
 import { HEIGHT, WIDTH } from '../global/dimensions';
 import { RootStackParamList } from '../navigation/AppNavigator';
 
 
 const CallingScreen = () => {
     const [ended, setEnded] = useState(false);
-    const [clicked, setClicked] = useState(false);
+    const [muted, setMuted] = useState(false);
     const navigation = useNavigation<NavigationProp<RootStackParamList, 'MenuDetailScreen'>>();
 
     useEffect(() => {
@@ -26,23 +25,24 @@ const CallingScreen = () => {
 
     return (
         <View style={styles.container}>
-            <BackgroundImage2 />
-            <CallingComponent name={'Courtney Henry'} isEnded={ended} image={personImage} />
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity
-                    style={[styles.buttonSize, styles.volumeButton]}
-                    onPress={() => setClicked(!clicked)}
-                >
-                    <Image source={clicked ? volumeOffIcon : volumeUpIcon} />
-                </TouchableOpacity>
+            <ImageBackground source={backgroundImage2}>
+                <CallingComponent name={'Courtney Henry'} isEnded={ended} image={personImage} />
+                <View style={styles.buttonContainer}>
+                    <TouchableOpacity
+                        style={[styles.buttonSize, styles.volumeButton]}
+                        onPress={() => setMuted(!muted)}
+                    >
+                        <Image source={muted ? volumeOffIcon : volumeUpIcon} />
+                    </TouchableOpacity>
 
-                <TouchableOpacity
-                    onPress={() => setEnded(true)}
-                    style={[styles.buttonSize, styles.closeButton]}
-                >
-                    <Image source={closeIcon} />
-                </TouchableOpacity>
-            </View>
+                    <TouchableOpacity
+                        onPress={() => setEnded(true)}
+                        style={[styles.buttonSize, styles.closeButton]}
+                    >
+                        <Image source={closeIcon} />
+                    </TouchableOpacity>
+                </View>
+            </ImageBackground>
         </View>
     );
 };
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         position: 'absolute',
-        bottom: HEIGHT * 0.1,
+        top: HEIGHT * 0.8,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',

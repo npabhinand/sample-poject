@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Pressable, Image, SafeAreaView } from 'react-native';
 import React from 'react';
 import FilterButton from '../components/FilterButton';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
@@ -6,15 +6,16 @@ import { foodButton, locationButton, typeButton } from '../data/commonArray';
 import HomeTitleContainer from '../components/HomeTitleContainer';
 import { HEIGHT, WIDTH } from '../global/dimensions';
 import { useDispatch, useSelector } from 'react-redux';
-import { addButton, deleteButton } from '../reducers/filterSlice';
+import { addButton, deleteButton, FilterButtons } from '../reducers/filterSlice';
 import { RootStackParamList } from '../navigation/AppNavigator';
+import { backIcon } from '../assets/icons';
 
 
 
 const FilterScreen = () => {
     const navigation = useNavigation<NavigationProp<RootStackParamList, 'FilterRestaurant'>>();
     const dispatch = useDispatch();
-    const selectedButtons = useSelector((state: any) => state.button.selectedButtons);
+    const selectedButtons = useSelector(FilterButtons);
 
 
     const handlePress = (buttonName: string) => {
@@ -30,8 +31,11 @@ const FilterScreen = () => {
     };
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <View style={styles.titleView}>
+                <Pressable style={styles.backButtonStyle} onPress={() => { navigation.goBack(); }}>
+                    <Image source={backIcon} />
+                </Pressable>
                 <HomeTitleContainer isFilterButton={false} />
             </View>
 
@@ -83,7 +87,7 @@ const FilterScreen = () => {
             >
                 <Text style={styles.buttonText}>Search</Text>
             </TouchableOpacity>
-        </View>
+        </SafeAreaView>
     );
 };
 
@@ -140,5 +144,18 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: '#fff',
         fontSize: 14,
+    },
+    backButtonStyle: {
+        backgroundColor: '#FDF5EB',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 15,
+        padding: 10,
+        marginRight: 10,
+        width: 45,
+        height: 45,
+        zIndex: 1,
+        marginBottom: HEIGHT * -0.02,
+        marginLeft: WIDTH * 0.04,
     },
 });

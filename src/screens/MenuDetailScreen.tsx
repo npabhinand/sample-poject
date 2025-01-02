@@ -1,63 +1,97 @@
-import { StyleSheet, TouchableOpacity, View, Text, Image, ScrollView } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Text, Image, ScrollView, Pressable, Alert } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { menuSections } from '../data/commonArray';
 import { backIcon, bagIcon, locationIcon2, loveIcon, starPin } from '../assets/icons';
 import Testimonials from '../components/Testimonials';
 import { HEIGHT, WIDTH } from '../global/dimensions';
+import { useDispatch } from 'react-redux';
+import { addCart } from '../reducers/cartSlice';
 
-const MenuDetailScreen = () => {
+
+interface MenuItem {
+    item: {
+        id: number;
+        title: string;
+        imgURL: any;
+        content: any;
+        orders: string;
+        rating: string;
+        description1: string;
+        recipe: string[];
+        description2: string;
+        type: string;
+        price: number;
+        restaurantName: string;
+    },
+
+}
+
+interface MenuDetailScreenProps {
+    route: { params: { section: MenuItem } };
+}
+
+const MenuDetailScreen: React.FC<MenuDetailScreenProps> = ({ route }) => {
+    const { section } = route.params;
     const navigation = useNavigation();
+
+    const dispatch = useDispatch();
+    // const cartItems = useSelector(selectedCarts);
+
+    const handlePress = () => {
+        dispatch(addCart(section.item));
+        Alert.alert('Item added to cart');
+    };
+
+
 
     return (
         <View style={styles.container}>
+            <Image source={section.item.content} style={styles.imageContainer} />
             <ScrollView>
-
-
-                {menuSections.map((section, index) => (
-                    section.key === 'image' ? (
-                        <>
-                            <Image key={index} source={section.content} style={styles.imageContainer} />
-                            <TouchableOpacity style={styles.backButton} onPress={() => { navigation.goBack(); }}>
-                                <Image source={backIcon} />
+                <TouchableOpacity style={styles.backButton} onPress={() => { navigation.goBack(); }}>
+                    <Image source={backIcon} />
+                </TouchableOpacity>
+                <View style={styles.cardContainer}>
+                    <View style={styles.row}>
+                        <Text style={styles.txt}>Popular</Text>
+                        <View style={styles.icons}>
+                            <TouchableOpacity style={styles.right}>
+                                <Image source={locationIcon2} />
                             </TouchableOpacity>
-                        </>
-
-                    ) : section.key === 'details' ? (
-                        <View key={index} style={styles.cardContainer}>
-                            <View style={styles.row}>
-                                <Text style={styles.txt}>Popular</Text>
-                                <View style={styles.icons}>
-                                    <TouchableOpacity style={styles.right}>
-                                        <Image source={locationIcon2} />
-                                    </TouchableOpacity>
-                                    <TouchableOpacity>
-                                        <Image source={loveIcon} />
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-                            <Text style={styles.title}>{section.title}</Text>
-                            <View style={styles.ratings}>
-                                <Image source={starPin} />
-                                <Text style={styles.rating}>{section.rating}</Text>
-                                <Image source={bagIcon} />
-                                <Text style={styles.rating}>{section.orders}</Text>
-                            </View>
-                            <Text style={styles.description}>{section.description1}</Text>
-                            {section.recipe.map((item, index) => (
-                                <View key={index} style={styles.recipeItem}>
-                                    <Text>• {item}</Text>
-                                </View>
-                            ))}
-                            <Text style={styles.description}>{section.description2}</Text>
+                            <TouchableOpacity>
+                                <Image source={loveIcon} />
+                            </TouchableOpacity>
                         </View>
-                    ) : section.key === 'testimonials' ? (
-                        <View key={index} style={styles.testimonialContainer}>
-                            <Testimonials />
-                        </View>
-                    ) : null
-                ))}
+                    </View>
+                    <Text style={styles.title}>{section.item.title}</Text>
+                    <View style={styles.ratings}>
+                        <Image source={starPin} />
+                        <Text style={styles.rating}>{section.item.rating}</Text>
+                        <Image source={bagIcon} />
+                        <Text style={styles.rating}>{section.item.orders}</Text>
+                    </View>
+                    <Text style={styles.description}>{section.item.description1}</Text>
+                    {section.item.recipe && Array.isArray(section.item.recipe) && section.item.recipe.length > 0 ? (
+                        section.item.recipe.map((item, index) => (
+                            <View key={index} style={styles.recipeItem}>
+                                <Text>• {item}</Text>
+                            </View>
+                        ))
+                    ) : (
+                        <Text>No recipe available</Text>
+                    )}
+                    <Text style={styles.description}>{section.item.description2}</Text>
+                    <View style={styles.testimonialContainer}>
+                        <Testimonials />
+                    </View>
+                </View>
             </ScrollView>
+            <Pressable
+                style={styles.searchButton}
+                onPress={() => handlePress()}
+            >
+                <Text style={styles.buttonText}>Add To Cart</Text>
+            </Pressable>
         </View>
     );
 };
@@ -86,20 +120,13 @@ const styles = StyleSheet.create({
         left: 20,
         zIndex: 1,
     },
-    cardContainer: {
-        padding: 20,
-        backgroundColor: '#fff',
-        borderRadius: 10,
-        marginTop: HEIGHT * 0.4,
-        borderTopLeftRadius: HEIGHT * 0.05,
-        borderTopRightRadius: HEIGHT * 0.05,
-        paddingLeft: WIDTH * 0.08,
-    },
     row: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         marginTop: HEIGHT * 0.03,
+
+        // backgroundColor: '#fff'
     },
     txt: {
         fontSize: 18,
@@ -126,12 +153,11 @@ const styles = StyleSheet.create({
         marginBottom: HEIGHT * 0.01,
     },
     rating: {
-        // marginLeft: 5,
         fontSize: 14,
         color: '#D3D3D3',
     },
     description: {
-        fontSize: 16,
+        fontSize: 14,
         marginVertical: 10,
         color: '#333',
     },
@@ -140,10 +166,29 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginVertical: 5,
     },
+    searchButton: {
+        backgroundColor: '#45D984',
+        width: WIDTH * 0.85,
+        borderRadius: 10,
+        padding: 15,
+        alignSelf: 'center',
+        position: 'absolute',
+        bottom: HEIGHT * 0.04,
+    }, buttonText: {
+        textAlign: 'center',
+        color: '#fff',
+        fontSize: 14,
+        fontWeight: 'bold',
+    },
     testimonialContainer: {
         paddingLeft: 10,
         backgroundColor: '#fff',
-        // marginTop: 20,
         borderRadius: 10,
+    }, cardContainer: {
+        backgroundColor: '#fff',
+        marginTop: HEIGHT * 0.4,
+        padding: HEIGHT * 0.03,
+        borderTopLeftRadius: HEIGHT * 0.05,
+        borderTopRightRadius: HEIGHT * 0.05,
     },
 });

@@ -4,7 +4,7 @@ import { promoImage } from '../assets/images';
 import RestaurantRenderItems from '../components/RestaurantRenderItems';
 import MenuRenderItems from '../components/MenuRenderItems';
 import HomeTitleContainer from '../components/HomeTitleContainer';
-import { menuArray, restaurantArray } from '../data/commonArray';
+import { menuSections, sections } from '../data/commonArray';
 import PromoComponent from '../components/PromoComponent';
 import ViewMoreComponent from '../components/ViewMoreComponent';
 import { HEIGHT, WIDTH } from '../global/dimensions';
@@ -25,14 +25,14 @@ function HomeScreen() {
 
                 <ViewMoreComponent title="Nearest Restaurant" navigate="RestaurantListScreen" />
                 <ScrollView horizontal style={styles.horizontalScroll}>
-                    {restaurantArray.slice(0, 3).map((item, index) => (
-                        <RestaurantRenderItems key={index} item={item} style={{ marginLeft: WIDTH * 0.02 }} />
+                    {sections.slice(0, 3).map((item, index) => (
+                        <RestaurantRenderItems key={index} item={item} navigate={'ProductDetailScreen'} />
                     ))}
                 </ScrollView>
 
                 <ViewMoreComponent title="Popular Menu" navigate="MenuList" />
                 <ScrollView style={styles.verticalScroll}>
-                    {menuArray.slice(0, 3).map((item, index) => (
+                    {menuSections.slice(0, 3).map((item, index) => (
                         <MenuRenderItems key={index} item={item} />
                     ))}
                 </ScrollView>

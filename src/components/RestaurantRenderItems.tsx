@@ -1,25 +1,44 @@
 import React from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { Image, Pressable, StyleSheet, Text } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { HEIGHT, WIDTH } from '../global/dimensions';
 import { RootStackParamList } from '../navigation/AppNavigator';
 
 
+interface renderProps {
+    item?: {
+        imgURL: string,
+        name?: string,
+        time?: number,
+        price?: number,
+        title?: string,
+
+    },
+    navigate?: string
+}
 
 
+const RestaurantRenderItems: React.FC<renderProps> = (props) => {
 
-function RestaurantRenderItems({ item }: any) {
-    const navigation = useNavigation<NavigationProp<RootStackParamList, 'MenuDetailScreen'>>();
+    const { item, navigate } = props;
+    const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
     return (
-        <TouchableOpacity style={styles.card} onPress={() => { navigation.navigate('MenuDetailScreen'); }}>
+        <Pressable style={styles.card} onPress={() => {
+            navigation.navigate(navigate, {
+                section: { item },
+            });
+        }}>
             <Image style={styles.image} source={item.imgURL} />
-            <Text style={styles.name}>{item.name}</Text>
+            <Text style={styles.name}>
+                {item.name ? item.name : item.title}
+            </Text>
+
             <Text style={styles.time}>
                 {item.time ? `${item.time} Mins` : `${item.price}$`}
             </Text>
+        </Pressable>
 
-        </TouchableOpacity>
     );
 }
 

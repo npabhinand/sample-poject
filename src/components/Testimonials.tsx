@@ -50,9 +50,10 @@ const styles = StyleSheet.create({
     }, title: {
         fontWeight: 'bold',
         backgroundColor: '#fff',
-        marginLeft: WIDTH * 0.06,
+        marginLeft: WIDTH * 0.05,
+        marginBottom: HEIGHT * 0.03,
         fontSize: 15,
-        paddingTop: HEIGHT * 0.01,
+        // paddingTop: HEIGHT * 0.01,
     }, marginLeft: {
         paddingLeft: WIDTH * 0.05,
         paddingRight: WIDTH * 0.08,
