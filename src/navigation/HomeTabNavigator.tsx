@@ -6,7 +6,7 @@ import HomeScreen from '../screens/HomeScreen';
 import OrderScreen from '../screens/OrderScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import { Image, StyleSheet, Text, View } from 'react-native';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
 
 const Tab = createBottomTabNavigator();
 

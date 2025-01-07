@@ -1,6 +1,8 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import { HEIGHT } from '../global/dimensions';
+import { HEIGHT } from '../common/dimensions';
+import { useSelector } from 'react-redux';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
 // import { personImage } from '../assets/images';
 
 interface CallingProps {
@@ -10,11 +12,13 @@ interface CallingProps {
 }
 
 
-const CallingComponent: React.FC<CallingProps> = ({ name, isEnded, image }) => {
+const CallingComponent: React.FC<CallingProps> = (props) => {
+    const { name, isEnded, image } = props;
+    const currentTheme = useSelector(selectColorTheme);
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, {}]}>
             <Image source={image} style={styles.personImage} />
-            <Text style={styles.nameText}>{name}</Text>
+            <Text style={[styles.nameText, { color: currentTheme['defaultTextColor'] }]}>{name}</Text>
             <Text style={styles.subText}>{isEnded ? '15.23 Min' : 'Ringing . . . '}</Text>
         </View>
     );

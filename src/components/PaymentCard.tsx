@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Image } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { WIDTH } from '../global/dimensions';
+import { WIDTH } from '../common/dimensions';
 
 
 interface ItemsProps {

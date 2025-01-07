@@ -1,7 +1,7 @@
 import { ImageBackground, StyleSheet } from 'react-native';
 import React from 'react';
 import { backgroundImage1 } from '../assets/images';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
 
 const BackgroundImage = () => {
     return (

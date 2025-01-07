@@ -4,7 +4,7 @@ import { backIcon, bagIcon, locationIcon2, loveIcon, mapPin, starPin } from '../
 import { popularMenu } from '../data/commonArray';
 import RestaurantRenderItems from './RestaurantRenderItems';
 import Testimonials from './Testimonials';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
 import { useNavigation } from '@react-navigation/native';
 
 const DetailComponent = ({ sectionData }: any) => {

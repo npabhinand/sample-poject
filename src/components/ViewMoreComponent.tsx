@@ -1,7 +1,10 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
+import { useSelector } from 'react-redux';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
+
 
 interface navigateProps {
     navigate?: string,
@@ -11,9 +14,10 @@ interface navigateProps {
 
 const ViewMoreComponent: React.FC<navigateProps> = ({ navigate, title }) => {
     const navigation = useNavigation();
+    const currentTheme = useSelector(selectColorTheme);
     return (
         <View style={styles.ViewMoreContainer}>
-            <Text style={[styles.heading2, styles.marginLeft]}>{title}</Text>
+            <Text style={[styles.heading2, styles.marginLeft, { color: currentTheme['defaultTextColor'] }]}>{title}</Text>
             <TouchableOpacity onPress={() => navigation.navigate(navigate)}>
                 <Text style={[styles.viewMoreColor, styles.viewMoreMargin]}>
                     View More

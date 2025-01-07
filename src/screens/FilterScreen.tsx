@@ -4,11 +4,12 @@ import FilterButton from '../components/FilterButton';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { foodButton, locationButton, typeButton } from '../data/commonArray';
 import HomeTitleContainer from '../components/HomeTitleContainer';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
 import { useDispatch, useSelector } from 'react-redux';
 import { addButton, deleteButton, FilterButtons } from '../reducers/filterSlice';
 import { RootStackParamList } from '../navigation/AppNavigator';
 import { backIcon } from '../assets/icons';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
 
 
 
@@ -16,6 +17,7 @@ const FilterScreen = () => {
     const navigation = useNavigation<NavigationProp<RootStackParamList, 'FilterRestaurant'>>();
     const dispatch = useDispatch();
     const selectedButtons = useSelector(FilterButtons);
+    const currentTheme = useSelector(selectColorTheme);
 
 
     const handlePress = (buttonName: string) => {
@@ -31,7 +33,7 @@ const FilterScreen = () => {
     };
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]}>
             <View style={styles.titleView}>
                 <Pressable style={styles.backButtonStyle} onPress={() => { navigation.goBack(); }}>
                     <Image source={backIcon} />
@@ -40,7 +42,7 @@ const FilterScreen = () => {
             </View>
 
             <View style={styles.marginLeft}>
-                <Text style={styles.heading2}>Type</Text>
+                <Text style={[styles.heading2, { color: currentTheme['defaultTextColor'] }]}>Type</Text>
                 <View style={styles.rowButtons}>
                     {typeButton.map((buttonName, id) => (
                         <FilterButton
@@ -54,7 +56,7 @@ const FilterScreen = () => {
             </View>
 
             <View style={styles.marginLeft}>
-                <Text style={styles.heading2}>Location</Text>
+                <Text style={[styles.heading2, { color: currentTheme['defaultTextColor'] }]}>Location</Text>
                 <View style={styles.rowButtons}>
                     {locationButton.map((buttonName, id) => (
                         <FilterButton
@@ -68,7 +70,7 @@ const FilterScreen = () => {
             </View>
 
             <View style={styles.marginLeft}>
-                <Text style={styles.heading2}>Food</Text>
+                <Text style={[styles.heading2, { color: currentTheme['defaultTextColor'] }]}>Food</Text>
                 <View style={styles.rowButtons}>
                     {foodButton.map((buttonName, id) => (
                         <FilterButton
@@ -97,7 +99,7 @@ export default FilterScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F9FBFF',
+        // backgroundColor: '#F9FBFF',
         paddingBottom: 30,
         paddingTop: HEIGHT * 0.05,
     }, titleView: {

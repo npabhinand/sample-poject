@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import React from 'react';
 import { address } from '../data/commonArray';
 import { locationIcon } from '../assets/icons';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
 
 
 const ShippingComponent = () => {

@@ -2,7 +2,11 @@ import React, { useState, useCallback } from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity, Pressable, Alert } from 'react-native';
 import Swipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
 import { trashIcon } from '../assets/icons';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateQuantity } from '../reducers/cartSlice';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
+import { commonColor } from '../common/colors';
 
 interface OrderProps {
     item?: any;
@@ -14,14 +18,28 @@ interface OrderProps {
 
 const OrderRenderItems: React.FC<OrderProps> = ({ handleDelete, item, isSelected, isButtonView }) => {
     const [counter, setCounter] = useState(1);
+    const dispatch = useDispatch();
+    const currentTheme = useSelector(selectColorTheme);
 
     const handleIncrease = useCallback(() => {
-        setCounter((prevCounter) => prevCounter + 1);
-    }, []);
+        setCounter((prevCounter: number) => {
+            const newCounter = prevCounter + 1;
+            dispatch(updateQuantity({ id: item.id, quantity: newCounter }));
+            return newCounter;
+        });
+    }, [dispatch, item.id]);
 
     const handleDecrease = useCallback(() => {
-        setCounter((prevCounter) => (prevCounter > 1 ? prevCounter - 1 : prevCounter));
-    }, []);
+        setCounter((prevCounter: number) => {
+            if (prevCounter > 1) {
+                const newCounter = prevCounter - 1;
+                dispatch(updateQuantity({ id: item.id, quantity: newCounter }));
+                return newCounter;
+            }
+            return prevCounter;
+        });
+    }, [dispatch, item.id]);
+
 
     const renderRightActions = () => {
 
@@ -44,12 +62,12 @@ const OrderRenderItems: React.FC<OrderProps> = ({ handleDelete, item, isSelected
     return (
         <Swipeable renderRightActions={renderRightActions} friction={1} rightThreshold={WIDTH * 0.8} onSwipeableWillClose={onSwipeableWillClose} >
             <TouchableOpacity
-                style={[styles.orderItems, isSelected && styles.selectedCard]}
+                style={[styles.orderItems, { backgroundColor: currentTheme['lightWhite'] }, isSelected && styles.selectedCard]}
             // onPress={() => onCardPress && onCardPress()}
             >
                 <Image source={item.imgURL} style={styles.image} />
                 <View style={styles.textContainer}>
-                    <Text style={styles.orderTitle}>{item.title}</Text>
+                    <Text style={[styles.orderTitle, { color: currentTheme['defaultTextColor'] }]}>{item.title}</Text>
                     <Text style={styles.orderName}>{item.restaurantName}</Text>
                     <Text style={styles.orderPrice}>$ {item.price}</Text>
                 </View>
@@ -60,10 +78,10 @@ const OrderRenderItems: React.FC<OrderProps> = ({ handleDelete, item, isSelected
                     </TouchableOpacity>
                 ) : (
                     <View style={styles.counterContainer}>
-                        <TouchableOpacity onPress={handleDecrease} style={styles.reduceButton}>
+                        <TouchableOpacity onPress={handleDecrease} style={[styles.reduceButton, { backgroundColor: currentTheme.name === 'dark' ? `${commonColor.greenColor}20` : '#EAFAF2' }]}>
                             <Text style={styles.reduceText}>-</Text>
                         </TouchableOpacity>
-                        <Text>{counter}</Text>
+                        <Text style={{ color: currentTheme['defaultTextColor'] }}>{counter}</Text>
                         <TouchableOpacity onPress={handleIncrease} style={styles.addButton}>
                             <Text style={styles.addText}>+</Text>
                         </TouchableOpacity>

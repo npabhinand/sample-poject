@@ -25,6 +25,8 @@ import ProductDetailScreen from '../screens/ProductDetailScreen';
 import EditPaymentScreen from '../screens/EditPaymentScreen';
 import { HomeTabNavigator } from './HomeTabNavigator';
 import RestaurantListScreen from '../screens/RestaurantListScreen';
+import LoginScreen from '../screens/LoginScreen';
+import SignUpScreen from '../screens/SignUpScreen';
 
 // Type
 export type RootStackParamList = {
@@ -48,14 +50,25 @@ export type RootStackParamList = {
     ProductDetailScreen: undefined;
     EditPaymentScreen: undefined;
     RestaurantListScreen: undefined;
-};
+    LoginScreen: undefined;
+    SignUpScreen: undefined;
 
+};
+// FilterScreen: { category: string; priceRange: number };
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const AppNavigator = () => {
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
             <Stack.Navigator screenOptions={{ headerShown: false }}>
+                <Stack.Screen
+                    name="SignUpScreen"
+                    component={SignUpScreen}
+                />
+                <Stack.Screen
+                    name="LoginScreen"
+                    component={LoginScreen}
+                />
                 <Stack.Screen
                     name="HomeTab"
                     component={HomeTabNavigator}

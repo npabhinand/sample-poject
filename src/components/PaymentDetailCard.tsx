@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import React, { useState } from 'react';
 import { locationIcon } from '../assets/icons';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { WIDTH } from '../global/dimensions';
+import { WIDTH } from '../common/dimensions';
 import { RootStackParamList } from '../navigation/AppNavigator';
 
 

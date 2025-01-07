@@ -1,6 +1,8 @@
 import React from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
+import { useSelector } from 'react-redux';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
 
 
 interface promoProps {
@@ -12,14 +14,16 @@ interface promoProps {
 }
 
 
-const PromoComponent: React.FC<promoProps> = ({ image, btnText }) => {
+const PromoComponent: React.FC<promoProps> = (props) => {
+    const { image, btnText } = props;
+    const currentTheme = useSelector(selectColorTheme);
     // btnTextColor, cardColor, textColor
     return (
         <View style={styles.imageContainer}>
             <Image source={image} />
             <View style={styles.textContainer}>
-                <Text style={styles.promoText}>Special Deal For</Text>
-                <Text style={styles.promoText}>October</Text>
+                <Text style={[styles.promoText, { color: currentTheme['themeColor'] }]}>Special Deal For</Text>
+                <Text style={[styles.promoText, { color: currentTheme['themeColor'] }]}>October</Text>
                 <TouchableOpacity style={styles.promoButton}>
                     <Text style={styles.buttonText}>{btnText}</Text>
                 </TouchableOpacity>
@@ -53,7 +57,7 @@ const styles = StyleSheet.create({
     promoText: {
         fontSize: 18,
         fontWeight: 'bold',
-        color: '#fff',
+        // color: '#fff',
         // textAlign: 'center',
     },
     promoButton: {

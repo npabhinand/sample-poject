@@ -7,14 +7,16 @@ import HomeTitleContainer from '../components/HomeTitleContainer';
 import { menuSections, sections } from '../data/commonArray';
 import PromoComponent from '../components/PromoComponent';
 import ViewMoreComponent from '../components/ViewMoreComponent';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
+import { useSelector } from 'react-redux';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
 
 
 function HomeScreen() {
+    const currentTheme = useSelector(selectColorTheme);
     return (
-        <View style={styles.container}>
-            <ScrollView contentContainerStyle={styles.scrollViewContainer}>
-
+        <View style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]}>
+            <ScrollView contentContainerStyle={styles.scrollViewContainer} bounces={false}>
                 <HomeTitleContainer isFilterButton={true} />
 
                 <ScrollView horizontal style={styles.horizontalScroll}>
@@ -48,7 +50,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F9FBFF',
+        // backgroundColor: '#F9FBFF',
 
     }, horizontalScroll: {
         marginLeft: WIDTH * 0.03,

@@ -1,11 +1,12 @@
-import { StyleSheet, TouchableOpacity, View, Text, Image, ScrollView, Pressable, Alert } from 'react-native';
+import { StyleSheet, View, Text, Image, ScrollView, Pressable, Alert } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { backIcon, bagIcon, locationIcon2, loveIcon, starPin } from '../assets/icons';
 import Testimonials from '../components/Testimonials';
-import { HEIGHT, WIDTH } from '../global/dimensions';
-import { useDispatch } from 'react-redux';
+import { HEIGHT, WIDTH } from '../common/dimensions';
+import { useDispatch, useSelector } from 'react-redux';
 import { addCart } from '../reducers/cartSlice';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
 
 
 interface MenuItem {
@@ -22,6 +23,7 @@ interface MenuItem {
         type: string;
         price: number;
         restaurantName: string;
+        quantity: number;
     },
 
 }
@@ -33,6 +35,7 @@ interface MenuDetailScreenProps {
 const MenuDetailScreen: React.FC<MenuDetailScreenProps> = ({ route }) => {
     const { section } = route.params;
     const navigation = useNavigation();
+    const currentTheme = useSelector(selectColorTheme);
 
     const dispatch = useDispatch();
     // const cartItems = useSelector(selectedCarts);
@@ -46,41 +49,43 @@ const MenuDetailScreen: React.FC<MenuDetailScreenProps> = ({ route }) => {
 
     return (
         <View style={styles.container}>
+            <Pressable style={styles.backButton} onPress={() => { navigation.goBack(); }}>
+                <Image source={backIcon} />
+            </Pressable>
             <Image source={section.item.content} style={styles.imageContainer} />
-            <ScrollView>
-                <TouchableOpacity style={styles.backButton} onPress={() => { navigation.goBack(); }}>
-                    <Image source={backIcon} />
-                </TouchableOpacity>
-                <View style={styles.cardContainer}>
+
+            <ScrollView bounces={false}>
+
+                <View style={[styles.cardContainer, { backgroundColor: currentTheme['themeColor'] }]}>
                     <View style={styles.row}>
                         <Text style={styles.txt}>Popular</Text>
                         <View style={styles.icons}>
-                            <TouchableOpacity style={styles.right}>
+                            <Pressable style={styles.right}>
                                 <Image source={locationIcon2} />
-                            </TouchableOpacity>
-                            <TouchableOpacity>
+                            </Pressable>
+                            <Pressable>
                                 <Image source={loveIcon} />
-                            </TouchableOpacity>
+                            </Pressable>
                         </View>
                     </View>
-                    <Text style={styles.title}>{section.item.title}</Text>
+                    <Text style={[styles.title, { color: currentTheme['defaultTextColor'] }]}>{section.item.title}</Text>
                     <View style={styles.ratings}>
                         <Image source={starPin} />
                         <Text style={styles.rating}>{section.item.rating}</Text>
                         <Image source={bagIcon} />
                         <Text style={styles.rating}>{section.item.orders}</Text>
                     </View>
-                    <Text style={styles.description}>{section.item.description1}</Text>
+                    <Text style={[styles.description, { color: currentTheme['defaultTextColor'] }]}>{section.item.description1}</Text>
                     {section.item.recipe && Array.isArray(section.item.recipe) && section.item.recipe.length > 0 ? (
                         section.item.recipe.map((item, index) => (
                             <View key={index} style={styles.recipeItem}>
-                                <Text>• {item}</Text>
+                                <Text style={{ color: currentTheme['defaultTextColor'] }}>• {item}</Text>
                             </View>
                         ))
                     ) : (
                         <Text>No recipe available</Text>
                     )}
-                    <Text style={styles.description}>{section.item.description2}</Text>
+                    <Text style={[styles.description, { color: currentTheme['defaultTextColor'] }]}>{section.item.description2}</Text>
                     <View style={styles.testimonialContainer}>
                         <Testimonials />
                     </View>
@@ -107,6 +112,8 @@ const styles = StyleSheet.create({
         width: '100%',
         height: HEIGHT * 0.45,
         position: 'absolute',
+        top: 0,
+        // zIndex: 1,
     },
     backButton: {
         position: 'absolute',
@@ -118,7 +125,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: 'rgba(255, 255, 255, 0.5)',
         left: 20,
-        zIndex: 1,
+        zIndex: 2,
+
+
     },
     row: {
         flexDirection: 'row',
@@ -181,14 +190,15 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     testimonialContainer: {
-        paddingLeft: 10,
+        // paddingLeft: 10,
         backgroundColor: '#fff',
-        borderRadius: 10,
+        // borderRadius: 10,
     }, cardContainer: {
         backgroundColor: '#fff',
-        marginTop: HEIGHT * 0.4,
+        marginTop: HEIGHT * 0.35,
         padding: HEIGHT * 0.03,
         borderTopLeftRadius: HEIGHT * 0.05,
         borderTopRightRadius: HEIGHT * 0.05,
+        zIndex: 1,
     },
 });

@@ -2,15 +2,19 @@ import { View, Text, StyleSheet, ImageBackground, TouchableOpacity } from 'react
 import React from 'react';
 import { pattern } from '../assets/images';
 import { useNavigation } from '@react-navigation/native';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
 
 
 
 interface navigateProps {
     navigate?: string;
+    subTotal?: number;
+    discount?: number;
+    deliveryCharge?: number;
+    total?: number
 }
 
-const PriceCard: React.FC<navigateProps> = ({ navigate }) => {
+const PriceCard: React.FC<navigateProps> = ({ navigate, subTotal, discount, deliveryCharge, total }) => {
     const navigation = useNavigation();
 
     return (
@@ -25,10 +29,10 @@ const PriceCard: React.FC<navigateProps> = ({ navigate }) => {
                         <Text style={styles.TotalSubText}>Total</Text>
                     </View>
                     <View style={styles.rightContainer}>
-                        <Text style={styles.RightSubText}>120$</Text>
-                        <Text style={styles.RightSubText}>10$</Text>
-                        <Text style={styles.RightSubText}>20$</Text>
-                        <Text style={styles.TotalSubText}>150$</Text>
+                        <Text style={styles.RightSubText}>{subTotal}$</Text>
+                        <Text style={styles.RightSubText}>{deliveryCharge}$</Text>
+                        <Text style={styles.RightSubText}>{discount}$</Text>
+                        <Text style={styles.TotalSubText}>{total}$</Text>
                     </View>
                 </View>
                 <TouchableOpacity

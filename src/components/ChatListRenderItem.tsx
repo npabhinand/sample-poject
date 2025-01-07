@@ -1,18 +1,21 @@
-import { View, Text, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../navigation/AppNavigator';
+import { HEIGHT, WIDTH } from '../common/dimensions';
+import { useSelector } from 'react-redux';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
 
-const HEIGHT = Dimensions.get('screen').height;
-const WIDTH = Dimensions.get('screen').width;
+
 
 const ChatListRenderItem = ({ item }: any) => {
   const navigation = useNavigation<NavigationProp<RootStackParamList, 'ChatScreen'>>();
+  const currentTheme = useSelector(selectColorTheme);
   return (
-    <TouchableOpacity style={styles.chatList} onPress={() => { navigation.navigate('ChatScreen'); }}>
+    <TouchableOpacity style={[styles.chatList, { backgroundColor: currentTheme['lightWhite'] }]} onPress={() => { navigation.navigate('ChatScreen'); }}>
       <Image source={item.imageURL} />
       <View style={styles.textContainer}>
-        <Text style={[styles.nameTitle, styles.marginTop]}
+        <Text style={[styles.nameTitle, styles.marginTop, { color: currentTheme['defaultTextColor'] }]}
         //  onPress={() => { navigation.navigate('Chat') }}
         >{item.name}</Text>
         <Text style={styles.chatText}>Your Order Just Arrived!</Text>

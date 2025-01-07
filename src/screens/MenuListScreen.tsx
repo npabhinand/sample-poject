@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 import HomeTitleContainer from '../components/HomeTitleContainer';
 import MenuRenderItems from '../components/MenuRenderItems';
 import { menuSections } from '../data/commonArray';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
 import { backIcon } from '../assets/icons';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
 
 interface menuItem {
     id: number;
@@ -22,6 +24,7 @@ interface menuItem {
     restaurantName: string;
 }
 const MenuListScreen = () => {
+    const currentTheme = useSelector(selectColorTheme);
     const navigation = useNavigation();
     const [searchData, setSearchData] = useState(menuSections);
 
@@ -30,10 +33,11 @@ const MenuListScreen = () => {
     }
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]}>
             <FlatList
                 numColumns={1}
                 data={searchData}
+                bounces={false}
                 contentContainerStyle={styles.menuContainer}
                 keyExtractor={item => item.id.toString()}
                 renderItem={({ item }) => (
@@ -46,7 +50,7 @@ const MenuListScreen = () => {
                         </Pressable>
 
                         <HomeTitleContainer isFilterButton={true} data={menuSections} sendSearchData={handleSearchData} />
-                        <Text style={styles.heading2}>Popular Menu</Text>
+                        <Text style={[styles.heading2, { color: currentTheme['defaultTextColor'] }]}>Popular Menu</Text>
                     </>
                 }
                 ListHeaderComponentStyle={styles.headerStyle}

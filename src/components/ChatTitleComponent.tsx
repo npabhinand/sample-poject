@@ -3,7 +3,7 @@ import React from 'react';
 import TitleComponent from '../components/TitleComponent';
 import { backIcon } from '../assets/icons';
 import { useNavigation } from '@react-navigation/native';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
 
 
 

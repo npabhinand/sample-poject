@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'rea
 import { ProfileImage } from '../assets/images';
 import { EditIcon1, VoucherIcon } from '../assets/icons';
 import { orderContents } from '../data/commonArray';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
 
 function ProfileScreen() {
     return (
@@ -12,7 +12,7 @@ function ProfileScreen() {
             <Image source={ProfileImage} style={styles.imageContainer} />
 
 
-            <ScrollView contentContainerStyle={styles.scrollContent}>
+            <ScrollView contentContainerStyle={styles.scrollContent} >
                 <View style={styles.cardContainer}>
                     <Text style={styles.txt}>Member Gold</Text>
                     <View style={styles.row}>

@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 import HomeTitleContainer from '../components/HomeTitleContainer';
 import { sections } from '../data/commonArray';
 import RestaurantRenderItems from '../components/RestaurantRenderItems';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
 import { backIcon } from '../assets/icons';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
 
 interface restaurantItem {
     id: number;
@@ -20,15 +22,18 @@ interface restaurantItem {
 }
 
 const RestaurantListScreen = () => {
+    const currentTheme = useSelector(selectColorTheme);
     const navigation = useNavigation();
     const [searchData, setSearchData] = useState(sections);
 
     function handleSearchData(data: restaurantItem) {
         setSearchData(data);
     }
-
+    console.log('====================================');
+    console.log(currentTheme);
+    console.log('====================================');
     return (
-        <View style={[styles.container, styles.marginLeft]}>
+        <View style={[styles.container, styles.marginLeft, { backgroundColor: currentTheme['themeColor'] }]}>
 
             <FlatList
                 numColumns={2}
@@ -45,7 +50,7 @@ const RestaurantListScreen = () => {
                     <HomeTitleContainer isFilterButton={true} data={sections} sendSearchData={handleSearchData} />
 
                     <View style={styles.ViewMoreContainer}>
-                        <Text style={[styles.heading2, styles.marginLeft]}>Nearest Restaurant</Text>
+                        <Text style={[styles.heading2, { color: currentTheme['defaultTextColor'] }]}>Popular Restaurant</Text>
                     </View>
                 </>}
 
@@ -59,15 +64,17 @@ export default RestaurantListScreen;
 
 const styles = StyleSheet.create({
     marginLeft: {
-        paddingLeft: WIDTH * 0.05,
-        marginVertical: HEIGHT * 0.02,
+        // paddingLeft: WIDTH * 0.05,
+        // marginVertical: HEIGHT * 0.02,
     },
     container: {
         flex: 1,
-        backgroundColor: '#F9FBFF',
+        // backgroundColor: '#F9FBFF',
     },
     cards: {
         justifyContent: 'space-around',
+        paddingLeft: WIDTH * 0.05,
+        alignItems: 'center',
     },
     ViewMoreContainer: {
         flexDirection: 'row',
@@ -76,6 +83,8 @@ const styles = StyleSheet.create({
     heading2: {
         fontSize: 15,
         fontWeight: 'bold',
+        marginVertical: HEIGHT * 0.02,
+        paddingLeft: WIDTH * 0.03,
     },
     viewMoreMargin: {
         padding: 20,

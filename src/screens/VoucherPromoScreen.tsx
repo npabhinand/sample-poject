@@ -5,16 +5,19 @@ import { voucherPromo } from '../data/commonArray';
 import PromoComponent from '../components/PromoComponent';
 import BackgroundImage from '../components/BackgroundImage';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
 import { RootStackParamList } from '../navigation/AppNavigator';
+import { useSelector } from 'react-redux';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
 
 
 
 
 const VoucherPromoScreen = () => {
     const navigation = useNavigation<NavigationProp<RootStackParamList, 'HomeTab'>>();
+    const currentTheme = useSelector(selectColorTheme);
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]}>
             <BackgroundImage />
             <ChatTitleComponent title="Voucher Promo" />
             <View style={styles.promoContainer}>

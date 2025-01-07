@@ -389,6 +389,7 @@ const menuSections = [
     type: 'testimonials',
     price: 15,
     restaurantName: 'Noodle Home',
+    quantity: 1,
   },
   {
     id: 2,
@@ -403,6 +404,7 @@ const menuSections = [
     type: 'testimonials',
     price: 5,
     restaurantName: 'warung Herbal',
+    quantity: 1,
   },
   {
     id: 3,
@@ -417,6 +419,7 @@ const menuSections = [
     type: 'testimonials',
     price: 7,
     restaurantName: 'Wijie Resto',
+    quantity: 1,
   },
   {
     id: 4,
@@ -431,6 +434,7 @@ const menuSections = [
     type: 'testimonials',
     price: 7,
     restaurantName: 'Wijie Resto',
+    quantity: 1,
   },
   {
     id: 5,
@@ -445,6 +449,7 @@ const menuSections = [
     type: 'testimonials',
     price: 7,
     restaurantName: 'Wijie Resto',
+    quantity: 1,
   },
   {
     id: 6,
@@ -459,6 +464,7 @@ const menuSections = [
     type: 'testimonials',
     price: 16,
     restaurantName: 'Wijie Resto',
+    quantity: 1,
   },
 ];
 const popularMenu = [{

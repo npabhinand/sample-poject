@@ -1,17 +1,19 @@
 import React from 'react';
 import { Image, Pressable, StyleSheet, Text } from 'react-native';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
 import { RootStackParamList } from '../navigation/AppNavigator';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
+import { useSelector } from 'react-redux';
 
 
 interface renderProps {
-    item?: {
-        imgURL: string,
+    item: {
+        imgURL: any,
         name?: string,
         time?: number,
         price?: number,
-        title?: string,
+        title: string,
 
     },
     navigate?: string
@@ -22,15 +24,16 @@ const RestaurantRenderItems: React.FC<renderProps> = (props) => {
 
     const { item, navigate } = props;
     const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+    const currentTheme = useSelector(selectColorTheme);
 
     return (
-        <Pressable style={styles.card} onPress={() => {
+        <Pressable style={[styles.card, { backgroundColor: currentTheme['lightWhite'] }]} onPress={() => {
             navigation.navigate(navigate, {
                 section: { item },
             });
         }}>
             <Image style={styles.image} source={item.imgURL} />
-            <Text style={styles.name}>
+            <Text style={[styles.name, { color: currentTheme['defaultTextColor'] }]}>
                 {item.name ? item.name : item.title}
             </Text>
 

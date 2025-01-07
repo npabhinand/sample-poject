@@ -4,14 +4,17 @@ import BackgroundImage from '../components/BackgroundImage';
 import { chatList } from '../data/commonArray';
 import ChatListRenderItem from '../components/ChatListRenderItem';
 import ChatTitleComponent from '../components/ChatTitleComponent';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
+import { useSelector } from 'react-redux';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
 
 
 
 
 const ChatListScreen = () => {
+    const currentTheme = useSelector(selectColorTheme);
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]}>
             <BackgroundImage />
             <ChatTitleComponent title={'Chat'} />
             <FlatList

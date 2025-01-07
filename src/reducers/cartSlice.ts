@@ -14,9 +14,9 @@ interface CartItem {
     type: string;
     price: number;
     restaurantName: string;
+    quantity: number;
 }
 
-// initial state
 interface CartState {
     carts: CartItem[];
 }
@@ -25,15 +25,13 @@ const initialState: CartState = {
     carts: [],
 };
 
+
 const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-
         addCart: (state, action: PayloadAction<CartItem>) => {
             const item = action.payload;
-
-
             const itemExists = state.carts.some((cartItem) => cartItem.id === item.id);
 
             if (!itemExists) {
@@ -41,15 +39,21 @@ const cartSlice = createSlice({
             }
         },
         deleteCart: (state, action: PayloadAction<number>) => {
-            state.carts = state.carts.filter((cartItem) => cartItem.id !== action.payload);
+            state.carts = state.carts.filter((cartItem) => cartItem.id !== action.payload);//delete
+        },
+        updateQuantity: (state, action: PayloadAction<{ id: number; quantity: number }>) => {
+            const { id, quantity } = action.payload;
+            const item = state.carts.find((cartItem) => cartItem.id === id);
+            if (item) {
+                item.quantity = quantity;
+            }
         },
     },
 });
 
-
 export const selectedCarts = (state: { cart: CartState }) => state.cart.carts;
 
 
-export const { addCart, deleteCart } = cartSlice.actions;
+export const { addCart, deleteCart, updateQuantity } = cartSlice.actions;
 
 export default cartSlice.reducer;

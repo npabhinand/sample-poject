@@ -4,16 +4,18 @@ import RestaurantRenderItems from '../components/RestaurantRenderItems';
 import HomeTitleContainer from '../components/HomeTitleContainer';
 import { sections } from '../data/commonArray';
 
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
 import { addButton, deleteButton } from '../reducers/filterSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { backIcon } from '../assets/icons';
 import { useNavigation } from '@react-navigation/native';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
 
 
 const FilterRestaurant = () => {
     const navigation = useNavigation();
     const dispatch = useDispatch();
+    const currentTheme = useSelector(selectColorTheme);
     const selectedButtons = useSelector((state: any) => state.button.selectedButtons);
 
     const handleButtonPress = (buttonName: string) => {
@@ -25,7 +27,7 @@ const FilterRestaurant = () => {
     };
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]}>
             <FlatList
                 numColumns={2}
                 ListHeaderComponent={<>

@@ -3,7 +3,7 @@ import React from 'react';
 import { mapImage } from '../assets/images';
 import { locationIcon, placeholder, searchIcon } from '../assets/icons';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
 import { RootStackParamList } from '../navigation/AppNavigator';
 
 

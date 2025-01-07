@@ -2,21 +2,24 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { testimonials } from '../data/commonArray';
 import { IconStar } from '../assets/icons';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
+import { useSelector } from 'react-redux';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
 
 
 const Testimonials = () => {
+    const currentTheme = useSelector(selectColorTheme);
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Testimonials</Text>
+        <View style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]}>
+            <Text style={[styles.title, { color: currentTheme['defaultTextColor'] }]}>Testimonials</Text>
             {testimonials.map((testimonial, index) => (
-                <View style={styles.cardContainer} key={index}>
+                <View style={[styles.cardContainer, { backgroundColor: currentTheme['lightWhite'] }]} key={index}>
                     <View style={styles.row}>
                         <Image source={testimonial.imgURL} />
                         <View style={styles.marginLeft}>
-                            <Text style={styles.name}>{testimonial.name}</Text>
+                            <Text style={[styles.name, { color: currentTheme['defaultTextColor'] }]}>{testimonial.name}</Text>
                             <Text style={styles.subTxt}>{testimonial.date}</Text>
-                            <Text style={styles.reviewTxt}>
+                            <Text style={[styles.reviewTxt, { color: currentTheme['defaultTextColor'] }]}>
                                 {testimonial.review}
                             </Text>
                         </View>
@@ -34,7 +37,7 @@ const Testimonials = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F6F8FE',
+        // backgroundColor: '#F6F8FE',
     }, cardContainer: {
         backgroundColor: '#fff',
         padding: HEIGHT * 0.02,
@@ -49,8 +52,7 @@ const styles = StyleSheet.create({
         borderRadius: HEIGHT * 0.01,
     }, title: {
         fontWeight: 'bold',
-        backgroundColor: '#fff',
-        marginLeft: WIDTH * 0.05,
+        marginLeft: WIDTH * 0.01,
         marginBottom: HEIGHT * 0.03,
         fontSize: 15,
         // paddingTop: HEIGHT * 0.01,
@@ -74,6 +76,7 @@ const styles = StyleSheet.create({
     }, subTxt: {
         color: '#9D9D9D',
         fontWeight: '300',
+        fontSize: 12,
     },
     name: {
         fontWeight: 'bold',

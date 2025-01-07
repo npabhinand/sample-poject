@@ -1,8 +1,10 @@
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
 import { RootStackParamList } from '../navigation/AppNavigator';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
+import { useSelector } from 'react-redux';
 
 interface itemProps {
     item: {
@@ -15,10 +17,10 @@ interface itemProps {
 
 const MenuRenderItems: React.FC<itemProps> = ({ item }) => {
     const navigation = useNavigation<NavigationProp<RootStackParamList, 'MenuDetailScreen'>>();
-
+    const currentTheme = useSelector(selectColorTheme);
     return (
         <TouchableOpacity
-            style={styles.menuItems}
+            style={[styles.menuItems, { backgroundColor: currentTheme['lightWhite'] }]}
             onPress={() => {
                 navigation.navigate('MenuDetailScreen', {
                     section: { item },
@@ -27,7 +29,7 @@ const MenuRenderItems: React.FC<itemProps> = ({ item }) => {
         >
             <Image source={item.imgURL} />
             <View style={styles.textContainer}>
-                <Text style={styles.menuTitle}>{item.title}</Text>
+                <Text style={[styles.menuTitle, { color: currentTheme['defaultTextColor'] }]}>{item.title}</Text>
                 <Text style={styles.menuName}>{item.restaurantName}</Text>
             </View>
             <Text style={styles.menuPrice}>${item.price}</Text>
@@ -45,13 +47,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         marginBottom: 10,
-        backgroundColor: '#FFFFFF',
+        // backgroundColor: ',
         padding: 10,
         borderRadius: 20,
-        shadowColor: '#F8F8FE',
+        shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 1,
+        shadowOpacity: 0.02,
         shadowRadius: 4,
+        elevation: 5,
     },
     textContainer: {
         marginLeft: 20,

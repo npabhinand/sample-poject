@@ -4,7 +4,7 @@ import HomeTitleContainer from '../components/HomeTitleContainer';
 import OrderRenderItems from '../components/OrderRenderItems';
 import { orderContents } from '../data/commonArray';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
 import { RootStackParamList } from '../navigation/AppNavigator';
 
 
@@ -18,7 +18,7 @@ const YourOrdersScreen = () => {
 
   return (
     <View style={styles.container}>
-      <FlatList
+      {/* <FlatList
         contentContainerStyle={styles.cards}
         data={orderContents}
         keyExtractor={item => item.id.toString()}
@@ -34,7 +34,7 @@ const YourOrdersScreen = () => {
         ListHeaderComponent={
           <><HomeTitleContainer isFilterButton={true} /></>}
         ListHeaderComponentStyle={styles.headerStyle}
-      />
+      /> */}
       <TouchableOpacity style={styles.checkoutButton} onPress={() => { navigation.navigate('SetLocationScreen'); }}>
         <Text style={styles.buttonText}>Check out</Text>
       </TouchableOpacity>

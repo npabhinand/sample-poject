@@ -9,7 +9,9 @@ import {
 import React, { useState } from 'react';
 import { editIcon, starIcon, starFocusedIcon } from '../assets/icons';
 import { useNavigation } from '@react-navigation/native';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
+import { useSelector } from 'react-redux';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
 // import { RootStackParamList } from '../navigation/AppNavigator';
 
 interface CallingProps {
@@ -25,6 +27,7 @@ const RatingComponent: React.FC<CallingProps> = ({
     navigate,
     image,
 }) => {
+    const currentTheme = useSelector(selectColorTheme);
     const [rating, setRating] = useState(0);
     const navigation = useNavigation();
 
@@ -35,8 +38,8 @@ const RatingComponent: React.FC<CallingProps> = ({
     return (
         <View style={styles.container}>
             <Image source={image} style={styles.personImage} />
-            <Text style={styles.nameText}>Thank You!</Text>
-            <Text style={styles.nameText}>{description1}</Text>
+            <Text style={[styles.nameText, { color: currentTheme['defaultTextColor'] }]}>Thank You!</Text>
+            <Text style={[styles.nameText, { color: currentTheme['defaultTextColor'] }]}>{description1}</Text>
             <Text style={styles.subText}>{description2}</Text>
 
             <View style={styles.starRow}>
@@ -47,7 +50,7 @@ const RatingComponent: React.FC<CallingProps> = ({
                             style={[
                                 styles.starIcon,
                                 {
-                                    tintColor: star <= rating ? '#FFB51F' : '#FEEDBC',
+                                    tintColor: star <= rating ? '#FFB51F' : '#553D13',
                                     transform: star === rating ? [{ scale: 0.9 }] : [{ scale: 0.7 }],
                                 }
                             ]}
@@ -70,7 +73,7 @@ const RatingComponent: React.FC<CallingProps> = ({
                     <TouchableOpacity style={styles.submitBtn}>
                         <Text style={styles.submitTxt}>Submit</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.skipBtn} onPress={onPressHandle}>
+                    <TouchableOpacity style={[styles.skipBtn, { backgroundColor: currentTheme['lightWhite'] }]} onPress={onPressHandle}>
                         <Text style={styles.skipText}>Skip</Text>
                     </TouchableOpacity>
                 </View>
@@ -87,13 +90,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingHorizontal: WIDTH * 0.05,
-        backgroundColor: '#FEFEFF',
+        // backgroundColor: '#FEFEFF',
     },
     personImage: {
         // marginTop: HEIGHT * 0.1,
         marginBottom: HEIGHT * 0.05,
-        width: WIDTH * 0.45,
-        height: WIDTH * 0.45,
+        // width: WIDTH * 0.55,
+        // height: WIDTH * 0.5,
         zIndex: 1,
 
         // borderRadius: WIDTH * 0.15,
@@ -176,7 +179,7 @@ const styles = StyleSheet.create({
         // opacity: 0.9,
         shadowColor: '#fff',
         // shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.9,
+        // shadowOpacity: 0.9,
         shadowRadius: 4,
     },
     submitTxt: {

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import ChatTitleComponent from '../components/ChatTitleComponent';
 import BackgroundImage from '../components/BackgroundImage';
 import { paymentContent } from '../data/commonArray';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
 
 
 const EditPaymentScreen = () => {

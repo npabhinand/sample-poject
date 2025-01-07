@@ -31,9 +31,15 @@ import IconStar from './IconStar/IconStar.png';
 import bagIcon from './bagIcon/bagIcon.png';
 import EditIcon1 from './editIcon1/Edit.png';
 import VoucherIcon from './voucher/VoucherIcon.png';
-import pathIcon from './pathIcon/pathIcon.png'
+import pathIcon from './pathIcon/pathIcon.png';
+import googleIcon from './googleIcon/googleIcon.png';
+import facebookIcon from './facebookIcon/facebookIcon.png';
+import emailIcon from './emailIcon/emailIcon.png';
+import passwordIcon from './passwordIcon/passwordIcon.png';
+import showIcon from './showIcon/showIcon.png';
+import checkList from './checkList/checkList.png'
 export {
     filterIcon, notificationIcon, searchIcon, backIcon, callIcon, sendIcon, dotIcon, volumeUpIcon, volumeOffIcon, closeIcon, homeIcon, profileIcon, cartIcon, chatIcon, editIcon, starIcon, starFocusedIcon, checkedIcon, moneyIcon, failedIcon, trashIcon, locationIcon, placeholder, clockIcon,
     mapIcon, loveIcon, locationIcon2, mapPin, starPin, IconStar, bagIcon, EditIcon1, VoucherIcon,
-    pathIcon,
+    pathIcon, googleIcon, facebookIcon, emailIcon, passwordIcon, showIcon, checkList
 };

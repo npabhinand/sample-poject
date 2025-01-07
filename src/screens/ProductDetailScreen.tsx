@@ -4,9 +4,11 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { menuSections } from '../data/commonArray';
 import { backIcon, locationIcon2, loveIcon, mapPin, starPin } from '../assets/icons';
 import Testimonials from '../components/Testimonials';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
 import RestaurantRenderItems from '../components/RestaurantRenderItems';
 import { RootStackParamList } from '../navigation/AppNavigator';
+import { useSelector } from 'react-redux';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
 
 
 interface productItem {
@@ -30,17 +32,18 @@ interface ProductDetailScreenProps {
 const ProductDetailScreen: React.FC<ProductDetailScreenProps> = ({ route }) => {
     const { section } = route.params;
     const navigation = useNavigation<NavigationProp<RootStackParamList, 'MenuDetailScreen'>>();
+    const currentTheme = useSelector(selectColorTheme);
 
-    console.log(section.item);
+    // console.log(section.item);
 
     return (
         <View style={styles.container}>
             <Image source={section.item.content} style={styles.imageContainer} />
-            <ScrollView>
-                <TouchableOpacity style={styles.backButton} onPress={() => { navigation.goBack(); }}>
-                    <Image source={backIcon} />
-                </TouchableOpacity>
-                <View style={styles.cardContainer}>
+            <TouchableOpacity style={styles.backButton} onPress={() => { navigation.goBack(); }}>
+                <Image source={backIcon} />
+            </TouchableOpacity>
+            <ScrollView bounces={false}>
+                <View style={[styles.cardContainer, { backgroundColor: currentTheme['themeColor'] }]}>
                     <View style={styles.row}>
                         <Text style={styles.txt}>Popular</Text>
                         <View style={styles.icons}>
@@ -52,16 +55,16 @@ const ProductDetailScreen: React.FC<ProductDetailScreenProps> = ({ route }) => {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <Text style={styles.title}>{section.item.title}</Text>
+                    <Text style={[styles.title, { color: currentTheme['defaultTextColor'] }]}>{section.item.title}</Text>
                     <View style={styles.ratings}>
-                        <Image source={starPin} />
-                        <Text style={styles.rating}>{section.item.rating}</Text>
                         <Image source={mapPin} />
                         <Text style={styles.rating}>{section.item.location}</Text>
+                        <Image source={starPin} />
+                        <Text style={styles.rating}>{section.item.rating}</Text>
                     </View>
                     <Text style={styles.description}>{section.item.description}</Text>
                     <View style={styles.ViewMoreContainer}>
-                        <Text style={[styles.heading2]}>Popular Menu</Text>
+                        <Text style={[styles.heading2, { color: currentTheme['defaultTextColor'] }]}>Popular Menu</Text>
                         <TouchableOpacity onPress={() => navigation.navigate('MenuList')}>
                             <Text style={styles.textColor}>
                                 View All
@@ -106,21 +109,21 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255, 255, 255, 0.5)',
         left: 20,
         zIndex: 1,
+        // overlayColor: '#fff'
+        overflow: 'hidden',
     },
     cardContainer: {
-        padding: 20,
-        backgroundColor: '#fff',
-        borderRadius: 10,
         marginTop: HEIGHT * 0.35,
         borderTopLeftRadius: HEIGHT * 0.05,
         borderTopRightRadius: HEIGHT * 0.05,
-        paddingLeft: WIDTH * 0.08,
+        // paddingLeft: WIDTH * 0.08,
     },
     row: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         marginTop: HEIGHT * 0.03,
+        margin: HEIGHT * 0.03,
     },
     txt: {
         fontSize: 18,
@@ -139,14 +142,15 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 25,
         fontWeight: 'bold',
-        marginVertical: 10,
+        marginLeft: WIDTH * 0.08,
     },
     ratings: {
         flexDirection: 'row',
         alignItems: 'center',
         gap: 10,
+        paddingLeft: WIDTH * 0.07,
         marginTop: HEIGHT * 0.01,
-        marginBottom: HEIGHT * 0.01,
+        // marginBottom: HEIGHT * 0.01,
     },
     rating: {
         // marginLeft: 5,
@@ -157,6 +161,7 @@ const styles = StyleSheet.create({
         fontSize: 13,
         marginVertical: 10,
         color: '#333',
+        paddingHorizontal: WIDTH * 0.07,
     },
     recipeItem: {
         flexDirection: 'row',
@@ -170,11 +175,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+        marginVertical: HEIGHT * 0.01,
+        paddingHorizontal: WIDTH * 0.07,
     }, heading2: {
         fontWeight: 'bold',
     },
     testimonialContainer: {
-        paddingLeft: 10,
+        // paddingLeft: 10,
         backgroundColor: '#fff',
         borderRadius: 10,
     },

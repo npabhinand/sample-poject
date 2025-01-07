@@ -1,7 +1,7 @@
 import { Image, StyleSheet, TextInput, View } from 'react-native';
 import React from 'react';
 import { searchIcon } from '../assets/icons';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
 
 
 

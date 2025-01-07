@@ -1,6 +1,8 @@
 import React from 'react';
 import { Text, StyleSheet, Pressable } from 'react-native';
-import { HEIGHT, WIDTH } from '../global/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
+import { useSelector } from 'react-redux';
 
 
 
@@ -11,12 +13,13 @@ interface FilterButtonProps {
 }
 
 const FilterButton: React.FC<FilterButtonProps> = ({ buttonName, onPress, isSelected }) => {
+    const currentTheme = useSelector(selectColorTheme);
     return (
         <Pressable
-            style={[styles.buttonStyle, isSelected && styles.selectedButton]}
+            style={[styles.buttonStyle, isSelected && styles.selectedButton, { backgroundColor: currentTheme['name'] === 'dark' ? currentTheme['lightWhite'] : "#FEF6ED" }]}
             onPress={() => onPress(buttonName)}
         >
-            <Text style={[styles.buttonText, isSelected && styles.selectedTxt]}>
+            <Text style={[styles.buttonText, isSelected && styles.selectedTxt, { color: currentTheme['name'] === 'dark' ? "#FEF6ED" : currentTheme['lightWhite'] }]}>
                 {buttonName}
             </Text>
         </Pressable>

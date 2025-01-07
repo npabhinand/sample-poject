@@ -4,11 +4,14 @@ import BackgroundImage from '../components/BackgroundImage';
 import ChatTitleComponent from '../components/ChatTitleComponent';
 import { NotificationContent } from '../data/commonArray';
 import NotificationRenderItems from '../components/NotificationRenderItems';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
+import { useSelector } from 'react-redux';
 
 
 const NotificationScreen = () => {
+    const currentTheme = useSelector(selectColorTheme);
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]}>
             <BackgroundImage />
             <ChatTitleComponent title="Notification" />
             <View>
@@ -31,9 +34,7 @@ export default NotificationScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
-    backgroundColor: {
-        backgroundColor: '#FEFEFF',
+        // backgroundColor: '#F6F8FF',
     },
     notificationContainer: {
         // justifyContent: 'center',
