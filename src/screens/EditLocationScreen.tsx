@@ -3,10 +3,13 @@ import React from 'react';
 import ChatTitleComponent from '../components/ChatTitleComponent';
 import BackgroundImage from '../components/BackgroundImage';
 import ShippingComponent from '../components/ShippingComponent';
+import { useSelector } from 'react-redux';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
 
 const EditLocationScreen = () => {
+    const currentTheme = useSelector(selectColorTheme);
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]}>
             <BackgroundImage />
             <ChatTitleComponent title="Shipping" />
             <ShippingComponent />

@@ -3,19 +3,22 @@ import React from 'react';
 import { address } from '../data/commonArray';
 import { locationIcon } from '../assets/icons';
 import { HEIGHT, WIDTH } from '../common/dimensions';
+import { useSelector } from 'react-redux';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
 
 
 const ShippingComponent = () => {
+    const currentTheme = useSelector(selectColorTheme);
     return (
         <>
             {address.map((location, index) => (
-                <View style={styles.container} key={index}>
+                <View style={[styles.container, { backgroundColor: currentTheme['lightWhite'] }]} key={index}>
                     <Text style={styles.orderName}>
                         {location.set}
                     </Text>
                     <View style={styles.row}>
                         <Image source={locationIcon} />
-                        <Text style={styles.orderTitle}>{location.name}</Text>
+                        <Text style={[styles.orderTitle, { color: currentTheme['defaultTextColor'] }]}>{location.name}</Text>
                     </View>
                     {location.id === 1 ? (
                         <></>

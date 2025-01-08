@@ -1,6 +1,6 @@
 import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import React from 'react';
-import { deliveryBoyImage, line, mapImage, pattern2, track } from '../assets/images';
+import { darkMapImage2, deliveryBoyImage, greenCar, line, line2, mapImage, pattern2, track } from '../assets/images';
 import ChatTitleComponent from '../components/ChatTitleComponent';
 import { callIcon, clockIcon, mapIcon, pathIcon } from '../assets/icons';
 
@@ -8,31 +8,39 @@ const HEIGHT = Dimensions.get('screen').height;
 const WIDTH = Dimensions.get('screen').width;
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../navigation/AppNavigator';
+import { useSelector } from 'react-redux';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
 
 const TrackOrderScreen = () => {
     const navigation = useNavigation<NavigationProp<RootStackParamList, 'HomeTab'>>();
+    const currentTheme = useSelector(selectColorTheme);
     return (
         <View style={styles.container}>
-            <Image style={styles.backgroundImage} source={mapImage} />
+            <Image style={styles.backgroundImage} source={currentTheme.name === 'dark' ? darkMapImage2 : mapImage} />
             <ChatTitleComponent />
             <View style={styles.track} >
-
-                <Image source={track} />
-                <View style={styles.timeContainer}>
+                {currentTheme.name === 'dark' ?
+                    <Image source={greenCar} style={{ marginBottom: HEIGHT * 0.07, marginLeft: 18 }} />
+                    : <Image source={track} />
+                }
+                <View style={[styles.timeContainer, { bottom: currentTheme.name === 'dark' ? 25 : undefined }]}>
                     <Image source={clockIcon} />
                     <Text>25 min</Text>
                 </View>
             </View>
+            {currentTheme.name === 'dark' ?
+                <Image style={styles.line2} source={line2} />
+                : <Image style={styles.line} source={line} />
+            }
 
-            <Image source={line} style={styles.line} />
 
-            <View style={styles.card}>
-                <Image source={pattern2} style={styles.cardBackground} />
-                <Text style={styles.title}>Track Orders</Text>
-                <View style={styles.locationContainer}>
+            <View style={[styles.card, { backgroundColor: currentTheme['themeColor'] }]}>
+                <Image source={pattern2} style={[styles.cardBackground,]} />
+                <Text style={[styles.title, { color: currentTheme['defaultTextColor'] }]}>Track Orders</Text>
+                <View style={[styles.locationContainer, { backgroundColor: currentTheme['lightWhite'] }]}>
                     <Image source={deliveryBoyImage} style={styles.locationIcon} />
-                    <View>
-                        <Text style={styles.nameText}>Mr Kemplas</Text>
+                    <View >
+                        <Text style={[styles.nameText, { color: currentTheme['defaultTextColor'] }]}>Mr Kemplas</Text>
                         <View style={styles.row}>
                             <Image source={mapIcon} />
                             <Text style={styles.text}>25 minutes on the way</Text>
@@ -41,18 +49,18 @@ const TrackOrderScreen = () => {
 
                 </View>
                 <View style={styles.btnContainer}>
-                    <TouchableOpacity style={styles.callButton} onPress={() => { navigation.navigate('HomeTab'); }}>
-                        <Image source={callIcon} />
-                        <Text style={styles.buttonText}>Call</Text>
+                    <TouchableOpacity style={[styles.callButton, { backgroundColor: currentTheme.name === "dark" ? "#45D984" : "#fff" }]} onPress={() => { navigation.navigate('HomeTab'); }}>
+                        <Image source={callIcon} style={{ tintColor: currentTheme.name === "dark" ? "#fff" : "#45D984" }} />
+                        <Text style={[styles.buttonText, { color: currentTheme.name === "dark" ? "#fff" : "#45D984" }]}>Call</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.MessageButton}>
-                        <View style={styles.btnView}>
-                            <Image source={pathIcon} style={styles.imagePosition} />
+                    <TouchableOpacity style={[styles.MessageButton, { backgroundColor: currentTheme.name === "dark" ? "#fff" : "#45D984" }]}>
+                        <View style={[styles.btnView, { backgroundColor: currentTheme.name === "dark" ? "#45D984" : "#fff" }]}>
+                            <Image source={pathIcon} style={[styles.imagePosition, { tintColor: currentTheme.name === "dark" ? "#fff" : "#45D984" }]} />
                         </View>
                     </TouchableOpacity>
                 </View>
             </View>
-        </View>
+        </View >
     );
 };
 
@@ -61,14 +69,13 @@ export default TrackOrderScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        margin: 10,
-        marginTop: 10,
-        position: 'relative',
     },
     backgroundImage: {
-        resizeMode: 'repeat',
+        resizeMode: 'cover',
         position: 'absolute',
-        marginTop: HEIGHT * 0.03,
+        width: '100%',
+        height: '100%',
+        // marginTop: HEIGHT * 0.03,
     }, track: {
         marginLeft: WIDTH * 0.47,
         flexDirection: 'row',
@@ -93,10 +100,10 @@ const styles = StyleSheet.create({
         width: WIDTH * 0.9,
         padding: 10,
         position: 'absolute',
-        bottom: 20,
+        bottom: HEIGHT * 0.03,
         alignSelf: 'center',
         height: HEIGHT * 0.28,
-        borderRadius: WIDTH * 0.03,
+        borderRadius: WIDTH * 0.05,
         // left: 20,
     },
     title: {
@@ -125,8 +132,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         opacity: 1.5,
         overflow: 'hidden',
-
-
+        alignSelf: 'center',
 
     },
     locationIcon: {
@@ -142,8 +148,8 @@ const styles = StyleSheet.create({
     row: { flexDirection: 'row', alignItems: 'center', marginTop: WIDTH * 0.02 }
     , callButton: {
         backgroundColor: '#fff',
-        width: WIDTH * 0.6,
-        height: HEIGHT * 0.06,
+        width: WIDTH * 0.67,
+        height: HEIGHT * 0.07,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 10,
@@ -173,7 +179,7 @@ const styles = StyleSheet.create({
         // borderWidth: 1,
     }, MessageButton: {
         backgroundColor: '#45D984',
-        height: HEIGHT * 0.06,
+        height: HEIGHT * 0.07,
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 10,
@@ -186,6 +192,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         justifyContent: 'center',
         alignItems: 'center',
+        // tint
+    }, line2: {
+        marginLeft: WIDTH * 0.55,
+        bottom: WIDTH * 0.18,
     },
 });
 

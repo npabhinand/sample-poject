@@ -4,9 +4,12 @@ import ChatTitleComponent from '../components/ChatTitleComponent';
 import BackgroundImage from '../components/BackgroundImage';
 import { paymentContent } from '../data/commonArray';
 import { HEIGHT, WIDTH } from '../common/dimensions';
+import { useSelector } from 'react-redux';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
 
 
 const EditPaymentScreen = () => {
+    const currentTheme = useSelector(selectColorTheme);
     const [selectedIndex, setSelectedIndex] = useState(null);
 
     const handlePress = (index: any) => {
@@ -14,7 +17,7 @@ const EditPaymentScreen = () => {
     };
 
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]}>
             <BackgroundImage />
             <ChatTitleComponent title="Payment" />
             {paymentContent.map((payment, index) => (
@@ -22,11 +25,18 @@ const EditPaymentScreen = () => {
                     key={index}
                     style={[
                         styles.cardContainer,
-                        selectedIndex === index ? styles.selected : styles.notSelected]}
+                        selectedIndex === index ? styles.selected : styles.notSelected,
+                        { backgroundColor: currentTheme['lightWhite'] }]}
                     onPress={() => handlePress(index)}
                 >
-                    <Image source={payment.imgURL} />
-                    <Text>{payment.cardNumber}</Text>
+                    <Image
+                        source={payment.imgURL}
+                        style={{
+                            tintColor: currentTheme.name === "dark" ? currentTheme['commonWhite'] : undefined
+                        }}
+                    />
+
+                    <Text style={{ color: currentTheme['defaultTextColor'] }}>{payment.cardNumber}</Text>
                 </TouchableOpacity>
             ))}
         </View>

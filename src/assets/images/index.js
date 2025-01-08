@@ -37,10 +37,15 @@ import menu1 from './menu1/menu1.png';
 import menu2 from './menu1/menu2.png';
 import ProfileImage from './ProfileImage/ProfileImage.png';
 import menuPhoto from './menuPhoto/menuPhoto.png';
-import logo from './logo/logo.png'
-
+import logo from './logo/logo.png';
+import darkMapImage from './darkMapImage/darkMapImage.png';
+import darkMapImage2 from './darkMapImage2/darkMapImage2.png';
+import line2 from './line2/line2.png';
+import greenCar from './greenCar/greenCar.png';
+import promoBackground1 from './promoBackground1/promoBackground1.png';
+import promoIce from './promoIce/promoIce.png';
 export {
     promoImage, restaurantImage1, restaurantImage2, backgroundImage1, photoMenu1, photoMenu2, photoMenu3, restaurantImage3, restaurantImage4, restaurantImage5, restaurantImage6, profile1, profile2, profile3, backgroundImage2, personImage, rateDriver, rateFood, orderImage1, orderImage2, rateRestaurant, orderImage3, pattern, promo2, promo3, visaLogo, paypalLogo, payoneerLogo, mapImage, line, track, deliveryBoyImage,
-    pattern2, DetailImage, testimonialImage, menu1, menu2,
-    ProfileImage, menuPhoto, logo,
+    pattern2, DetailImage, testimonialImage, menu1, menu2, darkMapImage, line2, promoBackground1,
+    ProfileImage, menuPhoto, logo, darkMapImage2, greenCar, promoIce,
 };

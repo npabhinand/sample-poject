@@ -60,7 +60,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const AppNavigator = () => {
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='SignUpScreen'>
                 <Stack.Screen
                     name="SignUpScreen"
                     component={SignUpScreen}

@@ -4,7 +4,7 @@ import { light, dark } from '../common/colors';
 export type ColorThemeName = 'light' | 'dark';
 
 const initialState: ColorThemeState = {
-    theme: light,
+    theme: dark,
 };
 
 const colorThemeSlice = createSlice({
