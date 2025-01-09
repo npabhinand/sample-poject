@@ -50,9 +50,10 @@ const styles = StyleSheet.create({
     },
     backgroundImage: {
         position: 'absolute',
-        width: '110%',
-        height: '105%',
+        width: '100%',
+        height: '100%',
         opacity: 0.3,
+        // bottom: -50
     },
     contentContainer: {
         flexDirection: 'row',

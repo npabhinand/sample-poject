@@ -1,13 +1,16 @@
-import { View, FlatList, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Pressable, Image, ScrollView } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import BackgroundImage from '../components/BackgroundImage';
 import ChatTitleComponent from '../components/ChatTitleComponent';
-import OrderRenderItems from '../components/OrderRenderItems';
 import PriceCard from '../components/PriceCard';
-import { HEIGHT } from '../common/dimensions';
+import { HEIGHT, WIDTH } from '../common/dimensions';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteCart, selectedCarts } from '../reducers/cartSlice';
 import { selectColorTheme } from '../reducers/colorThemeSlice';
+import { SwipeListView } from 'react-native-swipe-list-view';
+import OrderRenderItems from '../components/OrderRenderItems';
+import { trashIcon } from '../assets/icons';
+
 
 const OrderScreen = () => {
     const [subTotal, setSubTotal] = useState(0);
@@ -17,9 +20,11 @@ const OrderScreen = () => {
     const currentTheme = useSelector(selectColorTheme);
     const discount: number = 5;
     const deliveryCharge: number = 10;
+
     const handleButtonDelete = (id: number) => {
         dispatch(deleteCart(id));
     };
+
     useEffect(() => {
         const sub_Total = selectedCart.reduce((sum, item) => {
             return sum + item.price * item.quantity;
@@ -38,25 +43,42 @@ const OrderScreen = () => {
         );
     }
 
+
+    const onRowDidOpen = (rowKey: string | number) => {
+        handleButtonDelete(Number(rowKey));
+    };
+
     return (
         <View style={[styles.container, { backgroundColor: currentTheme.themeColor }]}>
+            {/* <ScrollView> */}
             <BackgroundImage />
-            <ChatTitleComponent title="Order details" />
-            <FlatList
-                contentContainerStyle={styles.cards}
+
+            <SwipeListView
+                ListHeaderComponent={<ChatTitleComponent title="Order details" />}
+                keyExtractor={(item, index) => item.id.toString()}
                 data={selectedCart}
-                keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => (
                     <OrderRenderItems
                         item={item}
-                        handleDelete={() => handleButtonDelete(item.id)}
                     />
                 )}
-                pagingEnabled
-                horizontal={false}
-                ListFooterComponentStyle={styles.footerStyle}
+                renderHiddenItem={() => (
+                    <View style={styles.rightActionWrapper
+                    } >
+                        <Pressable style={styles.deleteButton}>
+                            <Image source={trashIcon} />
+                        </Pressable>
+                    </View>
+                )}
                 ListFooterComponent={<PriceCard navigate="PaymentScreen" subTotal={subTotal} deliveryCharge={deliveryCharge} discount={discount} total={total} />}
+                ListFooterComponentStyle={styles.footerStyle}
+                // leftOpenValue={WIDTH * 0.6}
+                rightOpenValue={-WIDTH * 0.8}
+                disableRightSwipe={true}
+                onRowDidOpen={(rowKey) => onRowDidOpen(rowKey)}
             />
+
+            {/* </ScrollView> */}
         </View>
     );
 };
@@ -67,12 +89,32 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#F9FBFF',
-    }, title: { textAlign: 'center', marginTop: HEIGHT * 0.3, color: '#F8A778', fontSize: 16, fontWeight: '600' },
+    },
+    footerStyle: {
+        marginBottom: HEIGHT * 0.12,
+    },
+    title: { textAlign: 'center', marginTop: HEIGHT * 0.3, color: '#F8A778', fontSize: 16, fontWeight: '600' },
     cards: {
         alignItems: 'center',
     },
-    footerStyle: {
-        marginTop: HEIGHT * 0.03,
-        marginBottom: HEIGHT * 0.03,
+    hiddenContainer: {
+        flex: 1,
+        backgroundColor: '#FF6B6B',
+        justifyContent: 'center',
+        alignItems: 'flex-end',
+        paddingRight: 15,
+    },
+    deleteButton: {
+        marginRight: WIDTH * 0.1,
+    }, rightActionWrapper: {
+        width: WIDTH * 0.9,
+        height: HEIGHT * 0.12,
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        borderRadius: 20,
+        marginBottom: HEIGHT * 0.01,
+        backgroundColor: '#F8AD1E',
+        flexDirection: 'row',
+        alignSelf: 'center',
     },
 });

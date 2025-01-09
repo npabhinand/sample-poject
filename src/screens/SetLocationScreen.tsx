@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import { View, Text, StyleSheet, Image, TextInput, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { darkMapImage, mapImage } from '../assets/images';
@@ -21,7 +22,7 @@ const SetLocationScreen = () => {
             <View style={[styles.searchContainer, {
                 backgroundColor: currentTheme.name === 'dark'
                     ? `${commonColor.darkGray}20`
-                    : undefined
+                    : '#FFFFFF',
             }]}>
                 <Image style={[styles.searchIcon, { tintColor: currentTheme.name === 'dark' ? '#fff' : undefined }]} source={searchIcon} />
                 <TextInput
@@ -33,8 +34,8 @@ const SetLocationScreen = () => {
                 />
             </View>
 
-            <View style={styles.setLocationContainer}>
-                <TouchableOpacity style={styles.setLocationButton}>
+            <View style={[styles.setLocationContainer, { backgroundColor: `${commonColor.greenColor}20` }]}>
+                <TouchableOpacity style={[styles.setLocationButton, { backgroundColor: `${commonColor.greenColor}50` }]}>
                     <Image source={placeholder} />
                 </TouchableOpacity>
             </View>
@@ -120,6 +121,7 @@ const styles = StyleSheet.create({
         marginLeft: 10,
         color: '#333',
         fontWeight: 'bold',
+        marginBottom: HEIGHT * 0.015,
     },
     checkoutButton: {
         backgroundColor: '#45D984',
@@ -145,13 +147,13 @@ const styles = StyleSheet.create({
     },
     setLocationContainer: {
         backgroundColor: '#E0F4F3',
-        height: WIDTH * 0.6,
-        width: WIDTH * 0.6,
+        height: WIDTH * 0.62,
+        width: WIDTH * 0.62,
         borderRadius: '50%',
-        opacity: 0.6,
+        // opacity: 0.6,
         alignItems: 'center',
         justifyContent: 'center',
-        top: HEIGHT * 0.1,
+        top: HEIGHT * 0.15,
         alignSelf: 'center',
     },
 

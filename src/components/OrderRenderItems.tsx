@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, { useState, useCallback } from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity, Pressable, Alert } from 'react-native';
 import Swipeable from 'react-native-gesture-handler/ReanimatedSwipeable';
@@ -41,54 +42,54 @@ const OrderRenderItems: React.FC<OrderProps> = ({ handleDelete, item, isSelected
     }, [dispatch, item.id]);
 
 
-    const renderRightActions = () => {
+    // const renderRightActions = () => {
 
-        return (
-            <View style={styles.rightActionWrapper} >
-                <Pressable>
-                    <Image source={trashIcon} />
-                </Pressable>
+    //     return (
+    //         <View style={styles.rightActionWrapper} >
+    //             <Pressable>
+    //                 <Image source={trashIcon} />
+    //             </Pressable>
 
-            </View>
-        );
-    };
+    //         </View>
+    //     );
+    // };
 
-    const onSwipeableWillClose = () => {
-        if (handleDelete) {
-            handleDelete();
-            Alert.alert('Item successfully removed');
-        }
-    };
+    // const onSwipeableWillClose = () => {
+    //     if (handleDelete) {
+    //         handleDelete();
+    //         Alert.alert('Item successfully removed');
+    //     }
+    // };
     return (
-        <Swipeable renderRightActions={renderRightActions} friction={1} rightThreshold={WIDTH * 0.8} onSwipeableWillClose={onSwipeableWillClose} >
-            <TouchableOpacity
-                style={[styles.orderItems, { backgroundColor: currentTheme.lightWhite }, isSelected && styles.selectedCard]}
-            // onPress={() => onCardPress && onCardPress()}
-            >
-                <Image source={item.imgURL} style={styles.image} />
-                <View style={styles.textContainer}>
-                    <Text style={[styles.orderTitle, { color: currentTheme.defaultTextColor }]}>{item.title}</Text>
-                    <Text style={styles.orderName}>{item.restaurantName}</Text>
-                    <Text style={styles.orderPrice}>$ {item.price}</Text>
-                </View>
+        // <Swipeable renderRightActions={renderRightActions} friction={1} rightThreshold={WIDTH * 0.8} onSwipeableWillClose={onSwipeableWillClose} >
+        <TouchableOpacity
+            style={[styles.orderItems, { backgroundColor: currentTheme.lightWhite }, isSelected && styles.selectedCard]}
+        // onPress={() => onCardPress && onCardPress()}
+        >
+            <Image source={item.imgURL} style={styles.image} />
+            <View style={styles.textContainer}>
+                <Text style={[styles.orderTitle, { color: currentTheme.defaultTextColor }]}>{item.title}</Text>
+                <Text style={styles.orderName}>{item.restaurantName}</Text>
+                <Text style={styles.orderPrice}>$ {item.price}</Text>
+            </View>
 
-                {isButtonView ? (
-                    <TouchableOpacity style={[styles.processButton, isSelected && styles.selectedButton]}>
-                        <Text style={styles.processButtonText}>Process</Text>
+            {isButtonView ? (
+                <TouchableOpacity style={[styles.processButton, isSelected && styles.selectedButton]}>
+                    <Text style={styles.processButtonText}>Process</Text>
+                </TouchableOpacity>
+            ) : (
+                <View style={styles.counterContainer}>
+                    <TouchableOpacity onPress={handleDecrease} style={[styles.reduceButton, { backgroundColor: currentTheme.name === 'dark' ? `${commonColor.greenColor}20` : '#EAFAF2' }]}>
+                        <Text style={styles.reduceText}>-</Text>
                     </TouchableOpacity>
-                ) : (
-                    <View style={styles.counterContainer}>
-                        <TouchableOpacity onPress={handleDecrease} style={[styles.reduceButton, { backgroundColor: currentTheme.name === 'dark' ? `${commonColor.greenColor}20` : '#EAFAF2' }]}>
-                            <Text style={styles.reduceText}>-</Text>
-                        </TouchableOpacity>
-                        <Text style={{ color: currentTheme.defaultTextColor }}>{counter}</Text>
-                        <TouchableOpacity onPress={handleIncrease} style={styles.addButton}>
-                            <Text style={styles.addText}>+</Text>
-                        </TouchableOpacity>
-                    </View>
-                )}
-            </TouchableOpacity>
-        </Swipeable>
+                    <Text style={{ color: currentTheme.defaultTextColor }}>{counter}</Text>
+                    <TouchableOpacity onPress={handleIncrease} style={styles.addButton}>
+                        <Text style={styles.addText}>+</Text>
+                    </TouchableOpacity>
+                </View>
+            )}
+        </TouchableOpacity>
+        // </Swipeable>
     );
 };
 
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        marginTop: HEIGHT * 0.02,
+        marginBottom: HEIGHT * 0.01,
         backgroundColor: '#FFFFFF',
         padding: 10,
         borderRadius: 20,
@@ -109,6 +110,7 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.04,
         shadowRadius: 4,
+        alignSelf: 'center',
     },
     selectedCard: {
         backgroundColor: '#F1F1F1',

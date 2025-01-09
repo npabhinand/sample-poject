@@ -28,8 +28,8 @@ const LoginScreen = () => {
                 </View>
                 <Text style={styles.subTxt}>Forgot Your Password?</Text>
 
-                <Pressable style={styles.submitBtn}><Text style={styles.submitBtnText}
-                    onPress={() => navigation.navigate('HomeTab')}>Login</Text></Pressable>
+                <Pressable style={styles.submitBtn} onPress={() => navigation.navigate('HomeTab')}><Text style={styles.submitBtnText}
+                >Login</Text></Pressable>
             </View>
         </View>
     );
@@ -46,7 +46,11 @@ const styles = StyleSheet.create({
         width: WIDTH * 0.85,
         height: HEIGHT * 0.06,
         backgroundColor: '#fff',
-        shadowColor: '#F8F8FE',
+        // shadowColor: '#F8F8FE',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.02,
+        shadowRadius: 4,
         marginTop: HEIGHT * 0.02,
         borderRadius: WIDTH * 0.03,
         paddingLeft: WIDTH * 0.08,
@@ -74,6 +78,10 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         flexDirection: 'row',
         borderRadius: WIDTH * 0.03,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.05,
+        shadowRadius: 4,
     }, subTxt: {
         color: '#44D581',
         // textDecorationLine: 'underline',

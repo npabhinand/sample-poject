@@ -1,6 +1,5 @@
 import { View, SafeAreaView, Text, Image, TextInput, StyleSheet, Pressable } from 'react-native';
 import React from 'react';
-
 import { HEIGHT, WIDTH } from '../common/dimensions';
 import { checkedIcon, emailIcon, passwordIcon, profileIcon, showIcon } from '../assets/icons';
 import LoginTitleComponent from '../components/LoginTitleComponent';
@@ -8,23 +7,13 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../navigation/AppNavigator';
 import { useSelector } from 'react-redux';
 import { selectColorTheme } from '../reducers/colorThemeSlice';
-// import ToggleSwitch from 'toggle-switch-react-native';
-// import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 const SignUpScreen = () => {
     const navigation = useNavigation<NavigationProp<RootStackParamList, 'LoginScreen'>>();
     const currentTheme = useSelector(selectColorTheme);
     return (
         <SafeAreaView style={[styles.container, { backgroundColor: currentTheme.themeColor }]}>
-            {/* <ToggleSwitch
-                isOn={false}
-                onColor="light"
-                offColor="dark"
-                label="Mode"
-                labelStyle={{ color: "black", fontWeight: "900" }}
-                size="large"
-                onToggle={isOn => console.log("changed to : ", isOn)}
-            /> */}
             <LoginTitleComponent title="Sign Up For Free" />
             <View style={styles.inputContainer}>
                 <View style={styles.row}>
@@ -49,8 +38,8 @@ const SignUpScreen = () => {
                 <Image source={checkedIcon} style={styles.checkedIcon} />
                 <Text style={styles.txt}>Email Me About Special Pricing</Text>
             </View>
-            <Pressable style={styles.submitBtn}><Text style={styles.submitBtnText}
-                onPress={() => navigation.navigate('LoginScreen')}>Create Account</Text></Pressable>
+            <Pressable style={styles.submitBtn} onPress={() => navigation.navigate('LoginScreen')}><Text style={styles.submitBtnText}
+            >Create Account</Text></Pressable>
             <Text style={styles.subTxt}>already have an account?</Text>
         </SafeAreaView>
     );
@@ -66,14 +55,16 @@ const styles = StyleSheet.create({
     input: {
         width: WIDTH * 0.85,
         height: HEIGHT * 0.07,
+        alignItems: 'center',
         // borderWidth: 1,
         // marginLeft: WIDTH * 0.15,
         // backgroundColor: '#fff',
         // shadowColor: '#F8F8FE',
         // shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        // shadowRadius: 4,
-        // borderColor: 'black',
+        shadowOpacity: 0.03,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowRadius: 4,
         marginTop: HEIGHT * 0.02,
         borderRadius: WIDTH * 0.03,
         paddingLeft: WIDTH * 0.14,
@@ -100,8 +91,9 @@ const styles = StyleSheet.create({
     },
     iconStyle: {
         position: 'absolute',
+        alignSelf: 'center',
         left: WIDTH * 0.05,
-        bottom: HEIGHT * 0.015,
+        bottom: HEIGHT * 0.022,
     },
     txt: {
         fontWeight: '300',

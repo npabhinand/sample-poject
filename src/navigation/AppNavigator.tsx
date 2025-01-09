@@ -27,6 +27,7 @@ import { HomeTabNavigator } from './HomeTabNavigator';
 import RestaurantListScreen from '../screens/RestaurantListScreen';
 import LoginScreen from '../screens/LoginScreen';
 import SignUpScreen from '../screens/SignUpScreen';
+import SplashScreen from '../screens/SplashScreen';
 
 // Type
 export type RootStackParamList = {
@@ -60,7 +61,11 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 const AppNavigator = () => {
     return (
         <GestureHandlerRootView style={{ flex: 1 }}>
-            <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='SignUpScreen'>
+            <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='SplashScreen'>
+                <Stack.Screen
+                    name="SplashScreen"
+                    component={SplashScreen}
+                />
                 <Stack.Screen
                     name="SignUpScreen"
                     component={SignUpScreen}
