@@ -1,9 +1,12 @@
+/* eslint-disable react-native/no-inline-styles */
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import TitleComponent from '../components/TitleComponent';
 import { backIcon } from '../assets/icons';
 import { useNavigation } from '@react-navigation/native';
 import { HEIGHT, WIDTH } from '../common/dimensions';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
+import { useSelector } from 'react-redux';
 
 
 
@@ -12,9 +15,10 @@ interface TitleProps {
 }
 const ChatTitleComponent: React.FC<TitleProps> = ({ title }) => {
     const navigation = useNavigation();
+    const currentTheme = useSelector(selectColorTheme);
     return (
         <View style={[styles.marginLeft, styles.titleContainer]}>
-            <TouchableOpacity style={styles.buttonStyle} onPress={() => { navigation.goBack(); }}>
+            <TouchableOpacity style={[styles.buttonStyle, { backgroundColor: currentTheme.name === 'dark' ? '#251C13' : '#FDF5EB' }]} onPress={() => { navigation.goBack(); }}>
                 <Image source={backIcon} />
             </TouchableOpacity>
             <TitleComponent title1={title} size={25} />
@@ -28,7 +32,7 @@ const styles = StyleSheet.create({
         marginTop: HEIGHT * 0.07,
     },
     buttonStyle: {
-        backgroundColor: '#FDF5EB',
+        // backgroundColor: '#FDF5EB',
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 15,

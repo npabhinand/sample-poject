@@ -27,13 +27,13 @@ const RestaurantRenderItems: React.FC<renderProps> = (props) => {
     const currentTheme = useSelector(selectColorTheme);
 
     return (
-        <Pressable style={[styles.card, { backgroundColor: currentTheme['lightWhite'] }]} onPress={() => {
+        <Pressable style={[styles.card, { backgroundColor: currentTheme.lightWhite }]} onPress={() => {
             navigation.navigate(navigate, {
                 section: { item },
             });
         }}>
             <Image style={styles.image} source={item.imgURL} />
-            <Text style={[styles.name, { color: currentTheme['defaultTextColor'] }]}>
+            <Text style={[styles.name, { color: currentTheme.defaultTextColor }]}>
                 {item.name ? item.name : item.title}
             </Text>
 
@@ -55,13 +55,14 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFFFFF',
         padding: 10,
         borderRadius: 20,
+        // alignSelf: 'center',
         // shadowColor: '#F6F7FE',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
         shadowOpacity: 0.02,
         shadowRadius: 4,
         elevation: 5,
-        marginRight: WIDTH * 0.05,
+        marginLeft: WIDTH * 0.06,
     },
     image: {
         // width: '100%',

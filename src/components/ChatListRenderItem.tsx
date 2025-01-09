@@ -12,10 +12,10 @@ const ChatListRenderItem = ({ item }: any) => {
   const navigation = useNavigation<NavigationProp<RootStackParamList, 'ChatScreen'>>();
   const currentTheme = useSelector(selectColorTheme);
   return (
-    <TouchableOpacity style={[styles.chatList, { backgroundColor: currentTheme['lightWhite'] }]} onPress={() => { navigation.navigate('ChatScreen'); }}>
+    <TouchableOpacity style={[styles.chatList, { backgroundColor: currentTheme.lightWhite }]} onPress={() => { navigation.navigate('ChatScreen'); }}>
       <Image source={item.imageURL} />
       <View style={styles.textContainer}>
-        <Text style={[styles.nameTitle, styles.marginTop, { color: currentTheme['defaultTextColor'] }]}
+        <Text style={[styles.nameTitle, styles.marginTop, { color: currentTheme.defaultTextColor }]}
         //  onPress={() => { navigation.navigate('Chat') }}
         >{item.name}</Text>
         <Text style={styles.chatText}>Your Order Just Arrived!</Text>

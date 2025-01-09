@@ -18,7 +18,7 @@ const CallingComponent: React.FC<CallingProps> = (props) => {
     return (
         <View style={[styles.container, {}]}>
             <Image source={image} style={styles.personImage} />
-            <Text style={[styles.nameText, { color: currentTheme['defaultTextColor'] }]}>{name}</Text>
+            <Text style={[styles.nameText, { color: currentTheme.defaultTextColor }]}>{name}</Text>
             <Text style={styles.subText}>{isEnded ? '15.23 Min' : 'Ringing . . . '}</Text>
         </View>
     );

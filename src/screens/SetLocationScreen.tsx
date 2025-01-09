@@ -23,12 +23,12 @@ const SetLocationScreen = () => {
                     ? `${commonColor.darkGray}20`
                     : undefined
             }]}>
-                <Image style={[styles.searchIcon, { tintColor: currentTheme.name === "dark" ? "#fff" : undefined }]} source={searchIcon} />
+                <Image style={[styles.searchIcon, { tintColor: currentTheme.name === 'dark' ? '#fff' : undefined }]} source={searchIcon} />
                 <TextInput
                     style={styles.input}
                     placeholder="Find Your Location"
                     placeholderTextColor={currentTheme.name === 'dark'
-                        ? `${currentTheme['defaultTextColor']}`
+                        ? `${currentTheme.defaultTextColor}`
                         : '#F2C3A1'}
                 />
             </View>
@@ -39,11 +39,11 @@ const SetLocationScreen = () => {
                 </TouchableOpacity>
             </View>
 
-            <View style={[styles.card, { backgroundColor: currentTheme['themeColor'] }]}>
+            <View style={[styles.card, { backgroundColor: currentTheme.themeColor }]}>
                 <Text style={styles.title}>Your Location</Text>
                 <View style={styles.locationContainer}>
                     <Image source={locationIcon} style={styles.locationIcon} />
-                    <Text style={[styles.locationText, { color: currentTheme['defaultTextColor'] }]}>4517 Washington Ave. Manchester, Kentucky 39495</Text>
+                    <Text style={[styles.locationText, { color: currentTheme.defaultTextColor }]}>4517 Washington Ave. Manchester, Kentucky 39495</Text>
                 </View>
 
                 <TouchableOpacity style={styles.checkoutButton} onPress={() => { navigation.navigate('TrackOrderScreen'); }}>

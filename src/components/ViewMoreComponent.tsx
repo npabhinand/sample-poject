@@ -17,7 +17,7 @@ const ViewMoreComponent: React.FC<navigateProps> = ({ navigate, title }) => {
     const currentTheme = useSelector(selectColorTheme);
     return (
         <View style={styles.ViewMoreContainer}>
-            <Text style={[styles.heading2, styles.marginLeft, { color: currentTheme['defaultTextColor'] }]}>{title}</Text>
+            <Text style={[styles.heading2, styles.marginLeft, { color: currentTheme.defaultTextColor }]}>{title}</Text>
             <TouchableOpacity onPress={() => navigation.navigate(navigate)}>
                 <Text style={[styles.viewMoreColor, styles.viewMoreMargin]}>
                     View More

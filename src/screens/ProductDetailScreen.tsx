@@ -43,9 +43,11 @@ const ProductDetailScreen: React.FC<ProductDetailScreenProps> = ({ route }) => {
                 <Image source={backIcon} />
             </TouchableOpacity>
             <ScrollView bounces={false}>
-                <View style={[styles.cardContainer, { backgroundColor: currentTheme['themeColor'] }]}>
+                <View style={[styles.cardContainer, { backgroundColor: currentTheme.themeColor }]}>
                     <View style={styles.row}>
-                        <Text style={styles.txt}>Popular</Text>
+                        <View style={[styles.popularContainer, { backgroundColor: currentTheme.lightGreenButtonColor }]}>
+                            <Text style={styles.txt}>Popular</Text>
+                        </View>
                         <View style={styles.icons}>
                             <TouchableOpacity style={styles.right}>
                                 <Image source={locationIcon2} />
@@ -55,7 +57,7 @@ const ProductDetailScreen: React.FC<ProductDetailScreenProps> = ({ route }) => {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <Text style={[styles.title, { color: currentTheme['defaultTextColor'] }]}>{section.item.title}</Text>
+                    <Text style={[styles.title, { color: currentTheme.defaultTextColor }]}>{section.item.title}</Text>
                     <View style={styles.ratings}>
                         <Image source={mapPin} />
                         <Text style={styles.rating}>{section.item.location}</Text>
@@ -64,7 +66,7 @@ const ProductDetailScreen: React.FC<ProductDetailScreenProps> = ({ route }) => {
                     </View>
                     <Text style={styles.description}>{section.item.description}</Text>
                     <View style={styles.ViewMoreContainer}>
-                        <Text style={[styles.heading2, { color: currentTheme['defaultTextColor'] }]}>Popular Menu</Text>
+                        <Text style={[styles.heading2, { color: currentTheme.defaultTextColor }]}>Popular Menu</Text>
                         <TouchableOpacity onPress={() => navigation.navigate('MenuList')}>
                             <Text style={styles.textColor}>
                                 View All
@@ -126,11 +128,10 @@ const styles = StyleSheet.create({
         margin: HEIGHT * 0.03,
     },
     txt: {
-        fontSize: 18,
+        fontSize: 15,
         fontWeight: 'bold',
         color: '#3FC87C',
-        backgroundColor: '#EBFAF2',
-        padding: 10,
+        // padding: 10,
         borderRadius: 20,
     },
     icons: {
@@ -188,5 +189,11 @@ const styles = StyleSheet.create({
     textColor: {
         marginRight: WIDTH * 0.03,
         color: '#F78C4C',
+    }, popularContainer: {
+        alignItems: 'center',
+        height: HEIGHT * 0.04,
+        width: WIDTH * 0.20,
+        justifyContent: 'center',
+        borderRadius: WIDTH * 0.05,
     },
 });

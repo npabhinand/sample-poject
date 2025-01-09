@@ -4,7 +4,7 @@ import { HEIGHT, WIDTH } from '../common/dimensions';
 import { useSelector } from 'react-redux';
 import { selectColorTheme } from '../reducers/colorThemeSlice';
 
-interface promoProps {
+interface VoucherPromoProps {
     image?: any;
     btnText?: string;
     btnTextColor?: string;
@@ -13,40 +13,41 @@ interface promoProps {
     background?: any;
 }
 
-const PromoComponent: React.FC<promoProps> = (props) => {
-    const { image, btnText, background } = props;
+const VoucherComponent: React.FC<VoucherPromoProps> = (props) => {
+    const { image, btnText, background, textColor, btnTextColor } = props;
     const currentTheme = useSelector(selectColorTheme);
 
     return (
         <View style={styles.container}>
             <Image source={background} style={styles.backgroundImage} tintColor={currentTheme.themeColor} />
 
-            <View style={styles.contentContainer}>
-                <Image source={image} style={styles.promoImage} />
+            {/* <View style={styles.contentContainer}> */}
+            <Image source={image} style={styles.promoImage} />
 
-                <View style={styles.textContainer}>
-                    <Text style={[styles.promoText, { color: currentTheme.themeColor }]}>Special Deal For</Text>
-                    <Text style={[styles.promoText, { color: currentTheme.themeColor }]}>October</Text>
-                    <TouchableOpacity style={styles.promoButton}>
-                        <Text style={styles.buttonText}>{btnText}</Text>
-                    </TouchableOpacity>
-                </View>
+            <View style={styles.textContainer}>
+                <Text style={[styles.promoText, { color: textColor }]}>Special Deal For</Text>
+                <Text style={[styles.promoText, { color: textColor }]}>October</Text>
+                <TouchableOpacity style={styles.promoButton}>
+                    <Text style={[styles.buttonText, { color: btnTextColor }]}>Order Now</Text>
+                </TouchableOpacity>
+                {/* </View> */}
             </View>
         </View>
     );
 };
 
-export default PromoComponent;
+
+export default VoucherComponent;
 
 const styles = StyleSheet.create({
     container: {
-        width: WIDTH * 0.88,
+        width: WIDTH * 0.90,
+        alignSelf: 'center',
         marginBottom: HEIGHT * 0.01,
         backgroundColor: '#3DC279',
         borderRadius: WIDTH * 0.05,
         overflow: 'hidden',
-        height: HEIGHT * 0.19,
-        marginLeft: WIDTH * 0.05,
+        height: HEIGHT * 0.16,
     },
     backgroundImage: {
         position: 'absolute',
@@ -54,24 +55,16 @@ const styles = StyleSheet.create({
         height: '105%',
         opacity: 0.3,
     },
-    contentContainer: {
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        paddingHorizontal: WIDTH * 0.03,
-        height: '100%',
-    },
+
     promoImage: {
-        height: HEIGHT * 0.45,
-        width: HEIGHT * 0.20,
+        height: HEIGHT * 0.19,
+        position: 'absolute',
         borderRadius: WIDTH * 0.05,
-        // marginRight: WIDTH * 0.04,
-        marginTop: HEIGHT * 0.1,
     },
     textContainer: {
+        marginTop: HEIGHT * 0.02,
+        marginLeft: WIDTH * 0.5,
         justifyContent: 'flex-end',
-        // marginLeft: WIDTH * 0.1,
-        alignItems: 'flex-start',
     },
     promoText: {
         fontSize: 18,
@@ -93,3 +86,4 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
 });
+

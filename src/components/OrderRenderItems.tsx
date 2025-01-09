@@ -62,12 +62,12 @@ const OrderRenderItems: React.FC<OrderProps> = ({ handleDelete, item, isSelected
     return (
         <Swipeable renderRightActions={renderRightActions} friction={1} rightThreshold={WIDTH * 0.8} onSwipeableWillClose={onSwipeableWillClose} >
             <TouchableOpacity
-                style={[styles.orderItems, { backgroundColor: currentTheme['lightWhite'] }, isSelected && styles.selectedCard]}
+                style={[styles.orderItems, { backgroundColor: currentTheme.lightWhite }, isSelected && styles.selectedCard]}
             // onPress={() => onCardPress && onCardPress()}
             >
                 <Image source={item.imgURL} style={styles.image} />
                 <View style={styles.textContainer}>
-                    <Text style={[styles.orderTitle, { color: currentTheme['defaultTextColor'] }]}>{item.title}</Text>
+                    <Text style={[styles.orderTitle, { color: currentTheme.defaultTextColor }]}>{item.title}</Text>
                     <Text style={styles.orderName}>{item.restaurantName}</Text>
                     <Text style={styles.orderPrice}>$ {item.price}</Text>
                 </View>
@@ -81,7 +81,7 @@ const OrderRenderItems: React.FC<OrderProps> = ({ handleDelete, item, isSelected
                         <TouchableOpacity onPress={handleDecrease} style={[styles.reduceButton, { backgroundColor: currentTheme.name === 'dark' ? `${commonColor.greenColor}20` : '#EAFAF2' }]}>
                             <Text style={styles.reduceText}>-</Text>
                         </TouchableOpacity>
-                        <Text style={{ color: currentTheme['defaultTextColor'] }}>{counter}</Text>
+                        <Text style={{ color: currentTheme.defaultTextColor }}>{counter}</Text>
                         <TouchableOpacity onPress={handleIncrease} style={styles.addButton}>
                             <Text style={styles.addText}>+</Text>
                         </TouchableOpacity>

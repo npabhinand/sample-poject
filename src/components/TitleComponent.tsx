@@ -13,8 +13,8 @@ const TitleComponent: React.FC<TitleComponentProps> = ({ title1, title2, size })
     const currentTheme = useSelector(selectColorTheme);
     return (
         <View>
-            <Text style={[styles.titleStyle, { fontSize: size }, { color: currentTheme['defaultTextColor'] }]}>{title1}</Text>
-            <Text style={[styles.titleStyle, { fontSize: size }, { color: currentTheme['defaultTextColor'] }]}>{title2}</Text>
+            <Text style={[styles.titleStyle, { fontSize: size }, { color: currentTheme.defaultTextColor }]}>{title1}</Text>
+            <Text style={[styles.titleStyle, { fontSize: size }, { color: currentTheme.defaultTextColor }]}>{title2}</Text>
         </View>
     );
 };

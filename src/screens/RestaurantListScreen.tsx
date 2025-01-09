@@ -29,11 +29,8 @@ const RestaurantListScreen = () => {
     function handleSearchData(data: restaurantItem) {
         setSearchData(data);
     }
-    console.log('====================================');
-    console.log(currentTheme);
-    console.log('====================================');
     return (
-        <View style={[styles.container, styles.marginLeft, { backgroundColor: currentTheme['themeColor'] }]}>
+        <View style={[styles.container, styles.marginLeft, { backgroundColor: currentTheme.themeColor }]}>
 
             <FlatList
                 numColumns={2}
@@ -44,17 +41,17 @@ const RestaurantListScreen = () => {
                     <RestaurantRenderItems item={item} navigate={'ProductDetailScreen'} />
                 )}
                 ListHeaderComponent={<>
-                    <Pressable style={styles.buttonStyle} onPress={() => { navigation.goBack(); }}>
+                    <Pressable style={[styles.buttonStyle, { backgroundColor: currentTheme.name === 'dark' ? '#251C13' : '#FDF5EB' }]} onPress={() => { navigation.goBack(); }}>
                         <Image source={backIcon} />
                     </Pressable>
                     <HomeTitleContainer isFilterButton={true} data={sections} sendSearchData={handleSearchData} />
 
                     <View style={styles.ViewMoreContainer}>
-                        <Text style={[styles.heading2, { color: currentTheme['defaultTextColor'] }]}>Popular Restaurant</Text>
+                        <Text style={[styles.heading2, { color: currentTheme.defaultTextColor }]}>Popular Restaurant</Text>
                     </View>
                 </>}
 
-                ListHeaderComponentStyle={{ marginTop: HEIGHT * 0.05 }}
+                ListHeaderComponentStyle={styles.headerStyle}
             />
         </View>
     );
@@ -63,6 +60,10 @@ const RestaurantListScreen = () => {
 export default RestaurantListScreen;
 
 const styles = StyleSheet.create({
+    headerStyle: {
+        marginTop: HEIGHT * 0.05,
+        marginLeft: WIDTH * 0.05,
+    },
     marginLeft: {
         // paddingLeft: WIDTH * 0.05,
         // marginVertical: HEIGHT * 0.02,
@@ -72,9 +73,9 @@ const styles = StyleSheet.create({
         // backgroundColor: '#F9FBFF',
     },
     cards: {
-        justifyContent: 'space-around',
-        paddingLeft: WIDTH * 0.05,
-        alignItems: 'center',
+        // justifyContent: 'space-around',
+        // paddingLeft: WIDTH * 0.05,
+        // alignItems: 'center',
     },
     ViewMoreContainer: {
         flexDirection: 'row',

@@ -14,9 +14,10 @@ import { selectColorTheme } from '../reducers/colorThemeSlice';
 
 function HomeScreen() {
     const currentTheme = useSelector(selectColorTheme);
+
     return (
         <>
-            <SafeAreaView style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]}>
+            <SafeAreaView style={[styles.container, { backgroundColor: currentTheme.themeColor }]}>
                 <ScrollView contentContainerStyle={styles.scrollViewContainer} bounces={false}>
                     <HomeTitleContainer isFilterButton={true} />
 
@@ -52,11 +53,8 @@ export default HomeScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // backgroundColor: '#F9FBFF',
 
     }, horizontalScroll: {
-        marginLeft: WIDTH * 0.03,
-        marginRight: WIDTH * 0.02,
         marginTop: HEIGHT * 0.01,
     },
     scrollViewContainer: {

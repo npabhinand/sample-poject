@@ -7,7 +7,7 @@ import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { filterIcon, notificationIcon, searchIcon } from '../assets/icons';
 import { HEIGHT, WIDTH } from '../common/dimensions';
 import { RootStackParamList } from '../navigation/AppNavigator';
-import { selectColorTheme, } from '../reducers/colorThemeSlice';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
 import { useSelector } from 'react-redux';
 import { commonColor } from '../common/colors';
 
@@ -19,7 +19,7 @@ interface filterProps {
 }
 
 const HomeTitleContainer: React.FC<filterProps> = (props) => {
-    const { isFilterButton, data, sendSearchData } = props
+    const { isFilterButton, data, sendSearchData } = props;
     const navigation = useNavigation<NavigationProp<RootStackParamList, 'NotificationScreen', 'FilterScreen'>>();
     const currentTheme = useSelector(selectColorTheme);
 
@@ -37,7 +37,7 @@ const HomeTitleContainer: React.FC<filterProps> = (props) => {
             <BackgroundImage />
             <View style={styles.titleRow}>
                 <TitleComponent title1="Find Your" title2="Favorite Food" size={31} />
-                <TouchableOpacity style={[styles.notificationButton, { backgroundColor: currentTheme.name === 'dark' ? `${commonColor.darkGray}40` : currentTheme['lightColor'] }]} onPress={() => { navigation.navigate('NotificationScreen'); }}>
+                <TouchableOpacity style={[styles.notificationButton, { backgroundColor: currentTheme.name === 'dark' ? `${commonColor.darkGray}40` : currentTheme.lightWhite }]} onPress={() => { navigation.navigate('NotificationScreen'); }}>
                     <Image source={notificationIcon} />
                 </TouchableOpacity>
             </View>
@@ -45,29 +45,29 @@ const HomeTitleContainer: React.FC<filterProps> = (props) => {
             <View style={styles.searchRow}>
                 {!(isFilterButton) ? <>
                     <View style={[styles.updatedContainer, {
-                        backgroundColor: currentTheme['name'] === 'dark' ? currentTheme['lightWhite'] : "#FEF6ED"
+                        backgroundColor: currentTheme.name === 'dark' ? currentTheme.lightWhite : '#FEF6ED',
                     }]}>
-                        <Image style={[styles.searchIcon, { tintColor: currentTheme.name === 'dark' ? currentTheme['commonWhite'] : '#DB651B' }]} source={searchIcon} />
+                        <Image style={[styles.searchIcon, { tintColor: currentTheme.name === 'dark' ? currentTheme.commonWhite : '#DB651B' }]} source={searchIcon} />
                         <TextInput
-                            style={[isFilterButton ? styles.input : styles.inputUpdated, { backgroundColor: currentTheme['name'] === 'dark' ? currentTheme['lightWhite'] : "#FEF6ED" }]}
-                            placeholderTextColor={currentTheme['name'] === 'dark' ? currentTheme['grayColor'] : '#F2C3A1'}
+                            style={[isFilterButton ? styles.input : styles.inputUpdated, { backgroundColor: currentTheme.name === 'dark' ? currentTheme.lightWhite : '#FEF6ED' }]}
+                            placeholderTextColor={currentTheme.name === 'dark' ? currentTheme.grayColor : '#F2C3A1'}
                             placeholder=" What do you want to order?"
                         />
                     </View>
                 </> : <>
                     <View style={[styles.searchContainer, {
-                        backgroundColor: currentTheme['name'] === 'dark' ? currentTheme['lightWhite'] : "#FEF6ED"
+                        backgroundColor: currentTheme.name === 'dark' ? currentTheme.lightWhite : '#FEF6ED',
                     }]}>
-                        <Image style={[styles.searchIcon, { tintColor: currentTheme.name === 'dark' ? currentTheme['commonWhite'] : '#DB651B' }]} source={searchIcon} />
+                        <Image style={[styles.searchIcon, { tintColor: currentTheme.name === 'dark' ? currentTheme.commonWhite : '#DB651B' }]} source={searchIcon} />
                         <TextInput
                             style={[styles.input]}
                             placeholder=" What do you want to order?"
-                            placeholderTextColor={currentTheme['name'] === 'dark' ? currentTheme['grayColor'] : '#F2C3A1'}
+                            placeholderTextColor={currentTheme.name === 'dark' ? currentTheme.grayColor : '#F2C3A1'}
                             onChangeText={newText => onChangeSearch(newText)}
                         />
                     </View>
-                    <TouchableOpacity style={[styles.filterButton, { backgroundColor: currentTheme.name === 'dark' ? currentTheme['lightWhite'] : '#FEF6ED' }]} onPress={() => navigation.navigate('FilterScreen')}>
-                        <Image source={filterIcon} style={{ tintColor: currentTheme.name === 'dark' ? currentTheme['commonWhite'] : '#DB651B' }} />
+                    <TouchableOpacity style={[styles.filterButton, { backgroundColor: currentTheme.name === 'dark' ? currentTheme.lightWhite : '#FEF6ED' }]} onPress={() => navigation.navigate('FilterScreen')}>
+                        <Image source={filterIcon} style={{ tintColor: currentTheme.name === 'dark' ? currentTheme.commonWhite : '#DB651B' }} />
                     </TouchableOpacity>
                 </>}
 
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         // shadowColor: '#fff',
         shadowOpacity: 0.1,
         shadowRadius: 4,
-        marginRight: WIDTH * 0.01,
+        marginRight: WIDTH * 0.05,
     },
     titleRow: {
         padding: 20,

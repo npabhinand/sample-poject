@@ -30,15 +30,15 @@ const ChatScreen = () => {
     };
 
     return (
-        <View style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]}>
+        <View style={[styles.container, { backgroundColor: currentTheme.themeColor }]}>
             <BackgroundImage2 />
             <ChatTitleComponent title="Chat" />
 
-            <View style={[styles.profileContainer, { backgroundColor: currentTheme.name === 'dark' ? `${commonColor.darkGray}40` : currentTheme['lightWhite'] }]}>
+            <View style={[styles.profileContainer, { backgroundColor: currentTheme.name === 'dark' ? `${commonColor.darkGray}40` : currentTheme.lightWhite }]}>
                 <View style={styles.profileRow}>
                     <Image source={profile1} />
                     <View style={styles.textContainer}>
-                        <Text style={[styles.nameTitle, styles.marginTop, { color: currentTheme['defaultTextColor'] }]}>Dianne Russell</Text>
+                        <Text style={[styles.nameTitle, styles.marginTop, { color: currentTheme.defaultTextColor }]}>Dianne Russell</Text>
                         <View style={styles.profileRow}>
                             <Image source={dotIcon} />
                             <Text style={styles.chatText}> online</Text>
@@ -46,7 +46,7 @@ const ChatScreen = () => {
                     </View>
                 </View>
                 <TouchableOpacity style={[styles.iconButton, { backgroundColor: currentTheme.name === 'dark' ? `${commonColor.darkGray}40` : '#EAFAF2' }]} onPress={() => navigation.navigate('CallingScreen')}>
-                    <Image source={callIcon} style={{ tintColor: currentTheme.name === 'dark' ? currentTheme['commonWhite'] : '#40C97C' }} />
+                    <Image source={callIcon} style={{ tintColor: currentTheme.name === 'dark' ? currentTheme.commonWhite : '#40C97C' }} />
                 </TouchableOpacity>
             </View>
 
@@ -62,13 +62,13 @@ const ChatScreen = () => {
             </View>
 
 
-            <View style={[styles.inputContainer, { backgroundColor: currentTheme['lightWhite'] }]}>
+            <View style={[styles.inputContainer, { backgroundColor: currentTheme.lightWhite }]}>
                 <TextInput
                     value={message}
                     onChangeText={setMessage}
-                    style={[styles.inputField, { color: currentTheme['defaultTextColor'] }]}
+                    style={[styles.inputField, { color: currentTheme.defaultTextColor }]}
                     placeholder="Type a message..."
-                    placeholderTextColor={currentTheme['defaultTextColor']}
+                    placeholderTextColor={currentTheme.defaultTextColor}
                 />
                 <TouchableOpacity onPress={sendMessage} style={styles.sendButton}>
                     <Image source={sendIcon} />

@@ -13,7 +13,7 @@ const ChatBubble: React.FC<chatProps> = (props) => {
     const currentTheme = useSelector(selectColorTheme);
     return (
         <View style={[styles.chatBubbleContainer, isSent ? styles.leftAlign : styles.rightAlign]} >
-            <View style={[styles.chatBubble, isSent ? [{ backgroundColor: currentTheme.name === 'dark' ? currentTheme['lightWhite'] : '#F6F6F6' }] : styles.sentBubble]} >
+            <View style={[styles.chatBubble, isSent ? [{ backgroundColor: currentTheme.name === 'dark' ? currentTheme.lightWhite : '#F6F6F6' }] : styles.sentBubble]} >
                 <Text style={isSent ? styles.receivedText : styles.sendText}>{content}</Text>
             </View>
         </View>

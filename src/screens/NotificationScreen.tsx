@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 const NotificationScreen = () => {
     const currentTheme = useSelector(selectColorTheme);
     return (
-        <View style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]}>
+        <View style={[styles.container, { backgroundColor: currentTheme.themeColor }]}>
             <BackgroundImage />
             <ChatTitleComponent title="Notification" />
             <View>

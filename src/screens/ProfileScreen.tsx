@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View, ScrollView, FlatList } from 'react-native';
+import { Image, StyleSheet, Text, View, ScrollView } from 'react-native';
 import { ProfileImage } from '../assets/images';
 import { EditIcon1, VoucherIcon } from '../assets/icons';
 import { HEIGHT, WIDTH } from '../common/dimensions';
@@ -13,22 +13,22 @@ function ProfileScreen() {
     return (
         <View>
             <Image source={ProfileImage} style={styles.imageContainer} />
-            <ScrollView contentContainerStyle={[styles.scrollContent, { backgroundColor: currentTheme['themeColor'] }]} nestedScrollEnabled={true} bounces={false}>
+            <ScrollView contentContainerStyle={[styles.scrollContent, { backgroundColor: currentTheme.themeColor }]} nestedScrollEnabled={true} bounces={false}>
                 <View style={styles.cardContainer}>
                     <Text style={styles.txt}>Member Gold</Text>
                     <View style={styles.row}>
-                        <Text style={[styles.title, { color: currentTheme['defaultTextColor'] }]}>Anam Wusono</Text>
+                        <Text style={[styles.title, { color: currentTheme.defaultTextColor }]}>Anam Wusono</Text>
                         <Image source={EditIcon1} />
                     </View>
                     <Text style={styles.subTxt}>anamwp66@gmail.com</Text>
-                    <View style={[styles.voucherRow, { backgroundColor: currentTheme['lightWhite'] }]}>
+                    <View style={[styles.voucherRow, { backgroundColor: currentTheme.lightWhite }]}>
                         <Image source={VoucherIcon} />
-                        <Text style={[styles.voucherTxt, { color: currentTheme['defaultTextColor'] }]}>You Have 3 Voucher</Text>
+                        <Text style={[styles.voucherTxt, { color: currentTheme.defaultTextColor }]}>You Have 3 Voucher</Text>
                     </View>
                 </View>
 
                 <View style={styles.alignContainer}>
-                    <Text style={[styles.voucherTxt, { color: currentTheme['defaultTextColor'] }]}>Favorite</Text>
+                    <Text style={[styles.voucherTxt, { color: currentTheme.defaultTextColor }]}>Favorite</Text>
                     {orderContents.map((item, index) => (
                         <ProcessRender
                             order={item} key={index}

@@ -14,7 +14,7 @@ import { selectColorTheme } from '../reducers/colorThemeSlice';
 const ChatListScreen = () => {
     const currentTheme = useSelector(selectColorTheme);
     return (
-        <View style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]}>
+        <View style={[styles.container, { backgroundColor: currentTheme.themeColor }]}>
             <BackgroundImage />
             <ChatTitleComponent title={'Chat'} />
             <FlatList

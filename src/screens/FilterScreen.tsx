@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import { View, StyleSheet, Text, TouchableOpacity, Pressable, Image, SafeAreaView } from 'react-native';
 import React from 'react';
 import FilterButton from '../components/FilterButton';
@@ -33,16 +34,16 @@ const FilterScreen = () => {
     };
 
     return (
-        <SafeAreaView style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]}>
+        <SafeAreaView style={[styles.container, { backgroundColor: currentTheme.themeColor }]}>
             <View style={styles.titleView}>
-                <Pressable style={styles.backButtonStyle} onPress={() => { navigation.goBack(); }}>
+                <Pressable style={[styles.backButtonStyle, { backgroundColor: currentTheme.name === 'dark' ? '#251C13' : '#FDF5EB' }]} onPress={() => { navigation.goBack(); }}>
                     <Image source={backIcon} />
                 </Pressable>
                 <HomeTitleContainer isFilterButton={false} />
             </View>
 
             <View style={styles.marginLeft}>
-                <Text style={[styles.heading2, { color: currentTheme['defaultTextColor'] }]}>Type</Text>
+                <Text style={[styles.heading2, { color: currentTheme.defaultTextColor }]}>Type</Text>
                 <View style={styles.rowButtons}>
                     {typeButton.map((buttonName, id) => (
                         <FilterButton
@@ -56,7 +57,7 @@ const FilterScreen = () => {
             </View>
 
             <View style={styles.marginLeft}>
-                <Text style={[styles.heading2, { color: currentTheme['defaultTextColor'] }]}>Location</Text>
+                <Text style={[styles.heading2, { color: currentTheme.defaultTextColor }]}>Location</Text>
                 <View style={styles.rowButtons}>
                     {locationButton.map((buttonName, id) => (
                         <FilterButton
@@ -70,7 +71,7 @@ const FilterScreen = () => {
             </View>
 
             <View style={styles.marginLeft}>
-                <Text style={[styles.heading2, { color: currentTheme['defaultTextColor'] }]}>Food</Text>
+                <Text style={[styles.heading2, { color: currentTheme.defaultTextColor }]}>Food</Text>
                 <View style={styles.rowButtons}>
                     {foodButton.map((buttonName, id) => (
                         <FilterButton

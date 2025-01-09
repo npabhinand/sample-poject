@@ -17,6 +17,8 @@ const light = {
     lightWhite: '#FFFFFF',
     sky: '#DE5E69',
     gray: 'gray',
+    lightGreenButtonColor: '#EBFAF2',
+    ratingColor: '#FCE6BB',
     ...commonColor,
 };
 
@@ -27,6 +29,8 @@ const dark = {
     lightWhite: '#252525',
     sky: '#831a23',
     gray: 'white',
+    ratingColor: '#553D13',
+    lightGreenButtonColor: '#13261D',
     ...commonColor,
 };
 

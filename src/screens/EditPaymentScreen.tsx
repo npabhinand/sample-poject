@@ -17,7 +17,7 @@ const EditPaymentScreen = () => {
     };
 
     return (
-        <View style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]}>
+        <View style={[styles.container, { backgroundColor: currentTheme.themeColor }]}>
             <BackgroundImage />
             <ChatTitleComponent title="Payment" />
             {paymentContent.map((payment, index) => (
@@ -26,17 +26,17 @@ const EditPaymentScreen = () => {
                     style={[
                         styles.cardContainer,
                         selectedIndex === index ? styles.selected : styles.notSelected,
-                        { backgroundColor: currentTheme['lightWhite'] }]}
+                        { backgroundColor: currentTheme.lightWhite }]}
                     onPress={() => handlePress(index)}
                 >
                     <Image
                         source={payment.imgURL}
                         style={{
-                            tintColor: currentTheme.name === "dark" ? currentTheme['commonWhite'] : undefined
+                            tintColor: currentTheme.name === 'dark' ? currentTheme.commonWhite : undefined,
                         }}
                     />
 
-                    <Text style={{ color: currentTheme['defaultTextColor'] }}>{payment.cardNumber}</Text>
+                    <Text style={{ color: currentTheme.defaultTextColor }}>{payment.cardNumber}</Text>
                 </TouchableOpacity>
             ))}
         </View>

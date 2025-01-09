@@ -26,14 +26,14 @@ const PaymentCard: React.FC<ItemsProps> = (props) => {
     };
 
     return (
-        <View style={[styles.container, { backgroundColor: currentTheme['lightWhite'] }]} >
+        <View style={[styles.container, { backgroundColor: currentTheme.lightWhite }]} >
             <View style={styles.row}>
                 <Text style={styles.orderName}>{title}</Text>
                 <Text onPress={handleNavigate} style={styles.editTxt}>Edit</Text>
             </View>
             <View style={[styles.row, styles.textContainer]}>
                 <Image source={logo} />
-                <Text style={[styles.orderTitle, descriptionTextWeight === 'bold' ? styles.boldTitle : styles.normalTitle, { color: currentTheme['defaultTextColor'] }]}>
+                <Text style={[styles.orderTitle, descriptionTextWeight === 'bold' ? styles.boldTitle : styles.normalTitle, { color: currentTheme.defaultTextColor }]}>
                     {description}
                 </Text>
             </View>

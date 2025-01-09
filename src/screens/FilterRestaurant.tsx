@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, StyleSheet, Text, FlatList, View, Pressable, Image } from 'react-native';
+import { StyleSheet, Text, FlatList, View, Pressable, Image, SafeAreaView } from 'react-native';
 import RestaurantRenderItems from '../components/RestaurantRenderItems';
 import HomeTitleContainer from '../components/HomeTitleContainer';
 import { sections } from '../data/commonArray';
@@ -27,11 +27,11 @@ const FilterRestaurant = () => {
     };
 
     return (
-        <SafeAreaView style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]}>
+        <View style={[styles.container, { backgroundColor: currentTheme.themeColor }]}>
             <FlatList
                 numColumns={2}
                 ListHeaderComponent={<>
-                    <Pressable style={styles.backButtonStyle} onPress={() => { navigation.goBack(); }}>
+                    <Pressable style={[styles.backButtonStyle, { backgroundColor: currentTheme.name === 'dark' ? '#251C13' : '#FDF5EB' }]} onPress={() => { navigation.goBack(); }}>
                         <Image source={backIcon} />
                     </Pressable>
                     {/* <View style={styles.titleContiner}> */}
@@ -50,13 +50,14 @@ const FilterRestaurant = () => {
                         ))}
                     </View>
                     {/* </View> */}
-                    <Text style={[styles.heading2, styles.marginLeft]}>Popular Restaurants</Text>
+                    <Text style={[styles.heading2, styles.marginLeft, { color: currentTheme.defaultTextColor }]}>Popular Restaurants</Text>
                 </>}
+                ListHeaderComponentStyle={styles.headerStyle}
                 contentContainerStyle={styles.cards}
                 data={sections}
                 renderItem={({ item }) => <RestaurantRenderItems item={item} navigate="ProductDetailScreen" />}
             />
-        </SafeAreaView>
+        </View>
     );
 };
 
@@ -66,14 +67,17 @@ const styles = StyleSheet.create({
     container: {
         // flex: 1,
         backgroundColor: '#F9FBFF',
-    },
-    cards: {
-        alignSelf: 'center',
-        justifyContent: 'space-evenly',
+    }, headerStyle: {
+        marginTop: HEIGHT * 0.05,
         marginLeft: WIDTH * 0.04,
     },
+    cards: {
+        // alignSelf: 'center',
+        // alignItems: 'center',
+        justifyContent: 'space-between',
+    },
     marginLeft: {
-        marginLeft: WIDTH * 0.05,
+        marginLeft: WIDTH * 0.04,
     },
     heading2: {
         fontSize: 15,

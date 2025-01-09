@@ -6,20 +6,25 @@ import { facebookIcon, googleIcon } from '../assets/icons';
 import LoginTitleComponent from '../components/LoginTitleComponent';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../navigation/AppNavigator';
+import { useSelector } from 'react-redux';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
 // import ToggleSwitch from 'toggle-switch-react-native';
 
 const LoginScreen = () => {
     const navigation = useNavigation<NavigationProp<RootStackParamList, 'HomeTab'>>();
+    const currentTheme = useSelector(selectColorTheme);
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { backgroundColor: currentTheme.themeColor }]}>
             <LoginTitleComponent title="Login To Your Account" />
             <View style={styles.inputContainer}>
-                <TextInput placeholder="Email" style={styles.input} />
-                <TextInput placeholder="password" style={styles.input} />
-                <Text style={styles.txt}>Or Continue With</Text>
+                <TextInput placeholder="Email" style={[styles.input, { backgroundColor: currentTheme.lightWhite }]} placeholderTextColor={'#888'} />
+                <TextInput placeholder="password" style={[styles.input, { backgroundColor: currentTheme.lightWhite }]} placeholderTextColor={'#888'} />
+                <Text style={[styles.txt, { color: currentTheme.defaultTextColor }]}>Or Continue With</Text>
                 <View style={styles.row}>
-                    <Pressable style={styles.buttonStyle}><Image source={facebookIcon} /><Text>FaceBook</Text></Pressable>
-                    <Pressable style={styles.buttonStyle}><Image source={googleIcon} /><Text>Google</Text></Pressable>
+                    <Pressable style={[styles.buttonStyle, { backgroundColor: currentTheme.lightWhite }]}><Image source={facebookIcon} />
+                        <Text style={{ color: currentTheme.defaultTextColor }}>FaceBook</Text></Pressable>
+                    <Pressable style={[styles.buttonStyle, { backgroundColor: currentTheme.lightWhite }]}><Image source={googleIcon} />
+                        <Text style={{ color: currentTheme.defaultTextColor }}>Google</Text></Pressable>
                 </View>
                 <Text style={styles.subTxt}>Forgot Your Password?</Text>
 
@@ -40,13 +45,8 @@ const styles = StyleSheet.create({
     input: {
         width: WIDTH * 0.85,
         height: HEIGHT * 0.06,
-        // borderWidth: 1,
-        // marginLeft: WIDTH * 0.15,
         backgroundColor: '#fff',
         shadowColor: '#F8F8FE',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 1,
-        shadowRadius: 4,
         marginTop: HEIGHT * 0.02,
         borderRadius: WIDTH * 0.03,
         paddingLeft: WIDTH * 0.08,
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
         borderRadius: WIDTH * 0.03,
     }, subTxt: {
         color: '#44D581',
-        textDecorationLine: 'underline',
+        // textDecorationLine: 'underline',
         marginTop: HEIGHT * 0.03,
         marginBottom: HEIGHT * 0.05,
     }, submitBtn: {

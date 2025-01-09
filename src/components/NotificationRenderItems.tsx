@@ -10,10 +10,10 @@ const WIDTH = Dimensions.get('screen').width;
 const NotificationRenderItems = ({ item }: any) => {
     const currentTheme = useSelector(selectColorTheme);
     return (
-        <View style={[styles.notificationItems, { backgroundColor: currentTheme['lightWhite'] }]} >
+        <View style={[styles.notificationItems, { backgroundColor: currentTheme.lightWhite }]} >
             <Image source={item.imgURl} />
             <View style={styles.textContainer}>
-                <Text style={[styles.notificationTitle, { color: currentTheme['defaultTextColor'] }]}>{item.content}</Text>
+                <Text style={[styles.notificationTitle, { color: currentTheme.defaultTextColor }]}>{item.content}</Text>
                 <Text style={styles.notificationTime}>{item.time}</Text>
             </View>
         </View>

@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 const RateDriverScreen = () => {
     const currentTheme = useSelector(selectColorTheme);
     return (
-        <View style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]}>
+        <View style={[styles.container, { backgroundColor: currentTheme.themeColor }]}>
             <BackgroundImage2 />
             <RatingComponent description1="Order Completed" description2="Please rate your last Driver" navigate="RateFoodScreen" image={rateDriver} />
         </View>

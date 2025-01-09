@@ -30,7 +30,7 @@ const OrderScreen = () => {
 
     if (selectedCart.length === 0) {
         return (
-            <View style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]}>
+            <View style={[styles.container, { backgroundColor: currentTheme.themeColor }]}>
                 <BackgroundImage />
                 <ChatTitleComponent title="Order details" />
                 <Text style={styles.title}>No items added to orders</Text>
@@ -39,7 +39,7 @@ const OrderScreen = () => {
     }
 
     return (
-        <View style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]}>
+        <View style={[styles.container, { backgroundColor: currentTheme.themeColor }]}>
             <BackgroundImage />
             <ChatTitleComponent title="Order details" />
             <FlatList

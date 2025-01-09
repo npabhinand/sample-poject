@@ -12,13 +12,13 @@ const ShippingComponent = () => {
     return (
         <>
             {address.map((location, index) => (
-                <View style={[styles.container, { backgroundColor: currentTheme['lightWhite'] }]} key={index}>
+                <View style={[styles.container, { backgroundColor: currentTheme.lightWhite }]} key={index}>
                     <Text style={styles.orderName}>
                         {location.set}
                     </Text>
                     <View style={styles.row}>
                         <Image source={locationIcon} />
-                        <Text style={[styles.orderTitle, { color: currentTheme['defaultTextColor'] }]}>{location.name}</Text>
+                        <Text style={[styles.orderTitle, { color: currentTheme.defaultTextColor }]}>{location.name}</Text>
                     </View>
                     {location.id === 1 ? (
                         <></>

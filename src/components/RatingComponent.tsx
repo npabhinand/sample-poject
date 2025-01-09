@@ -38,8 +38,8 @@ const RatingComponent: React.FC<CallingProps> = ({
     return (
         <View style={styles.container}>
             <Image source={image} style={styles.personImage} />
-            <Text style={[styles.nameText, { color: currentTheme['defaultTextColor'] }]}>Thank You!</Text>
-            <Text style={[styles.nameText, { color: currentTheme['defaultTextColor'] }]}>{description1}</Text>
+            <Text style={[styles.nameText, { color: currentTheme.defaultTextColor }]}>Thank You!</Text>
+            <Text style={[styles.nameText, { color: currentTheme.defaultTextColor }]}>{description1}</Text>
             <Text style={styles.subText}>{description2}</Text>
 
             <View style={styles.starRow}>
@@ -50,7 +50,7 @@ const RatingComponent: React.FC<CallingProps> = ({
                             style={[
                                 styles.starIcon,
                                 {
-                                    tintColor: star <= rating ? '#FFB51F' : '#553D13',
+                                    tintColor: star <= rating ? '#FFB51F' : currentTheme.ratingColor,
                                     transform: star === rating ? [{ scale: 0.9 }] : [{ scale: 0.7 }],
                                 }
                             ]}

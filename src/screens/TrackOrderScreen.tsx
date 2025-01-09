@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { darkMapImage2, deliveryBoyImage, greenCar, line, line2, mapImage, pattern2, track } from '../assets/images';
@@ -34,13 +35,13 @@ const TrackOrderScreen = () => {
             }
 
 
-            <View style={[styles.card, { backgroundColor: currentTheme['themeColor'] }]}>
-                <Image source={pattern2} style={[styles.cardBackground,]} />
-                <Text style={[styles.title, { color: currentTheme['defaultTextColor'] }]}>Track Orders</Text>
-                <View style={[styles.locationContainer, { backgroundColor: currentTheme['lightWhite'] }]}>
+            <View style={[styles.card, { backgroundColor: currentTheme.themeColor }]}>
+                <Image source={pattern2} style={[styles.cardBackground]} />
+                <Text style={[styles.title, { color: currentTheme.defaultTextColor }]}>Track Orders</Text>
+                <View style={[styles.locationContainer, { backgroundColor: currentTheme.lightWhite }]}>
                     <Image source={deliveryBoyImage} style={styles.locationIcon} />
                     <View >
-                        <Text style={[styles.nameText, { color: currentTheme['defaultTextColor'] }]}>Mr Kemplas</Text>
+                        <Text style={[styles.nameText, { color: currentTheme.defaultTextColor }]}>Mr Kemplas</Text>
                         <View style={styles.row}>
                             <Image source={mapIcon} />
                             <Text style={styles.text}>25 minutes on the way</Text>
@@ -49,13 +50,13 @@ const TrackOrderScreen = () => {
 
                 </View>
                 <View style={styles.btnContainer}>
-                    <TouchableOpacity style={[styles.callButton, { backgroundColor: currentTheme.name === "dark" ? "#45D984" : "#fff" }]} onPress={() => { navigation.navigate('HomeTab'); }}>
-                        <Image source={callIcon} style={{ tintColor: currentTheme.name === "dark" ? "#fff" : "#45D984" }} />
-                        <Text style={[styles.buttonText, { color: currentTheme.name === "dark" ? "#fff" : "#45D984" }]}>Call</Text>
+                    <TouchableOpacity style={[styles.callButton, { backgroundColor: currentTheme.name === 'dark' ? '#45D984' : '#fff' }]} onPress={() => { navigation.navigate('HomeTab'); }}>
+                        <Image source={callIcon} style={{ tintColor: currentTheme.name === 'dark' ? '#fff' : '#45D984' }} />
+                        <Text style={[styles.buttonText, { color: currentTheme.name === 'dark' ? '#fff' : '#45D984' }]}>Call</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity style={[styles.MessageButton, { backgroundColor: currentTheme.name === "dark" ? "#fff" : "#45D984" }]}>
-                        <View style={[styles.btnView, { backgroundColor: currentTheme.name === "dark" ? "#45D984" : "#fff" }]}>
-                            <Image source={pathIcon} style={[styles.imagePosition, { tintColor: currentTheme.name === "dark" ? "#fff" : "#45D984" }]} />
+                    <TouchableOpacity style={[styles.MessageButton, { backgroundColor: currentTheme.name === 'dark' ? '#fff' : '#45D984' }]}>
+                        <View style={[styles.btnView, { backgroundColor: currentTheme.name === 'dark' ? '#45D984' : '#fff' }]}>
+                            <Image source={pathIcon} style={[styles.imagePosition, { tintColor: currentTheme.name === 'dark' ? '#fff' : '#45D984' }]} />
                         </View>
                     </TouchableOpacity>
                 </View>

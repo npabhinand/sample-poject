@@ -10,16 +10,16 @@ import { selectColorTheme } from '../reducers/colorThemeSlice';
 const Testimonials = () => {
     const currentTheme = useSelector(selectColorTheme);
     return (
-        <View style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]}>
-            <Text style={[styles.title, { color: currentTheme['defaultTextColor'] }]}>Testimonials</Text>
+        <View style={[styles.container, { backgroundColor: currentTheme.themeColor }]}>
+            <Text style={[styles.title, { color: currentTheme.defaultTextColor }]}>Testimonials</Text>
             {testimonials.map((testimonial, index) => (
-                <View style={[styles.cardContainer, { backgroundColor: currentTheme['lightWhite'] }]} key={index}>
+                <View style={[styles.cardContainer, { backgroundColor: currentTheme.lightWhite }]} key={index}>
                     <View style={styles.row}>
                         <Image source={testimonial.imgURL} />
                         <View style={styles.marginLeft}>
-                            <Text style={[styles.name, { color: currentTheme['defaultTextColor'] }]}>{testimonial.name}</Text>
+                            <Text style={[styles.name, { color: currentTheme.defaultTextColor }]}>{testimonial.name}</Text>
                             <Text style={styles.subTxt}>{testimonial.date}</Text>
-                            <Text style={[styles.reviewTxt, { color: currentTheme['defaultTextColor'] }]}>
+                            <Text style={[styles.reviewTxt, { color: currentTheme.defaultTextColor }]}>
                                 {testimonial.review}
                             </Text>
                         </View>

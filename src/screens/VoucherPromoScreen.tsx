@@ -2,13 +2,13 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React from 'react';
 import ChatTitleComponent from '../components/ChatTitleComponent';
 import { voucherPromo } from '../data/commonArray';
-import PromoComponent from '../components/PromoComponent';
 import BackgroundImage from '../components/BackgroundImage';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { HEIGHT, WIDTH } from '../common/dimensions';
 import { RootStackParamList } from '../navigation/AppNavigator';
 import { useSelector } from 'react-redux';
 import { selectColorTheme } from '../reducers/colorThemeSlice';
+import VoucherComponent from '../components/VoucherComponent';
 
 
 
@@ -17,12 +17,12 @@ const VoucherPromoScreen = () => {
     const navigation = useNavigation<NavigationProp<RootStackParamList, 'HomeTab'>>();
     const currentTheme = useSelector(selectColorTheme);
     return (
-        <View style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]}>
+        <View style={[styles.container, { backgroundColor: currentTheme.themeColor }]}>
             <BackgroundImage />
             <ChatTitleComponent title="Voucher Promo" />
             <View style={styles.promoContainer}>
                 {voucherPromo.map((voucher, index) => (
-                    <PromoComponent key={index} image={voucher.imageURL} btnText="Order Now" btnTextColor={voucher.btnTextColor} cardColor={voucher.cardColor} textColor={voucher.textColor} />
+                    <VoucherComponent key={index} image={voucher.imageURL} btnText="Order Now" btnTextColor={voucher.btnTextColor} cardColor={voucher.cardColor} textColor={voucher.textColor} />
                 ))}
             </View>
             <TouchableOpacity

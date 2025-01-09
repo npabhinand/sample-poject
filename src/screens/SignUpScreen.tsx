@@ -6,13 +6,16 @@ import { checkedIcon, emailIcon, passwordIcon, profileIcon, showIcon } from '../
 import LoginTitleComponent from '../components/LoginTitleComponent';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '../navigation/AppNavigator';
+import { useSelector } from 'react-redux';
+import { selectColorTheme } from '../reducers/colorThemeSlice';
 // import ToggleSwitch from 'toggle-switch-react-native';
 // import { SafeAreaView } from 'react-native-safe-area-context';
 
 const SignUpScreen = () => {
     const navigation = useNavigation<NavigationProp<RootStackParamList, 'LoginScreen'>>();
+    const currentTheme = useSelector(selectColorTheme);
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={[styles.container, { backgroundColor: currentTheme.themeColor }]}>
             {/* <ToggleSwitch
                 isOn={false}
                 onColor="light"
@@ -25,17 +28,17 @@ const SignUpScreen = () => {
             <LoginTitleComponent title="Sign Up For Free" />
             <View style={styles.inputContainer}>
                 <View style={styles.row}>
-                    <TextInput placeholder="Name" style={styles.input} />
+                    <TextInput placeholder="Name" style={[styles.input, { backgroundColor: currentTheme.lightWhite }]} placeholderTextColor={'#888'} />
                     <Image source={profileIcon} style={styles.iconStyle} />
                 </View>
                 <View style={styles.row}>
-                    <TextInput placeholder="Email" style={styles.input} />
+                    <TextInput placeholder="Email" style={[styles.input, { backgroundColor: currentTheme.lightWhite }]} placeholderTextColor={'#888'} />
                     <Image source={emailIcon} style={styles.iconStyle} />
                 </View>
                 <View style={styles.row}>
-                    <TextInput placeholder="Password" style={styles.input} />
+                    <TextInput placeholder="Password" style={[styles.input, { backgroundColor: currentTheme.lightWhite }]} placeholderTextColor={'#888'} />
                     <Image source={passwordIcon} style={styles.iconStyle} />
-                    <Image source={showIcon} style={styles.visibleIcon} />
+                    <Image source={showIcon} style={[styles.visibleIcon, { tintColor: currentTheme.name === 'dark' ? currentTheme.commonWhite : currentTheme.commonBlack }]} />
                 </View>
             </View>
             <View style={styles.checkList}>
@@ -62,14 +65,15 @@ const styles = StyleSheet.create({
     },
     input: {
         width: WIDTH * 0.85,
-        height: HEIGHT * 0.06,
+        height: HEIGHT * 0.07,
         // borderWidth: 1,
         // marginLeft: WIDTH * 0.15,
-        backgroundColor: '#fff',
-        shadowColor: '#F8F8FE',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 1,
-        shadowRadius: 4,
+        // backgroundColor: '#fff',
+        // shadowColor: '#F8F8FE',
+        // shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        // shadowRadius: 4,
+        // borderColor: 'black',
         marginTop: HEIGHT * 0.02,
         borderRadius: WIDTH * 0.03,
         paddingLeft: WIDTH * 0.14,

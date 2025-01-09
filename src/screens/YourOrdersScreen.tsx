@@ -21,7 +21,7 @@ const YourOrdersScreen = () => {
   };
 
   return (
-    <View style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]}>
+    <View style={[styles.container, { backgroundColor: currentTheme.themeColor }]}>
       <FlatList
         contentContainerStyle={styles.cards}
         data={orderContents}

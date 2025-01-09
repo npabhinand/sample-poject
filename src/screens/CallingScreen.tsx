@@ -28,11 +28,12 @@ const CallingScreen = () => {
     }, [ended, navigation]);
 
     return (
-        <View style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]} >
+        <View style={[styles.container, { backgroundColor: currentTheme.themeColor }]} >
             <ImageBackground source={backgroundImage2}>
                 <CallingComponent name={'Courtney Henry'} isEnded={ended} image={personImage} />
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity
+                        // eslint-disable-next-line react-native/no-inline-styles
                         style={[styles.buttonSize, { backgroundColor: currentTheme.name === 'dark' ? `${commonColor.greenColor}20` : '#EAFAF2' }]}
                         onPress={() => setMuted(!muted)}
                     >
@@ -56,7 +57,7 @@ export default CallingScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FEFEFF'
+        backgroundColor: '#FEFEFF',
     },
     buttonContainer: {
         position: 'absolute',

@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { Text, StyleSheet, Pressable } from 'react-native';
 import { HEIGHT, WIDTH } from '../common/dimensions';
@@ -16,10 +17,14 @@ const FilterButton: React.FC<FilterButtonProps> = ({ buttonName, onPress, isSele
     const currentTheme = useSelector(selectColorTheme);
     return (
         <Pressable
-            style={[styles.buttonStyle, isSelected && styles.selectedButton, { backgroundColor: currentTheme['name'] === 'dark' ? currentTheme['lightWhite'] : "#FEF6ED" }]}
+            style={[
+                styles.buttonStyle,
+                isSelected && { backgroundColor: '#DA6317' },
+                !isSelected && { backgroundColor: currentTheme.name === 'dark' ? currentTheme.lightWhite : '#FEF6ED' },
+            ]}
             onPress={() => onPress(buttonName)}
         >
-            <Text style={[styles.buttonText, isSelected && styles.selectedTxt, { color: currentTheme['name'] === 'dark' ? "#FEF6ED" : currentTheme['lightWhite'] }]}>
+            <Text style={[styles.buttonText, isSelected && styles.selectedTxt, { color: currentTheme.name === 'dark' ? '#FEF6ED' : currentTheme.lightWhite }]}>
                 {buttonName}
             </Text>
         </Pressable>

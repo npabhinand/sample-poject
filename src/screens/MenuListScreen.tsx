@@ -33,7 +33,7 @@ const MenuListScreen = () => {
     }
 
     return (
-        <View style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]}>
+        <View style={[styles.container, { backgroundColor: currentTheme.themeColor }]}>
             <FlatList
                 numColumns={1}
                 data={searchData}
@@ -45,12 +45,12 @@ const MenuListScreen = () => {
                 )}
                 ListHeaderComponent={
                     <>
-                        <Pressable style={styles.buttonStyle} onPress={() => { navigation.goBack(); }}>
+                        <Pressable style={[styles.buttonStyle, { backgroundColor: currentTheme.name === 'dark' ? '#251C13' : '#FDF5EB' }]} onPress={() => { navigation.goBack(); }}>
                             <Image source={backIcon} />
                         </Pressable>
 
                         <HomeTitleContainer isFilterButton={true} data={menuSections} sendSearchData={handleSearchData} />
-                        <Text style={[styles.heading2, { color: currentTheme['defaultTextColor'] }]}>Popular Menu</Text>
+                        <Text style={[styles.heading2, { color: currentTheme.defaultTextColor }]}>Popular Menu</Text>
                     </>
                 }
                 ListHeaderComponentStyle={styles.headerStyle}
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     },
     menuContainer: {
         // justifyContent: 'center',
-        alignItems: 'center',
+        // alignItems: 'center',
     },
     heading2: {
         fontSize: 15,
@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
     },
     headerStyle: {
         marginTop: HEIGHT * 0.05,
+        marginLeft: WIDTH * 0.03,
     },
     buttonStyle: {
         backgroundColor: '#FDF5EB',

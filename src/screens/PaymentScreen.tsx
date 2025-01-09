@@ -12,7 +12,7 @@ import { selectColorTheme } from '../reducers/colorThemeSlice';
 const PaymentScreen = () => {
     const currentTheme = useSelector(selectColorTheme);
     return (
-        <View style={[styles.container, { backgroundColor: currentTheme['themeColor'] }]}>
+        <View style={[styles.container, { backgroundColor: currentTheme.themeColor }]}>
             <BackgroundImage />
             <ChatTitleComponent title="Confirm Order" />
             <PaymentCard navigate="EditLocationScreen" title="Delivery To" description={'4517 Washington Ave. Manchester, Kentucky 39495'} descriptionTextWeight="bold" logo={locationIcon} />

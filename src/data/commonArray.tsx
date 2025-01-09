@@ -184,7 +184,7 @@ const voucherPromo = [
     btnText: 'Order Now',
     cardColor: '#3DC279',
     textColor: '#fff',
-    btnTextColor: '#fff',
+    btnTextColor: '#2F9C51',
 
   },
   {

@@ -40,7 +40,7 @@ const CustomTabBarIcon: React.FC<tabBarProps> = (props) => {
             ]}
         >
             <Image source={src} style={styles.imageColor} />
-            {focused && <Text style={[styles.tabLabel, { color: currentTheme['defaultTextColor'] }]}>{label}</Text>}
+            {focused && <Text style={[styles.tabLabel, { color: currentTheme.defaultTextColor }]}>{label}</Text>}
         </View>
     );
 };
@@ -53,7 +53,7 @@ export const HomeTabNavigator = () => {
                 tabBarShowLabel: false,
                 tabBarStyle: {
                     ...styles.tabBar,
-                    backgroundColor: currentTheme['lightWhite'],
+                    backgroundColor: currentTheme.lightWhite,
                 },
             }}
         >

@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, TouchableOpacity, Image, Pressable } from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
 import { selectColorTheme } from '../reducers/colorThemeSlice';
 import { useSelector } from 'react-redux';
 import { HEIGHT, WIDTH } from '../common/dimensions';
@@ -10,7 +10,7 @@ interface fadeProps {
   isOnCardPress?: boolean
 }
 const ProcessRender: React.FC<fadeProps> = (props) => {
-  const [fade, setFade] = useState('')
+  // const [fade, setFade] = useState('')
   const { order, orderStatus, isOnCardPress } = props;
   const currentTheme = useSelector(selectColorTheme);
   // const onCardPress =
@@ -19,7 +19,7 @@ const ProcessRender: React.FC<fadeProps> = (props) => {
     <Pressable
       style={[
         styles.orderItems,
-        { backgroundColor: currentTheme['lightWhite'] },
+        { backgroundColor: currentTheme.lightWhite },
       ]}
     // onPress={!(isOnCardPress ? ()=>onCardPress() : undefined)}
     >
@@ -28,7 +28,7 @@ const ProcessRender: React.FC<fadeProps> = (props) => {
         <Text
           style={[
             styles.orderTitle,
-            { color: currentTheme['defaultTextColor'] },
+            { color: currentTheme.defaultTextColor },
           ]}>
           {order.DishName}
         </Text>

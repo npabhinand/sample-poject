@@ -20,7 +20,7 @@ const MenuRenderItems: React.FC<itemProps> = ({ item }) => {
     const currentTheme = useSelector(selectColorTheme);
     return (
         <TouchableOpacity
-            style={[styles.menuItems, { backgroundColor: currentTheme['lightWhite'] }]}
+            style={[styles.menuItems, { backgroundColor: currentTheme.lightWhite }]}
             onPress={() => {
                 navigation.navigate('MenuDetailScreen', {
                     section: { item },
@@ -29,7 +29,7 @@ const MenuRenderItems: React.FC<itemProps> = ({ item }) => {
         >
             <Image source={item.imgURL} />
             <View style={styles.textContainer}>
-                <Text style={[styles.menuTitle, { color: currentTheme['defaultTextColor'] }]}>{item.title}</Text>
+                <Text style={[styles.menuTitle, { color: currentTheme.defaultTextColor }]}>{item.title}</Text>
                 <Text style={styles.menuName}>{item.restaurantName}</Text>
             </View>
             <Text style={styles.menuPrice}>${item.price}</Text>
@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
+        alignSelf: 'center',
         marginBottom: 10,
         // backgroundColor: ',
         padding: 10,

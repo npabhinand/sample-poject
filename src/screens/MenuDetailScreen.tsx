@@ -56,9 +56,11 @@ const MenuDetailScreen: React.FC<MenuDetailScreenProps> = ({ route }) => {
 
             <ScrollView bounces={false}>
 
-                <View style={[styles.cardContainer, { backgroundColor: currentTheme['themeColor'] }]}>
+                <View style={[styles.cardContainer, { backgroundColor: currentTheme.themeColor }]}>
                     <View style={styles.row}>
-                        <Text style={styles.txt}>Popular</Text>
+                        <View style={[styles.popularContainer, { backgroundColor: currentTheme.lightGreenButtonColor }]}>
+                            <Text style={styles.txt}>Popular</Text>
+                        </View>
                         <View style={styles.icons}>
                             <Pressable style={styles.right}>
                                 <Image source={locationIcon2} />
@@ -68,24 +70,24 @@ const MenuDetailScreen: React.FC<MenuDetailScreenProps> = ({ route }) => {
                             </Pressable>
                         </View>
                     </View>
-                    <Text style={[styles.title, { color: currentTheme['defaultTextColor'] }]}>{section.item.title}</Text>
+                    <Text style={[styles.title, { color: currentTheme.defaultTextColor }]}>{section.item.title}</Text>
                     <View style={styles.ratings}>
                         <Image source={starPin} />
                         <Text style={styles.rating}>{section.item.rating}</Text>
                         <Image source={bagIcon} />
                         <Text style={styles.rating}>{section.item.orders}</Text>
                     </View>
-                    <Text style={[styles.description, { color: currentTheme['defaultTextColor'] }]}>{section.item.description1}</Text>
+                    <Text style={[styles.description, { color: currentTheme.defaultTextColor }]}>{section.item.description1}</Text>
                     {section.item.recipe && Array.isArray(section.item.recipe) && section.item.recipe.length > 0 ? (
                         section.item.recipe.map((item, index) => (
                             <View key={index} style={styles.recipeItem}>
-                                <Text style={{ color: currentTheme['defaultTextColor'] }}>• {item}</Text>
+                                <Text style={{ color: currentTheme.defaultTextColor }}>• {item}</Text>
                             </View>
                         ))
                     ) : (
                         <Text>No recipe available</Text>
                     )}
-                    <Text style={[styles.description, { color: currentTheme['defaultTextColor'] }]}>{section.item.description2}</Text>
+                    <Text style={[styles.description, { color: currentTheme.defaultTextColor }]}>{section.item.description2}</Text>
                     <View style={styles.testimonialContainer}>
                         <Testimonials />
                     </View>
@@ -138,10 +140,9 @@ const styles = StyleSheet.create({
         // backgroundColor: '#fff'
     },
     txt: {
-        fontSize: 18,
+        fontSize: 15,
         fontWeight: 'bold',
         color: '#3FC87C',
-        backgroundColor: '#EBFAF2',
     },
     icons: {
         flexDirection: 'row',
@@ -200,5 +201,11 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: HEIGHT * 0.05,
         borderTopRightRadius: HEIGHT * 0.05,
         zIndex: 1,
+    }, popularContainer: {
+        alignItems: 'center',
+        height: HEIGHT * 0.04,
+        width: WIDTH * 0.20,
+        justifyContent: 'center',
+        borderRadius: WIDTH * 0.05,
     },
 });
